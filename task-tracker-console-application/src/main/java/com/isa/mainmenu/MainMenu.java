@@ -1,4 +1,4 @@
-package com.isa.MainMenu;
+package com.isa.mainmenu;
 
 import java.util.Scanner;
 

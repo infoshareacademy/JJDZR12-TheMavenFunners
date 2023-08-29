@@ -1,12 +1,12 @@
-package com.isa.menuafterloggingin;
+package com.isa.menu;
 
 import java.util.Scanner;
 
-import static com.isa.mainmenu.MainMenu.displayMainMenu;
-import static com.isa.mainmenu.MainMenu.printUserMainMenuChoice;
+import static com.isa.menu.MainMenu.displayMainMenu;
+import static com.isa.menu.MainMenu.printUserMainMenuChoice;
 
 public class MenuAfterLoggingIn {
-    public static void displayMenuAfterLoggingIn() {
+    private static void displayMenuAfterLoggingIn() {
         System.out.println("=====================================");
         System.out.println("             MENU PO ZALOGOWANIU");
         System.out.println("=====================================");
@@ -20,7 +20,7 @@ public class MenuAfterLoggingIn {
         System.out.print("Wybierz opcję: ");
     }
 
-    public static void printUserMenuChoiceAfterLoggingIn(){
+    private static void printUserMenuChoiceAfterLoggingIn(){
         Scanner scanner = new Scanner(System.in);
         int userChoice = scanner.nextInt();
         switch (userChoice) {

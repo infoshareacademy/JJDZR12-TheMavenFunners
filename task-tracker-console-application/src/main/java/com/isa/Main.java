@@ -1,6 +1,6 @@
 package com.isa;
 
-import com.isa.menuafterloggingin.MenuAfterLoggingIn;
+import com.isa.menu.MenuAfterLoggingIn;
 
 public class Main {
     public static void main(String[] args) {

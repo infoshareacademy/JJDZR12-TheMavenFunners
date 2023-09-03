@@ -1,4 +1,4 @@
-package com.isa.MainMenu;
+package com.isa.menu;
 
 import com.isa.user.Login;
 

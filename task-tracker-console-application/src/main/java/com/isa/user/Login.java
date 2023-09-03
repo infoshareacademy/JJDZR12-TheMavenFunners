@@ -1,6 +1,6 @@
 package com.isa.user;
 
-import com.isa.MainMenu.MainMenu;
+import com.isa.menu.MainMenu;
 
 import java.util.List;
 import java.util.Optional;

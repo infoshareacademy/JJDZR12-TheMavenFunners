@@ -63,22 +63,7 @@ public class Login {
         if (inputPassword.equals("0")) {
             goToMainMenu();
         } else if (!isCorrectPassword(inputPassword)) {
-            incorrectPasswordInputCount++;
-            System.out.println("Hasło niepoprawne.");
-            if (incorrectPasswordInputCount > 1 && incorrectPasswordInputCount < 5) {
-                System.out.println("Pamiętaj, że w każdej chwili możesz wrócić do menu głównego poprzez wybór \"0\".");
-                if (incorrectPasswordInputCount == 4) {
-                    System.out.println("UWAGA: Przy kolejnej nieprawidłowej próbie zalogowania się twoje konto zostanie zablokowane.");
-                }
-            }
-            if (incorrectPasswordInputCount != 5) {
-                System.out.print("Podaj hasło ponownie: ");
-                validatePassword(scanner, incorrectPasswordInputCount);
-            } else {
-                chosenUser().setActive(false);
-                System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
-                askForBlockedUserChoice(scanner);
-            }
+            checkForIncorrectPassword(scanner, incorrectPasswordInputCount);
         } else {
             loggedInUser = chosenUser();
             printWelcomeMessage();
@@ -88,6 +73,25 @@ public class Login {
             } else {
                 askForBlockedUserChoice(scanner);
             }
+        }
+    }
+
+    private static void checkForIncorrectPassword(Scanner scanner, int incorrectPasswordInputCount) {
+        incorrectPasswordInputCount++;
+        System.out.println("Hasło niepoprawne.");
+        if (incorrectPasswordInputCount > 1 && incorrectPasswordInputCount < 5) {
+            System.out.println("Pamiętaj, że w każdej chwili możesz wrócić do menu głównego poprzez wybór \"0\".");
+            if (incorrectPasswordInputCount == 4) {
+                System.out.println("UWAGA: Przy kolejnej nieprawidłowej próbie zalogowania się twoje konto zostanie zablokowane.");
+            }
+        }
+        if (incorrectPasswordInputCount != 5) {
+            System.out.print("Podaj hasło ponownie: ");
+            validatePassword(scanner, incorrectPasswordInputCount);
+        } else {
+            chosenUser().setActive(false);
+            System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
+            askForBlockedUserChoice(scanner);
         }
     }
 

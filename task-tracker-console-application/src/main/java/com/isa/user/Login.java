@@ -3,6 +3,7 @@ package com.isa.user;
 import com.isa.MainMenu.MainMenu;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Login {
@@ -34,7 +35,7 @@ public class Login {
         inputLogin = scanner.nextLine();
         if (inputLogin.equals("0")) {
             goToMainMenu();
-        } else if (chosenUser() == null) {
+        } else if (chosenUser().isEmpty()) {
             incorrectLoginInputCount++;
             System.out.println("Podany login nie istnieje.");
             if (incorrectLoginInputCount > 1) {
@@ -49,13 +50,9 @@ public class Login {
         }
     }
 
-    private static User chosenUser() {
-        for (User u : users) {
-            if (u.getLogin().equals(inputLogin)) {
-                return u;
-            }
-        }
-        return null;
+    private static Optional<User> chosenUser() {
+        return Optional.ofNullable(users.stream().
+                filter(user -> user.getLogin().equals(inputLogin)).findFirst().orElse(null));
     }
 
     private static void validatePassword(Scanner scanner, int incorrectPasswordInputCount) {
@@ -65,7 +62,7 @@ public class Login {
         } else if (!isCorrectPassword(inputPassword)) {
             checkForIncorrectPassword(scanner, incorrectPasswordInputCount);
         } else {
-            loggedInUser = chosenUser();
+            loggedInUser = chosenUser().get();
             printWelcomeMessage();
             if (loggedInUser.isActive()) {
                 /* TODO Replace the message below once the menu for the logged in user is created */
@@ -89,14 +86,14 @@ public class Login {
             System.out.print("Podaj hasło ponownie: ");
             validatePassword(scanner, incorrectPasswordInputCount);
         } else {
-            chosenUser().setActive(false);
+            chosenUser().ifPresent(user -> user.setActive(false));
             System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
             askForBlockedUserChoice(scanner);
         }
     }
 
     private static boolean isCorrectPassword(String inputPassword) {
-        return inputPassword.equals(chosenUser().getPassword());
+        return inputPassword.equals(chosenUser().get().getPassword());
     }
 
     private static void printWelcomeMessage() {

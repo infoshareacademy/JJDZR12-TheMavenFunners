@@ -51,8 +51,9 @@ public class Login {
     }
 
     private static Optional<User> chosenUser() {
-        return Optional.ofNullable(users.stream().
-                filter(user -> user.getLogin().equals(inputLogin)).findFirst().orElse(null));
+        return users.stream()
+                .filter(user -> user.getLogin().equals(inputLogin))
+                .findFirst();
     }
 
     private static void validatePassword(Scanner scanner, int incorrectPasswordInputCount) {
@@ -93,7 +94,9 @@ public class Login {
     }
 
     private static boolean isCorrectPassword(String inputPassword) {
-        return inputPassword.equals(chosenUser().get().getPassword());
+        return chosenUser()
+                .map(user -> inputPassword.equals(user.getPassword()))
+                .orElse(false);
     }
 
     private static void printWelcomeMessage() {

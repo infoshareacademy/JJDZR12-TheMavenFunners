@@ -1,6 +1,7 @@
 package com.isa.user;
 
 import com.isa.menu.MainMenu;
+import com.isa.menu.MenuAfterLoggingIn;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,8 +67,7 @@ public class Login {
             loggedInUser = chosenUser().get();
             printWelcomeMessage();
             if (loggedInUser.isActive()) {
-                /* TODO Replace the message below once the menu for the logged in user is created */
-                System.out.println("Menu po zalogowaniu się niedostępne. Nastąpi samoczynne zakończenie programu.");
+                MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
             } else {
                 askForBlockedUserChoice(scanner);
             }

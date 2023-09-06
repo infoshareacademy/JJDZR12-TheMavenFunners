@@ -1,4 +1,4 @@
-package Registration;
+package com.isa.Registration;
 
 
 import com.isa.user.User;

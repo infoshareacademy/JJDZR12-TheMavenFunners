@@ -1,12 +1,10 @@
 package com.isa;
 
-import com.isa.menu.MenuAfterLoggingIn;
+import com.isa.menu.MainMenu;
 
 public class Main {
     public static void main(String[] args) {
-//        MainMenu.displayMainMenu();
-//        MainMenu.printUserMainMenuChoice();
-
-        MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
+        MainMenu.displayMainMenu();
+        MainMenu.printUserMainMenuChoice();
     }
 }

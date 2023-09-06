@@ -1,12 +1,9 @@
 package com.isa.Registration;
-
-
 import com.isa.user.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
-    public class Registration {
+public class Registration {
         private List<User> users;
 
         public Registration() {
@@ -14,12 +11,8 @@ import java.util.List;
         }
 
         public boolean isUserExists(String login) {
-            for (User user : users) {
-                if (user.getLogin().equals(login)) {
-                    return true;
-                }
-            }
-            return false;
+            return users.stream()
+                    .anyMatch(user -> user.getLogin().equals(login));
         }
 
         public void registerUser(String firstName, String lastName, String login, String password) {

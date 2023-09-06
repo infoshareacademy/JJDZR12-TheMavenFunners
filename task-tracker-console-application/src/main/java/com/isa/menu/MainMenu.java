@@ -1,5 +1,7 @@
 package com.isa.menu;
 
+import com.isa.user.Login;
+
 import java.util.Scanner;
 
 public class MainMenu {
@@ -21,7 +23,7 @@ public class MainMenu {
         int userChoice = scanner.nextInt();
         switch (userChoice) {
             case 1 -> System.out.println("Rejestracja niedostępna");
-            case 2 -> System.out.println("logowanie niedostępne");
+            case 2 -> Login.start();
             case 3 -> System.out.println("logowanie jako administrator niedostępne");
             case 4 -> System.exit(0);
             default -> {

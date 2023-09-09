@@ -2,6 +2,9 @@ package com.isa.task;
 
 import com.isa.user.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Task {
     private String taskName;
     private String taskStart;
@@ -64,6 +67,12 @@ public class Task {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public static void getTestTasks() {;
+        Task t1 = new Task("Opis projektu", "10.09.2023", "11.09.2023", "Zadanie wymaga wykonania opisu projektu", true);
+        Task t2 = new Task("Rozbudowanie aplikacji", "10.09.2023", "17.09.2023", "Zadanie polega na rozbudowaniu aplikacji", true);
+        Task t3 = new Task("Testowanie aplikacji", "17.09.2023", "20.09.2023", "Przetestowanie działania aplikacji", true);
     }
 }
 

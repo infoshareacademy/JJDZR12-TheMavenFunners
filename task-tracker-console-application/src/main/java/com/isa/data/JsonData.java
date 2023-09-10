@@ -10,7 +10,6 @@ import java.util.List;
 public class JsonData {
     private static List<User> users;
     private static final File userFile = new File("task-tracker-console-application/src/main/resources/database/users.json");
-    private static File taskFile = new File("");
 
     public static List<User> getUsers() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -20,7 +19,6 @@ public class JsonData {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return users;
     }
 
@@ -34,5 +32,4 @@ public class JsonData {
             e.printStackTrace();
         }
     }
-
 }

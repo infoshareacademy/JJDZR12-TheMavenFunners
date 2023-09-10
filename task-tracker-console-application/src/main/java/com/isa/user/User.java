@@ -18,6 +18,9 @@ public class User {
         this.isActive = isActive;
     }
 
+    public User() {
+    }
+
     public String getLogin() {
         return login;
     }

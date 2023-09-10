@@ -1,5 +1,6 @@
 package com.isa.user;
 
+import com.isa.data.JsonData;
 import com.isa.menu.MainMenu;
 import com.isa.menu.MenuAfterLoggingIn;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class Login {
     private static User loggedInUser;
-    private static final List<User> users = User.getTestUsers();
+    private static final List<User> users = JsonData.getUsers();
     private static String inputLogin;
 
     public static User getLoggedInUser() {

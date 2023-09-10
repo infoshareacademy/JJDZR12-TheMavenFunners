@@ -1,5 +1,7 @@
 package com.isa.menu;
 
+import com.isa.task.AddTask;
+
 import java.util.Scanner;
 
 public class MenuAfterLoggingIn {
@@ -22,7 +24,7 @@ public class MenuAfterLoggingIn {
         int userChoice = scanner.nextInt();
         switch (userChoice) {
             case 1 -> System.out.println("Wyswietlanie tasków niedostępne");
-            case 2 -> System.out.println("Dodawanie tasków niedostępne");
+            case 2 -> AddTask.addTask();
             case 3 -> System.out.println("Wyświetlanie urlopów niedostępne");
             case 4 -> System.out.println("Wprowadźanie urlopów niedostępne");
             case 5 -> {

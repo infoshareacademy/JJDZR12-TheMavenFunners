@@ -38,12 +38,12 @@ public class AddTask {
     private static void getNextTask() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Aby dodać następne zadanie wybierz 1, aby powrócić do Menu wybierz 0: ");
-        int number = scanner.nextInt();
+        String number = scanner.nextLine();
 
-        if (number == 1) {
+        if (number.equals("1")) {
             getTask();
             getNextTask();
-        } else if (number == 0) {
+        } else if (number.equals("0")) {
             MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
         } else {
             System.out.println("Wybierz prawidłowy numer.");

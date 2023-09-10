@@ -53,13 +53,11 @@ public class Task {
         this.taskDescription = taskDescription;
     }
 
-    public User getLogin() {
-        return login;
+    public User getUser() {
+        return user;
     }
 
-    public void setLogin(User login) {
-        this.login = login;
-    }
+    public void setUser(User user) { this.user = user; }
 
     public Boolean getActive() {
         return active;

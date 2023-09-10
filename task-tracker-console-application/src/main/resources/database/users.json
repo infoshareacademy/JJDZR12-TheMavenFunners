@@ -1,0 +1,50 @@
+[
+  {
+    "login": "admin",
+    "password": "Zaq123!@0",
+    "email": "admin@omail.com",
+    "active": true,
+    "firstName": null,
+    "lastName": null
+  },
+  {
+    "login": "agata.kowalska",
+    "password": "Zaq123!@1",
+    "email": "agata.kowalska@omail.com",
+    "active": true,
+    "firstName": "Agata",
+    "lastName": "Kowalska"
+  },
+  {
+    "login": "monika.nowak",
+    "password": "Zaq123!@2",
+    "email": "monika.nowak@omail.com",
+    "active": true,
+    "firstName": null,
+    "lastName": null
+  },
+  {
+    "login": "tomasz.bieraj",
+    "password": "Zaq123!@3",
+    "email": "tomasz.bieraj@omail.com",
+    "active": true,
+    "firstName": null,
+    "lastName": null
+  },
+  {
+    "login": "aleksandra.chmurska",
+    "password": "Zaq123!@4",
+    "email": "aleksandra.chmurska@omail.com",
+    "active": false,
+    "firstName": null,
+    "lastName": null
+  },
+  {
+    "login": "krzysztof.kwiatkowski",
+    "password": "Zaq123!@5",
+    "email": "krzysztof.kwiatkowski@omail.com",
+    "active": true,
+    "firstName": null,
+    "lastName": null
+  }
+]

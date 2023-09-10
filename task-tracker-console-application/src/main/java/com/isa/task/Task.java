@@ -10,7 +10,7 @@ public class Task {
     private String taskStart;
     private String taskEnd;
     private String taskDescription;
-    private User login;
+    private User user;
     private Boolean active;
 
     public Task(String taskName, String taskStart, String taskEnd, String taskDescription, Boolean active) {

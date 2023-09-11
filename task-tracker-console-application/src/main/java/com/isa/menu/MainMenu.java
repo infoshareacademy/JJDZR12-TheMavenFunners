@@ -5,7 +5,7 @@ import com.isa.user.Login;
 import java.util.Scanner;
 
 public class MainMenu {
-    public static void displayMainMenu() {
+    private static void displayMainMenu() {
         System.out.println("=====================================");
         System.out.println("             MENU GŁÓWNE");
         System.out.println("=====================================");
@@ -18,7 +18,7 @@ public class MainMenu {
         System.out.print("Wybierz opcję: ");
     }
 
-    public static void printUserMainMenuChoice(){
+    private static void printUserMainMenuChoice(){
         Scanner scanner = new Scanner(System.in);
         int userChoice = scanner.nextInt();
         switch (userChoice) {
@@ -32,5 +32,10 @@ public class MainMenu {
                 printUserMainMenuChoice();
             }
         }
+    }
+
+    public static void printCompletedMenu(){
+        displayMainMenu();
+        printUserMainMenuChoice();
     }
 }

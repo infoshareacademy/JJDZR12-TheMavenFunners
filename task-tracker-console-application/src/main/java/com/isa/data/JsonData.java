@@ -23,9 +23,20 @@ public class JsonData {
         return users;
     }
 
+    public static void updateUserData(User user) {
+        users.addAll(getUsers());
+        saveUserData(users.stream()
+                .map(u -> u.equals(user) ? user : u)
+                .toList());
+    }
+
     public static void saveNewUser(User user) {
         users.addAll(getUsers());
         users.add(user);
+        saveUserData(users);
+    }
+
+    private static void saveUserData(List<User> users) {
         try {
             objectMapper.writeValue(userFile, users);
         } catch (Exception e) {

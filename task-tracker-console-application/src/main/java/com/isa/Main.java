@@ -6,9 +6,6 @@ import com.isa.menu.MenuAfterLoggingIn;
 
 public class Main {
     public static void main(String[] args) {
-
-      //  MainMenu.printCompletedMenu();
-       // MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
-        AdminMenu.printCompletedAdminMenu();
+        MainMenu.printCompletedMenu();
     }
 }

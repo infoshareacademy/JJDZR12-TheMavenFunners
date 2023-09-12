@@ -1,4 +1,4 @@
-package com.isa.Registration;
+package com.isa.registration;
 import com.isa.user.User;
 import java.util.ArrayList;
 import java.util.List;

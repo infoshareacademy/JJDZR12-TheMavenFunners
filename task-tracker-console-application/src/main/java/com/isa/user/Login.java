@@ -1,5 +1,7 @@
 package com.isa.user;
 
+import com.isa.data.JsonData;
+import com.isa.menu.AdminMenu;
 import com.isa.menu.MainMenu;
 import com.isa.menu.MenuAfterLoggingIn;
 
@@ -9,7 +11,7 @@ import java.util.Scanner;
 
 public class Login {
     private static User loggedInUser;
-    private static final List<User> users = User.getTestUsers();
+    private static final List<User> users = JsonData.getUsers();
     private static String inputLogin;
 
     public static User getLoggedInUser() {
@@ -35,7 +37,7 @@ public class Login {
     private static void validateLogin(Scanner scanner, int incorrectLoginInputCount) {
         inputLogin = scanner.nextLine();
         if (inputLogin.equals("0")) {
-            goToMainMenu();
+            MainMenu.printCompletedMenu();
         } else if (chosenUser().isEmpty()) {
             incorrectLoginInputCount++;
             System.out.println("Podany login nie istnieje.");
@@ -60,13 +62,15 @@ public class Login {
     private static void validatePassword(Scanner scanner, int incorrectPasswordInputCount) {
         String inputPassword = scanner.nextLine();
         if (inputPassword.equals("0")) {
-            goToMainMenu();
+            MainMenu.printCompletedMenu();
         } else if (!isCorrectPassword(inputPassword)) {
             checkForIncorrectPassword(scanner, incorrectPasswordInputCount);
         } else {
             loggedInUser = chosenUser().get();
             printWelcomeMessage();
-            if (loggedInUser.isActive()) {
+            if(loggedInUser.getLogin().equals("admin")) {
+                AdminMenu.printCompletedAdminMenu();
+            } else if (loggedInUser.isActive()) {
                 MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
             } else {
                 askForBlockedUserChoice(scanner);
@@ -88,6 +92,7 @@ public class Login {
             validatePassword(scanner, incorrectPasswordInputCount);
         } else {
             chosenUser().ifPresent(user -> user.setActive(false));
+            JsonData.updateUserData(chosenUser().get());
             System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
             askForBlockedUserChoice(scanner);
         }
@@ -114,7 +119,7 @@ public class Login {
         String blockedUserInput = scanner.nextLine();
         if (blockedUserInput.equals("0")) {
             logOutUser();
-            goToMainMenu();
+            MainMenu.printCompletedMenu();
         } else if (blockedUserInput.equals("x")) {
             logOutUser();
             System.exit(0);
@@ -122,11 +127,6 @@ public class Login {
             System.out.println("Wprowadź prawidłową wartość.");
             askForBlockedUserChoice(scanner);
         }
-    }
-
-    private static void goToMainMenu() {
-        MainMenu.displayMainMenu();
-        MainMenu.printUserMainMenuChoice();
     }
 
     public static void start() {

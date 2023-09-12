@@ -18,12 +18,21 @@ public class Registration {
                 .anyMatch(user -> user.getLogin().equals(login));
     }
 
+    public boolean isValidPassword(String password) {
+        // Tu powinniśmy podać kryteria walidacji hasła, np. minimalna długość, wymagane znaki, etc.
+        return password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]+$");
+
+    }
+
     public void registerUser(String firstName, String lastName, String login, String password) {
         try {
             if (firstName.isEmpty() || lastName.isEmpty() || login.isEmpty() || password.isEmpty()) {
                 throw new IllegalArgumentException("Wszystkie pola są wymagane.");
             }
 
+            if (!isValidPassword(password)) {
+                throw new IllegalArgumentException("Niepoprawne hasło.");
+            }
             if (isUserExists(login)) {
                 System.out.println("Użytkownik istnieje.");
             } else {
@@ -37,13 +46,13 @@ public class Registration {
         } catch (IllegalArgumentException e) {
             System.out.println("Błąd: " + e.getMessage());
 
-        public static void main(String[] args) {
-            Registration registration = new Registration();
-            String firstName = "Jan";
-            String lastName = "Kowalski";
-            String login = "Jan.kowalski";
-            String password = "Password123 !";
-            registration.registerUser(firstName, lastName, login, password);
+            public static void main (String[]args){
+                Registration registration = new Registration();
+                String firstName = "Jan";
+                String lastName = "Kowalski";
+                String login = "Jan.kowalski";
+                String password = "Password123 !";
+                registration.registerUser(firstName, lastName, login, password);
+            }
         }
-    }
 

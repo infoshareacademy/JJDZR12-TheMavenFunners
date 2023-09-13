@@ -67,10 +67,18 @@ public class Task {
         this.active = active;
     }
 
-    public static void getTestTasks() {;
+    public static List<Task> getTestTasks() {;
+        List<Task> tasks = new ArrayList<>();
+
         Task t1 = new Task("Opis projektu", "10.09.2023", "11.09.2023", "Zadanie wymaga wykonania opisu projektu", true);
         Task t2 = new Task("Rozbudowanie aplikacji", "10.09.2023", "17.09.2023", "Zadanie polega na rozbudowaniu aplikacji", true);
         Task t3 = new Task("Testowanie aplikacji", "17.09.2023", "20.09.2023", "Przetestowanie działania aplikacji", true);
+
+        tasks.add(t1);
+        tasks.add(t2);
+        tasks.add(t3);
+
+        return tasks;
     }
 }
 

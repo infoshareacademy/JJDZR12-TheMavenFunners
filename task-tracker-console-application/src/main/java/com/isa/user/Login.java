@@ -125,8 +125,7 @@ public class Login {
     }
 
     private static void goToMainMenu() {
-        MainMenu.displayMainMenu();
-        MainMenu.printUserMainMenuChoice();
+        MainMenu.printCompletedMenu();
     }
 
     public static void start() {

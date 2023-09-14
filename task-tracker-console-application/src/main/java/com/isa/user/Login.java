@@ -71,12 +71,12 @@ public class Login {
             if(loggedInUser.getLogin().equals("admin")) {
                 AdminMenu.printCompletedAdminMenu();
             } else if (loggedInUser.isActive()) {
-                    MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
-                } else {
-                    askForBlockedUserChoice(scanner);
-                }
+                MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
+            } else {
+                askForBlockedUserChoice(scanner);
             }
         }
+    }
 
 
     private static void checkForIncorrectPassword(Scanner scanner, int incorrectPasswordInputCount) {

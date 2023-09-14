@@ -68,17 +68,16 @@ public class Login {
         } else {
             loggedInUser = chosenUser().get();
             printWelcomeMessage();
-            if (loggedInUser.getLogin().equals("admin")) {
+            if(loggedInUser.getLogin().equals("admin")) {
                 AdminMenu.printCompletedAdminMenu();
             } else if (loggedInUser.isActive()) {
-                if (loggedInUser.isActive()) {
                     MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
                 } else {
                     askForBlockedUserChoice(scanner);
                 }
             }
         }
-    }
+
 
     private static void checkForIncorrectPassword(Scanner scanner, int incorrectPasswordInputCount) {
         incorrectPasswordInputCount++;

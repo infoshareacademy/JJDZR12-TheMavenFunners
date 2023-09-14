@@ -78,7 +78,6 @@ public class Login {
         }
     }
 
-
     private static void checkForIncorrectPassword(Scanner scanner, int incorrectPasswordInputCount) {
         incorrectPasswordInputCount++;
         System.out.println("Hasło niepoprawne.");

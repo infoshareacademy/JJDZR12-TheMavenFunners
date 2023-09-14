@@ -1,6 +1,7 @@
 package com.isa.user;
 
 import com.isa.data.JsonData;
+import com.isa.menu.AdminMenu;
 import com.isa.menu.MainMenu;
 import com.isa.menu.MenuAfterLoggingIn;
 
@@ -67,10 +68,14 @@ public class Login {
         } else {
             loggedInUser = chosenUser().get();
             printWelcomeMessage();
-            if (loggedInUser.isActive()) {
-                MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
-            } else {
-                askForBlockedUserChoice(scanner);
+            if (loggedInUser.getLogin().equals("admin")) {
+                AdminMenu.printCompletedAdminMenu();
+            } else if (loggedInUser.isActive()) {
+                if (loggedInUser.isActive()) {
+                    MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
+                } else {
+                    askForBlockedUserChoice(scanner);
+                }
             }
         }
     }
@@ -89,6 +94,7 @@ public class Login {
             validatePassword(scanner, incorrectPasswordInputCount);
         } else {
             chosenUser().ifPresent(user -> user.setActive(false));
+            JsonData.updateUserData(chosenUser().get());
             System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
             askForBlockedUserChoice(scanner);
         }

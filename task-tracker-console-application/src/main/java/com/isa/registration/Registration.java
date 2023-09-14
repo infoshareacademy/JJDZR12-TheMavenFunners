@@ -14,7 +14,7 @@ public class Registration {
     private static String login;
     private static String password;
 
-    private static boolean isUserExists(String login) {
+    private static boolean userExists(String login) {
         return users.stream()
                 .anyMatch(user -> user.getLogin().equals(login));
     }
@@ -28,13 +28,13 @@ public class Registration {
     public static void getUserInput() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Podaj imię");
+        System.out.print("Podaj imię: ");
         firstName = scanner.nextLine();
-        System.out.println("Podaj nazwisko");
+        System.out.print("Podaj nazwisko: ");
         lastName = scanner.nextLine();
-        System.out.println("podaj login");
+        System.out.print("podaj login: ");
         login = scanner.nextLine();
-        System.out.println("Podaj hasło");
+        System.out.print("Podaj hasło: ");
         password = scanner.nextLine();
 
         validateInput();
@@ -46,18 +46,17 @@ public class Registration {
             if (firstName.isEmpty() || lastName.isEmpty() || login.isEmpty() || password.isEmpty()) {
                 throw new IllegalArgumentException("Wszystkie pola są wymagane.");
             }
-
             if (!isValidPassword(password)) {
-                throw new IllegalArgumentException("Niepoprawne hasło.");
+                throw new IllegalArgumentException("Niepoprawne hasło. Hasło musi posiadać co najmniej 8 znaków, w tym przynajmniej jedną małą literę, jedną wielką literę oraz znak specjalny.");
             }
-            if (isUserExists(login)) {
+            if (userExists(login)) {
                 System.out.println("Użytkownik istnieje.");
                 System.out.println("Automatycznie przejście do opcji logowania...");
                 Login.start();
             }
-
         } catch (IllegalArgumentException e) {
             System.out.println("Błąd: " + e.getMessage());
+            System.out.println("Wpisz dane ponownie.");
             getUserInput();
         }
 

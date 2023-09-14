@@ -1,5 +1,6 @@
 package com.isa.registration;
 
+import com.isa.data.JsonData;
 import com.isa.user.Login;
 import com.isa.user.User;
 
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Registration {
-    private static final List<User> users = User.getTestUsers();
+    private static final List<User> users = JsonData.getUsers();
     private static String firstName;
     private static String lastName;
     private static String login;
@@ -67,7 +68,7 @@ public class Registration {
         User newUser = new User(login, password, "", true);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
-        users.add(newUser);
+        JsonData.saveNewUser(newUser);
         System.out.println("Konto zostało utworzone.");
         System.out.println("Automatycznie przejście do opcji logowania...");
         Login.start();

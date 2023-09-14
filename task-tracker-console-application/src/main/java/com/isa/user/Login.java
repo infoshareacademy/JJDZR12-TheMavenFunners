@@ -35,7 +35,7 @@ public class Login {
     private static void validateLogin(Scanner scanner, int incorrectLoginInputCount) {
         inputLogin = scanner.nextLine();
         if (inputLogin.equals("0")) {
-            goToMainMenu();
+            MainMenu.printCompletedMenu();
         } else if (chosenUser().isEmpty()) {
             incorrectLoginInputCount++;
             System.out.println("Podany login nie istnieje.");
@@ -60,7 +60,7 @@ public class Login {
     private static void validatePassword(Scanner scanner, int incorrectPasswordInputCount) {
         String inputPassword = scanner.nextLine();
         if (inputPassword.equals("0")) {
-            goToMainMenu();
+            MainMenu.printCompletedMenu();
         } else if (!isCorrectPassword(inputPassword)) {
             checkForIncorrectPassword(scanner, incorrectPasswordInputCount);
         } else {
@@ -114,7 +114,7 @@ public class Login {
         String blockedUserInput = scanner.nextLine();
         if (blockedUserInput.equals("0")) {
             logOutUser();
-            goToMainMenu();
+            MainMenu.printCompletedMenu();
         } else if (blockedUserInput.equals("x")) {
             logOutUser();
             System.exit(0);
@@ -122,10 +122,6 @@ public class Login {
             System.out.println("Wprowadź prawidłową wartość.");
             askForBlockedUserChoice(scanner);
         }
-    }
-
-    private static void goToMainMenu() {
-        MainMenu.printCompletedMenu();
     }
 
     public static void start() {

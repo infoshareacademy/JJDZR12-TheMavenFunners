@@ -13,12 +13,12 @@ public class Registration {
     private static String login;
     private static String password;
 
-    public static boolean isUserExists(String login) {
+    private static boolean isUserExists(String login) {
         return users.stream()
                 .anyMatch(user -> user.getLogin().equals(login));
     }
 
-    public static boolean isValidPassword(String password) {
+    private static boolean isValidPassword(String password) {
         // Tu powinniśmy podać kryteria walidacji hasła, np. minimalna długość, wymagane znaki, etc.
         return password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]+$");
 
@@ -40,7 +40,7 @@ public class Registration {
         registerUser();
     }
 
-    public static void validateInput() {
+    private static void validateInput() {
         try {
             if (firstName.isEmpty() || lastName.isEmpty() || login.isEmpty() || password.isEmpty()) {
                 throw new IllegalArgumentException("Wszystkie pola są wymagane.");
@@ -51,6 +51,8 @@ public class Registration {
             }
             if (isUserExists(login)) {
                 System.out.println("Użytkownik istnieje.");
+                System.out.println("Automatycznie przejście do opcji logowania...");
+                Login.start();
             }
 
         } catch (IllegalArgumentException e) {
@@ -60,7 +62,7 @@ public class Registration {
 
     }
 
-    public static void registerUser() {
+    private static void registerUser() {
 
         User newUser = new User(login, password, "", true);
         newUser.setFirstName(firstName);

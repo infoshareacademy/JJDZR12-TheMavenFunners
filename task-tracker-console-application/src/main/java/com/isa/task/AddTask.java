@@ -22,7 +22,7 @@ public class AddTask {
         System.out.println("=====================================");
     }
 
-    public static void getTask() {
+    private static void getTask() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Wprowadź nazwę zadania: ");

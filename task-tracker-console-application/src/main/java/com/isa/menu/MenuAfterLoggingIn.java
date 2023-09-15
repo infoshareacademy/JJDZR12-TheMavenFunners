@@ -1,9 +1,7 @@
 package com.isa.menu;
 
-import com.isa.data.JsonDataTask;
 import com.isa.task.AddTask;
 import com.isa.task.ViewTasks;
-import com.isa.user.Login;
 
 import java.util.Scanner;
 

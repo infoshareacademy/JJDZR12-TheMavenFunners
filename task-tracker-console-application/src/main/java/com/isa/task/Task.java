@@ -10,9 +10,9 @@ public class Task {
     private LocalDate taskEnd;
     private String taskDescription;
     private User user;
-    private Boolean active;
+    private boolean active;
 
-    public Task(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, User user, Boolean active) {
+    public Task(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, User user, boolean active) {
         this.taskName = taskName;
         this.taskStart = taskStart;
         this.taskEnd = taskEnd;

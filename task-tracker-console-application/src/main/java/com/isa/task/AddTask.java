@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddTask {
-
-    private static List<Task> tasks = JsonDataTask.getTasks();
     public static void addTask() {
         startDisplay();
         getTask();
@@ -43,7 +41,6 @@ public class AddTask {
         System.out.print("Wprowadź opis zadania: ");
         String taskDescription = scanner.nextLine();
 
-
         Task task = new Task(taskName, taskStartDate, taskEndDate, taskDescription, Login.getLoggedInUser(), true);
         JsonDataTask.saveNewTask(task);
 
@@ -62,12 +59,12 @@ public class AddTask {
     private static void getNextTask() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Aby dodać następne zadanie wybierz 1, aby powrócić do Menu wybierz 0: ");
-        String number = scanner.nextLine();
+        String input = scanner.nextLine();
 
-        if (number.equals("1")) {
+        if (input.equals("1")) {
             getTask();
             getNextTask();
-        } else if (number.equals("0")) {
+        } else if (input.equals("0")) {
             MenuAfterLoggingIn.printCompletedMenuAfterLoggingIn();
         } else {
             System.out.println("Wybierz prawidłowy numer.");

@@ -1,12 +1,8 @@
 package com.isa.menu;
 
-import com.isa.data.JsonDataTask;
 import com.isa.task.ViewTasks;
-import com.isa.user.Login;
 
 import java.util.Scanner;
-
-import static com.isa.menu.MainMenu.printCompletedMenu;
 
 public class AdminMenu {
     private static void displayAdminMenu(){

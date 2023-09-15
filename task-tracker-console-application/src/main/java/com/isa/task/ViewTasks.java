@@ -5,11 +5,8 @@ import com.isa.menu.AdminMenu;
 import com.isa.menu.MenuAfterLoggingIn;
 import com.isa.user.Login;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class ViewTasks {
     private static List<Task> tasks = JsonDataTask.getTasks();

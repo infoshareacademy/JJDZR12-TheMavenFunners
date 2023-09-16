@@ -95,8 +95,9 @@ public class Login {
             System.out.print("Podaj hasło ponownie: ");
             validatePassword(scanner, incorrectPasswordInputCount);
         } else {
-            chosenUser().ifPresent(user -> user.setActive(false));
-            JsonData.updateUserData(chosenUser().get());
+            Optional<User> chosenUser = chosenUser();
+            chosenUser.ifPresent(user -> user.setActive(false));
+            JsonData.updateUserData(chosenUser.get());
             System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
             askForBlockedUserChoice(scanner);
         }

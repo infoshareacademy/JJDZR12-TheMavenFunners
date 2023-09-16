@@ -2,10 +2,15 @@ package com.isa.menu;
 
 import com.isa.task.AddTask;
 import com.isa.task.ViewTasks;
+import com.isa.user.Login;
 
 import java.util.Scanner;
 
 public class MenuAfterLoggingIn {
+
+    private MenuAfterLoggingIn() {
+    }
+
     private static void displayMenuAfterLoggingIn() {
         System.out.println("=====================================");
         System.out.println("             MENU PO ZALOGOWANIU");
@@ -20,15 +25,22 @@ public class MenuAfterLoggingIn {
         System.out.print("Wybierz opcję: ");
     }
 
-    private static void printUserMenuChoiceAfterLoggingIn(){
+    private static void printUserMenuChoiceAfterLoggingIn() {
         Scanner scanner = new Scanner(System.in);
-        int userChoice = scanner.nextInt();
+        String userChoice = scanner.nextLine();
         switch (userChoice) {
-            case 1 -> ViewTasks.start();
-            case 2 -> AddTask.addTask();
-            case 3 -> System.out.println("Wyświetlanie urlopów niedostępne");
-            case 4 -> System.out.println("Wprowadźanie urlopów niedostępne");
-            case 5 -> {
+            case "1" -> ViewTasks.start();
+            case "2" -> AddTask.addTask();
+            case "3" -> {
+                System.out.println("Wyświetlanie urlopów niedostępne. Powrót do menu...");
+                printCompletedMenuAfterLoggingIn();
+            }
+            case "4" -> {
+                System.out.println("Wprowadźanie urlopów niedostępne. Powrót do menu...");
+                printCompletedMenuAfterLoggingIn();
+            }
+            case "5" -> {
+                Login.logOutUser();
                 MainMenu.printCompletedMenu();
             }
             default -> {
@@ -38,7 +50,7 @@ public class MenuAfterLoggingIn {
         }
     }
 
-    public static void printCompletedMenuAfterLoggingIn(){
+    public static void printCompletedMenuAfterLoggingIn() {
         displayMenuAfterLoggingIn();
         printUserMenuChoiceAfterLoggingIn();
     }

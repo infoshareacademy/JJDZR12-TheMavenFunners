@@ -11,8 +11,11 @@ import java.util.Scanner;
 
 public class Login {
     private static User loggedInUser;
-    private static final List<User> users = JsonData.getUsers();
+    private static List<User> users = JsonData.getUsers();
     private static String inputLogin;
+
+    private Login() {
+    }
 
     public static User getLoggedInUser() {
         return loggedInUser;
@@ -54,9 +57,10 @@ public class Login {
     }
 
     private static Optional<User> chosenUser() {
+        users=JsonData.getUsers();
         return users.stream()
                 .filter(user -> user.getLogin().equals(inputLogin))
-                .findFirst();
+                .findAny();
     }
 
     private static void validatePassword(Scanner scanner, int incorrectPasswordInputCount) {
@@ -91,8 +95,9 @@ public class Login {
             System.out.print("Podaj hasło ponownie: ");
             validatePassword(scanner, incorrectPasswordInputCount);
         } else {
-            chosenUser().ifPresent(user -> user.setActive(false));
-            JsonData.updateUserData(chosenUser().get());
+            Optional<User> chosenUser = chosenUser();
+            chosenUser.ifPresent(user -> user.setActive(false));
+            JsonData.updateUserData(chosenUser.get());
             System.out.println("Wykryto 5 nieprawidłowych prób zalogowania się. Twoje konto zostało zablokowane.");
             askForBlockedUserChoice(scanner);
         }

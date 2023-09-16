@@ -13,13 +13,21 @@ public class JsonData {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final File userFile = new File("task-tracker-console-application/src/main/resources/database/users.json");
 
-    public static List<User> getUsers() {
+    private JsonData() {
+    }
+
+    private static List<User> readUsers() {
         try {
             users = objectMapper.readValue(userFile, new TypeReference<>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return users;
+    }
+
+    public static List<User> getUsers() {
+        users.addAll(readUsers());
         return users;
     }
 

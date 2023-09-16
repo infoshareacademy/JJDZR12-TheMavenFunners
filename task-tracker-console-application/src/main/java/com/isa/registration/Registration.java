@@ -8,14 +8,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Registration {
-    private static final List<User> users = JsonData.getUsers();
     private static String firstName;
     private static String lastName;
     private static String login;
     private static String password;
 
+    private Registration() {
+    }
+
+    private static List<User> loadUsers() {
+        return JsonData.getUsers();
+    }
+
     private static boolean userExists(String login) {
-        return users.stream()
+        return loadUsers().stream()
                 .anyMatch(user -> user.getLogin().equals(login));
     }
 

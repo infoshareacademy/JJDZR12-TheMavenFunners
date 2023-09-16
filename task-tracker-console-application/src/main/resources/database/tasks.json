@@ -44,51 +44,5 @@
       "active": true
     },
     "active": true
-  },
-  {
-    "taskName": "test",
-    "taskStart": [
-      2023,
-      12,
-      12
-    ],
-    "taskEnd": [
-      2023,
-      12,
-      13
-    ],
-    "taskDescription": "opis",
-    "user": {
-      "login": "agata.kowalska",
-      "password": "Zaq123!@1",
-      "email": "agata.kowalska@omail.com",
-      "firstName": "Agata",
-      "lastName": "Kowalska",
-      "active": true
-    },
-    "active": true
-  },
-  {
-    "taskName": "Nowe zadanie",
-    "taskStart": [
-      2023,
-      9,
-      15
-    ],
-    "taskEnd": [
-      2023,
-      9,
-      19
-    ],
-    "taskDescription": "Opis zadania",
-    "user": {
-      "login": "agata.kowalska",
-      "password": "Zaq123!@1",
-      "email": "agata.kowalska@omail.com",
-      "firstName": "Agata",
-      "lastName": "Kowalska",
-      "active": true
-    },
-    "active": true
   }
 ]

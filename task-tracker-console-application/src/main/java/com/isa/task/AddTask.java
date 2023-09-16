@@ -6,10 +6,13 @@ import com.isa.menu.MenuAfterLoggingIn;
 import com.isa.user.Login;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 public class AddTask {
+
+    private AddTask() {
+    }
+
     public static void addTask() {
         startDisplay();
         getTask();
@@ -33,7 +36,7 @@ public class AddTask {
 
         System.out.print("Wprowadź datę zakończenia zadania (" + DateValidator.getFormatStr().toLowerCase() + "): ");
         LocalDate taskEndDate = getDate(scanner);
-        while(taskEndDate.isBefore(taskStartDate)) {
+        while (taskEndDate.isBefore(taskStartDate)) {
             System.out.print("Data zakończenia nie może być większa niż rozpoczęcia! Spróbuj ponownie: ");
             taskEndDate = getDate(scanner);
         }
@@ -49,7 +52,7 @@ public class AddTask {
 
     private static LocalDate getDate(Scanner scanner) {
         String taskDate = scanner.nextLine();
-        while(!DateValidator.isValidDate(taskDate)) {
+        while (!DateValidator.isValidDate(taskDate)) {
             System.out.print("Niepoprawny format! Spróbuj ponownie: ");
             taskDate = scanner.nextLine();
         }

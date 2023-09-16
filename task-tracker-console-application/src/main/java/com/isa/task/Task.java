@@ -60,7 +60,9 @@ public class Task {
         return user;
     }
 
-    public void setUser(User user) { this.user = user; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Boolean getActive() {
         return active;

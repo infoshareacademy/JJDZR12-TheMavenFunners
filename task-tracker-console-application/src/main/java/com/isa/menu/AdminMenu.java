@@ -29,38 +29,38 @@ public class AdminMenu {
 
     private static void printAdminMenuChoice() {
         Scanner scanner = new Scanner(System.in);
-        int userChoice = scanner.nextInt();
+        String userChoice = scanner.nextLine();
         switch (userChoice) {
-            case 1 -> ViewTasks.start();
-            case 2 -> {
+            case "1" -> ViewTasks.start();
+            case "2" -> {
                 System.out.println("Dodawanie tasków niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 3 -> {
+            case "3" -> {
                 System.out.println("Wyświetlanie urlopów niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 4 -> {
+            case "4" -> {
                 System.out.println("Wprowadźanie urlopów niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 5 -> {
+            case "5" -> {
                 System.out.println("Wyswietlanie użytkowników niedostpępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 6 -> {
+            case "6" -> {
                 System.out.println("Dodawanie roli użytkownikom niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 7 -> {
+            case "7" -> {
                 System.out.println("Blokowanie użytkowników niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 8 -> {
+            case "8" -> {
                 System.out.println("Wyświetlanie raportów niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 9 -> {
+            case "9" -> {
                 Login.logOutUser();
                 MainMenu.printCompletedMenu();
             }

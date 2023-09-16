@@ -27,19 +27,19 @@ public class MenuAfterLoggingIn {
 
     private static void printUserMenuChoiceAfterLoggingIn() {
         Scanner scanner = new Scanner(System.in);
-        int userChoice = scanner.nextInt();
+        String userChoice = scanner.nextLine();
         switch (userChoice) {
-            case 1 -> ViewTasks.start();
-            case 2 -> AddTask.addTask();
-            case 3 -> {
+            case "1" -> ViewTasks.start();
+            case "2" -> AddTask.addTask();
+            case "3" -> {
                 System.out.println("Wyświetlanie urlopów niedostępne. Powrót do menu...");
                 printCompletedMenuAfterLoggingIn();
             }
-            case 4 -> {
+            case "4" -> {
                 System.out.println("Wprowadźanie urlopów niedostępne. Powrót do menu...");
                 printCompletedMenuAfterLoggingIn();
             }
-            case 5 -> {
+            case "5" -> {
                 Login.logOutUser();
                 MainMenu.printCompletedMenu();
             }

@@ -23,11 +23,11 @@ public class MainMenu {
 
     private static void printUserMainMenuChoice() {
         Scanner scanner = new Scanner(System.in);
-        int userChoice = scanner.nextInt();
+        String userChoice = scanner.nextLine();
         switch (userChoice) {
-            case 1 -> Registration.getUserInput();
-            case 2 -> Login.start();
-            case 3 -> System.exit(0);
+            case "1" -> Registration.getUserInput();
+            case "2" -> Login.start();
+            case "3" -> System.exit(0);
             default -> {
                 System.out.println("Wprowadź prawidłową wartość");
                 displayMainMenu();

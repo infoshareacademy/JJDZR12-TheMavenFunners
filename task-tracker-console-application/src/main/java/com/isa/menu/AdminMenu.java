@@ -15,11 +15,11 @@ public class AdminMenu {
         System.out.println("2. Dodaj taski");
         System.out.println("3. Wyświetl uroply");
         System.out.println("4. Wprowadź nowy urlop");
-        System.out.println("5. Wyloguj");
-        System.out.println("6. Wyświetl użytkowników");
-        System.out.println("7. Dodaj role użytkownikom");
-        System.out.println("8. Zablokuj użytkownika");
-        System.out.println("9. Wyświetl raporty");
+        System.out.println("5. Wyświetl użytkowników");
+        System.out.println("6. Dodaj role użytkownikom");
+        System.out.println("7. Zablokuj użytkownika");
+        System.out.println("8. Wyświetl raporty");
+        System.out.println("9. Wyloguj");
         System.out.println();
         System.out.print("Wybierz opcję: ");
     }
@@ -42,24 +42,24 @@ public class AdminMenu {
                 printCompletedAdminMenu();
             }
             case 5 -> {
-                Login.logOutUser();
-                MainMenu.printCompletedMenu();
-            }
-            case 6 -> {
                 System.out.println("Wyswietlanie użytkowników niedostpępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 7 -> {
+            case 6 -> {
                 System.out.println("Dodawanie roli użytkownikom niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 8 -> {
+            case 7 -> {
                 System.out.println("Blokowanie użytkowników niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
             }
-            case 9 -> {
+            case 8 -> {
                 System.out.println("Wyświetlanie raportów niedostępne. Powrót do menu...");
                 printCompletedAdminMenu();
+            }
+            case 9 -> {
+                Login.logOutUser();
+                MainMenu.printCompletedMenu();
             }
             default -> {
                 System.out.println("Wprowadź prawidłową wartość");

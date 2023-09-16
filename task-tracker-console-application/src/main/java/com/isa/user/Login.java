@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Login {
     private static User loggedInUser;
-    private static final List<User> users = JsonData.getUsers();
+    private static List<User> users = JsonData.getUsers();
     private static String inputLogin;
 
     public static User getLoggedInUser() {
@@ -54,9 +54,10 @@ public class Login {
     }
 
     private static Optional<User> chosenUser() {
+        users=JsonData.getUsers();
         return users.stream()
                 .filter(user -> user.getLogin().equals(inputLogin))
-                .findFirst();
+                .findAny();
     }
 
     private static void validatePassword(Scanner scanner, int incorrectPasswordInputCount) {

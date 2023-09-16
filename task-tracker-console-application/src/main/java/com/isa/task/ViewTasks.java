@@ -1,15 +1,23 @@
 package com.isa.task;
 
+import com.isa.data.JsonData;
 import com.isa.data.JsonDataTask;
 import com.isa.menu.AdminMenu;
 import com.isa.menu.MenuAfterLoggingIn;
 import com.isa.user.Login;
+import com.isa.user.User;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ViewTasks {
-    private static List<Task> tasks = JsonDataTask.getTasks();
+    private static List<Task> loadTasks() {
+        loadUsers();
+        return JsonDataTask.getTasks();
+    }
+    private static List<User> loadUsers() {
+        return JsonData.getUsers();
+    }
 
     private static void askForUserInput() {
         Scanner scanner = new Scanner(System.in);
@@ -26,15 +34,15 @@ public class ViewTasks {
     }
 
     private static void printAllTasks() {
-        if (!tasks.isEmpty()) {
-            tasks.forEach(System.out::println);
+        if (!loadTasks().isEmpty()) {
+            loadTasks().forEach(System.out::println);
         } else {
             System.out.println("Brak tasków do wyświetlenia.");
         }
     }
 
     private static void printUserTasks() {
-        List<Task> userTasks = tasks.stream()
+        List<Task> userTasks = loadTasks().stream()
                 .filter(task -> task.getUser().equals(Login.getLoggedInUser()))
                 .toList();
 

@@ -2,23 +2,26 @@ package com.isa.task;
 
 import com.isa.user.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class Task {
     private String taskName;
-    private String taskStart;
-    private String taskEnd;
+    private LocalDate taskStart;
+    private LocalDate taskEnd;
     private String taskDescription;
     private User user;
-    private Boolean active;
+    private boolean active;
 
-    public Task(String taskName, String taskStart, String taskEnd, String taskDescription, Boolean active) {
+    public Task(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, User user, boolean active) {
         this.taskName = taskName;
         this.taskStart = taskStart;
         this.taskEnd = taskEnd;
         this.taskDescription = taskDescription;
+        this.user = user;
         this.active = active;
+    }
+
+    public Task() {
     }
 
     public String getTaskName() {
@@ -29,19 +32,19 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public String getTaskStart() {
+    public LocalDate getTaskStart() {
         return taskStart;
     }
 
-    public void setTaskStart(String taskStart) {
+    public void setTaskStart(LocalDate taskStart) {
         this.taskStart = taskStart;
     }
 
-    public String getTaskEnd() {
+    public LocalDate getTaskEnd() {
         return taskEnd;
     }
 
-    public void setTaskEnd(String taskEnd) {
+    public void setTaskEnd(LocalDate taskEnd) {
         this.taskEnd = taskEnd;
     }
 
@@ -67,10 +70,14 @@ public class Task {
         this.active = active;
     }
 
-    public static void getTestTasks() {;
-        Task t1 = new Task("Opis projektu", "10.09.2023", "11.09.2023", "Zadanie wymaga wykonania opisu projektu", true);
-        Task t2 = new Task("Rozbudowanie aplikacji", "10.09.2023", "17.09.2023", "Zadanie polega na rozbudowaniu aplikacji", true);
-        Task t3 = new Task("Testowanie aplikacji", "17.09.2023", "20.09.2023", "Przetestowanie działania aplikacji", true);
+    @Override
+    public String toString() {
+        return "Nazwa: " + taskName + "\n" +
+                "Data rozpoczęcia: " + taskStart + "\n" +
+                "Data zakończenia: " + taskEnd + "\n" +
+                "Opis: " + taskDescription + "\n" +
+                "Użytkownik: " + user + "\n" +
+                "Status: " + (active ? "aktywne" : "nieaktywne");
     }
 }
 

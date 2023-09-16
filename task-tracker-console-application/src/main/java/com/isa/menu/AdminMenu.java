@@ -1,8 +1,8 @@
 package com.isa.menu;
 
-import java.util.Scanner;
+import com.isa.task.ViewTasks;
 
-import static com.isa.menu.MainMenu.printCompletedMenu;
+import java.util.Scanner;
 
 public class AdminMenu {
     private static void displayAdminMenu(){
@@ -27,7 +27,7 @@ public class AdminMenu {
         Scanner scanner = new Scanner(System.in);
         int userChoice = scanner.nextInt();
         switch (userChoice) {
-            case 1 -> System.out.println("Wyswietlanie tasków niedostępne");
+            case 1 -> ViewTasks.start();
             case 2 -> System.out.println("Dodawanie tasków niedostępne");
             case 3 -> System.out.println("Wyświetlanie urlopów niedostępne");
             case 4 -> System.out.println("Wprowadźanie urlopów niedostępne");

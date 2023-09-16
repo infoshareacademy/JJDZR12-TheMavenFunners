@@ -14,6 +14,9 @@ public class Login {
     private static List<User> users = JsonData.getUsers();
     private static String inputLogin;
 
+    private Login() {
+    }
+
     public static User getLoggedInUser() {
         return loggedInUser;
     }

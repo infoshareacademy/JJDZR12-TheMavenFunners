@@ -7,6 +7,9 @@ import java.time.format.DateTimeParseException;
 class DateValidator {
     private static final String formatStr = "yyyy-MM-dd";
 
+    private DateValidator() {
+    }
+
     public static String getFormatStr() {
         return formatStr;
     }
@@ -22,8 +25,5 @@ class DateValidator {
             return false;
         }
         return true;
-    }
-
-    private DateValidator() {
     }
 }

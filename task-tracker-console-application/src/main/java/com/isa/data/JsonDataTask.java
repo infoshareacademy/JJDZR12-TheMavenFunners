@@ -14,6 +14,9 @@ public class JsonDataTask {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final File userFile = new File("task-tracker-console-application/src/main/resources/database/tasks.json");
 
+    private JsonDataTask() {
+    }
+
     private static List<Task> readTasks() {
         objectMapper.registerModule(new JavaTimeModule());
         try {

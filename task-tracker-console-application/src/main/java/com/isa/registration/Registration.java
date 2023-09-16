@@ -14,6 +14,9 @@ public class Registration {
     private static String login;
     private static String password;
 
+    private Registration() {
+    }
+
     private static boolean userExists(String login) {
         return users.stream()
                 .anyMatch(user -> user.getLogin().equals(login));

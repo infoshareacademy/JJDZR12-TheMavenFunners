@@ -7,6 +7,10 @@ import com.isa.user.Login;
 import java.util.Scanner;
 
 public class MenuAfterLoggingIn {
+
+    private MenuAfterLoggingIn() {
+    }
+
     private static void displayMenuAfterLoggingIn() {
         System.out.println("=====================================");
         System.out.println("             MENU PO ZALOGOWANIU");
@@ -21,7 +25,7 @@ public class MenuAfterLoggingIn {
         System.out.print("Wybierz opcję: ");
     }
 
-    private static void printUserMenuChoiceAfterLoggingIn(){
+    private static void printUserMenuChoiceAfterLoggingIn() {
         Scanner scanner = new Scanner(System.in);
         int userChoice = scanner.nextInt();
         switch (userChoice) {
@@ -46,7 +50,7 @@ public class MenuAfterLoggingIn {
         }
     }
 
-    public static void printCompletedMenuAfterLoggingIn(){
+    public static void printCompletedMenuAfterLoggingIn() {
         displayMenuAfterLoggingIn();
         printUserMenuChoiceAfterLoggingIn();
     }

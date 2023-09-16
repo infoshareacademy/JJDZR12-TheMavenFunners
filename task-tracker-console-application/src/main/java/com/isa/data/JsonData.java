@@ -13,6 +13,9 @@ public class JsonData {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final File userFile = new File("task-tracker-console-application/src/main/resources/database/users.json");
 
+    private JsonData() {
+    }
+
     private static List<User> readUsers() {
         try {
             users = objectMapper.readValue(userFile, new TypeReference<>() {

@@ -6,7 +6,10 @@ import com.isa.user.Login;
 import java.util.Scanner;
 
 public class AdminMenu {
-    private static void displayAdminMenu(){
+    private AdminMenu() {
+    }
+
+    private static void displayAdminMenu() {
         System.out.println("=====================================");
         System.out.println("             MENU ADMINA");
         System.out.println("=====================================");
@@ -24,7 +27,7 @@ public class AdminMenu {
         System.out.print("Wybierz opcję: ");
     }
 
-    private static void printAdminMenuChoice(){
+    private static void printAdminMenuChoice() {
         Scanner scanner = new Scanner(System.in);
         int userChoice = scanner.nextInt();
         switch (userChoice) {
@@ -68,7 +71,7 @@ public class AdminMenu {
         }
     }
 
-    public static void printCompletedAdminMenu(){
+    public static void printCompletedAdminMenu() {
         displayAdminMenu();
         printAdminMenuChoice();
     }

@@ -1,1 +1,66 @@
-[{"login":"admin","password":"Zaq123!@0","email":"admin@omail.com","firstName":null,"lastName":null,"active":true},{"login":"agata.kowalska","password":"Zaq123!@1","email":"agata.kowalska@omail.com","firstName":"Agata","lastName":"Kowalska","active":true},{"login":"monika.nowak","password":"Zaq123!@2","email":"monika.nowak@omail.com","firstName":null,"lastName":null,"active":true},{"login":"tomasz.bieraj","password":"Zaq123!@3","email":"tomasz.bieraj@omail.com","firstName":null,"lastName":null,"active":true},{"login":"aleksandra.chmurska","password":"Zaq123!@4","email":"aleksandra.chmurska@omail.com","firstName":null,"lastName":null,"active":false},{"login":"krzysztof.kwiatkowski","password":"Zaq123!@5","email":"krzysztof.kwiatkowski@omail.com","firstName":null,"lastName":null,"active":true},{"login":"tomasz.tomaszewski","password":"Zaq123!@6","email":"","firstName":"Tomasz","lastName":"Tomaszewski","active":true},{"login":"joanna.joanska","password":"Zaq123!@0","email":"","firstName":"Joanna","lastName":"Joańska","active":true},{"login":"login1","password":"Zaq123!@0","email":"","firstName":"login1","lastName":"asd","active":true},{"login":"login1","password":"Zaq123!0","email":"","firstName":"asd","lastName":"asd","active":true}]
+[
+  {
+    "login": "admin",
+    "password": "Zaq123!@0",
+    "email": "admin@omail.com",
+    "firstName": null,
+    "lastName": null,
+    "active": true
+  },
+  {
+    "login": "agata.kowalska",
+    "password": "Zaq123!@1",
+    "email": "agata.kowalska@omail.com",
+    "firstName": "Agata",
+    "lastName": "Kowalska",
+    "active": true
+  },
+  {
+    "login": "monika.nowak",
+    "password": "Zaq123!@2",
+    "email": "monika.nowak@omail.com",
+    "firstName": null,
+    "lastName": null,
+    "active": true
+  },
+  {
+    "login": "tomasz.bieraj",
+    "password": "Zaq123!@3",
+    "email": "tomasz.bieraj@omail.com",
+    "firstName": null,
+    "lastName": null,
+    "active": true
+  },
+  {
+    "login": "aleksandra.chmurska",
+    "password": "Zaq123!@4",
+    "email": "aleksandra.chmurska@omail.com",
+    "firstName": null,
+    "lastName": null,
+    "active": false
+  },
+  {
+    "login": "krzysztof.kwiatkowski",
+    "password": "Zaq123!@5",
+    "email": "krzysztof.kwiatkowski@omail.com",
+    "firstName": null,
+    "lastName": null,
+    "active": true
+  },
+  {
+    "login": "tomasz.tomaszewski",
+    "password": "Zaq123!@6",
+    "email": "",
+    "firstName": "Tomasz",
+    "lastName": "Tomaszewski",
+    "active": true
+  },
+  {
+    "login": "joanna.joanska",
+    "password": "Zaq123!@0",
+    "email": "",
+    "firstName": "Joanna",
+    "lastName": "Joańska",
+    "active": true
+  }
+]

@@ -13,8 +13,7 @@ public class MainMenu {
         System.out.println("Opcje:");
         System.out.println("1. Rejestracja");
         System.out.println("2. Logowanie");
-        System.out.println("3. Zaloguj się jako administrator");
-        System.out.println("4. Zakończenie programu");
+        System.out.println("3. Zakończenie programu");
         System.out.println();
         System.out.print("Wybierz opcję: ");
     }
@@ -25,8 +24,7 @@ public class MainMenu {
         switch (userChoice) {
             case 1 -> Registration.getUserInput();
             case 2 -> Login.start();
-            case 3 -> System.out.println("logowanie jako administrator niedostępne");
-            case 4 -> System.exit(0);
+            case 3 -> System.exit(0);
             default -> {
                 System.out.println("Wprowadź prawidłową wartość");
                 displayMainMenu();

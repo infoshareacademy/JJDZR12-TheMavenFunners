@@ -2,6 +2,7 @@ package com.isa.menu;
 
 import com.isa.task.AddTask;
 import com.isa.task.ViewTasks;
+import com.isa.user.Login;
 
 import java.util.Scanner;
 
@@ -26,9 +27,16 @@ public class MenuAfterLoggingIn {
         switch (userChoice) {
             case 1 -> ViewTasks.start();
             case 2 -> AddTask.addTask();
-            case 3 -> System.out.println("Wyświetlanie urlopów niedostępne");
-            case 4 -> System.out.println("Wprowadźanie urlopów niedostępne");
+            case 3 -> {
+                System.out.println("Wyświetlanie urlopów niedostępne. Powrót do menu...");
+                printCompletedMenuAfterLoggingIn();
+            }
+            case 4 -> {
+                System.out.println("Wprowadźanie urlopów niedostępne. Powrót do menu...");
+                printCompletedMenuAfterLoggingIn();
+            }
             case 5 -> {
+                Login.logOutUser();
                 MainMenu.printCompletedMenu();
             }
             default -> {

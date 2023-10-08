@@ -1,4 +1,4 @@
-package com.example.tasktrackerwebapp;
+package com.isa.tasktrackerwebapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

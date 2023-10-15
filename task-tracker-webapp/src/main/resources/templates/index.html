@@ -6,11 +6,36 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Task Tracker - Strona główna</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link th:href="" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Task Tracker by The Maven Funners</h1>
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Strona główna</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Rejestracja</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dodaj task</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Wyświetl taski</a>
+        </li>
+    </ul>
+    <div class="container py-3">
+        <h1>Task Tracker by The Maven Funners</h1>
+    </div>
+    <footer class="py-3 my-4">
+        <hr>
+        <p class="text-center text-body-secondary">© The Maven Funners @ Infoshare Academy<br>
+            <small>UIcons by <a href="https://www.flaticon.com/uicons">Flaticon</a></small></p>
+
+    </footer>
+</div>
 
 </body>
 </html>

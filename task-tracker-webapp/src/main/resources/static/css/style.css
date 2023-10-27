@@ -1,6 +1,12 @@
-html {
-    background-color: white;
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+.nav-item .fi-positioning {
+    float: left;
+    margin: 0.2rem 0.5rem 0 0
 }
-h1 {
-    color:red;
+
+.main-img {
+    max-width: 300px;
+    height: auto;
+    margin: 3rem;
 }

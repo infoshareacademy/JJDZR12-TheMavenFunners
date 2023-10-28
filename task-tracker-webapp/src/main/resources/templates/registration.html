@@ -1,3 +1,23 @@
 <div th:fragment="content">
-  registration pending
+    <form>
+        <div  class="d-flex justify-content-center bd-highlight">
+            <div class="p-2 bd-highlight">
+                <label class="sr-only" for="firstName">Imię</label>
+                <input type="text" class="form-control mb-2" id="firstName" placeholder="Jan">
+            </div>
+            <div class="p-2 bd-highlight">
+                <label class="sr-only" for="lastName">Nazwisko</label>
+                <input type="text" class="form-control mb-2" id="lastName" placeholder="Nowak">
+            </div>
+            <div class="p-2 bd-highlight">
+                <label class="sr-only" for="login">Login</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <input type="text" class="form-control" id="login" placeholder="login">
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

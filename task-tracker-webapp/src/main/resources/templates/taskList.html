@@ -13,7 +13,7 @@
     <form action="/taskList" class="mb-4" method="get">
         <div class="form-row">
             <div class="col-md-3">
-                <label for="sortBy">Sortuj :</label>
+                <label for="sortBy">Sortuj:</label>
                 <select class="form-control" id="sortBy" name="sortBy">
                     <option></option>
                     <option value="oldestByStartDate">Rosnąco po dacie rozpoczęcia</option>
@@ -34,10 +34,11 @@
                     <option value="false">Nieaktywne</option>
                 </select>
             </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" type="submit">Potwierdź</button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-primary" type="submit">Potwierdź</button>
-        </div>
+
     </form>
     <table class="table table-bordered table-striped">
         <thead class="thead-light">

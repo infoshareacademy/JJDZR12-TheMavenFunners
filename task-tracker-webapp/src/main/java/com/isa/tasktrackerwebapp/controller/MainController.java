@@ -5,11 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class MainController {
+
     @GetMapping("/")
     String index(Model model) {
         model.addAttribute("content", "index")
@@ -24,16 +23,16 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/addtask")
+    @GetMapping("/add-task")
     String newTask(Model model) {
-        model.addAttribute("content", "addtask")
+        model.addAttribute("content", "add-task")
                 .addAttribute("pageTitle", PageTitle.ADD_TASK.getDisplayValue());
         return "main";
     }
 
-    @GetMapping("/viewtasks")
+    @GetMapping("/view-tasks")
     String viewTasks(Model model) {
-        model.addAttribute("content", "viewtasks")
+        model.addAttribute("content", "view-tasks")
                 .addAttribute("pageTitle", PageTitle.VIEW_TASKS.getDisplayValue());
         return "main";
     }

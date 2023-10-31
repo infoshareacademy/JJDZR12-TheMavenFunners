@@ -12,20 +12,21 @@ import java.util.List;
 
 @Controller
 public class TaskController {
+    TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
     @GetMapping("/taskList")
     public String taskList(Model model, @RequestParam(required = false) String sortBy, @RequestParam(required = false) String searchTaskName, @RequestParam(required = false) String filterActive) {
         List<Task> taskList = JsonDataTask.getTasks();
 
-        taskList = TaskService.howToSortTask(sortBy, taskList);
-
-        taskList = TaskService.filterTasksByName(taskList, searchTaskName);
-
-        taskList = TaskService.filterTasksByActive(taskList, filterActive);
+        taskList = taskService.sortAndFilterTasks(sortBy, searchTaskName, filterActive, taskList);
 
         model.addAttribute("taskList", taskList);
         return "taskList";
     }
-
 
 
 }

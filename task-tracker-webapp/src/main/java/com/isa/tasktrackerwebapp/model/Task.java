@@ -1,6 +1,7 @@
 package com.isa.tasktrackerwebapp.model;
 
 import java.time.LocalDate;
+
 public class Task {
     private String taskName;
     private LocalDate taskStart;

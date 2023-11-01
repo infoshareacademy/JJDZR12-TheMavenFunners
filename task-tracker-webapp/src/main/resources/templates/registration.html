@@ -1,23 +1,61 @@
-<div th:fragment="content">
-    <form>
-        <div  class="d-flex justify-content-center bd-highlight">
-            <div class="p-2 bd-highlight">
-                <label class="sr-only" for="firstName">Imię</label>
-                <input type="text" class="form-control mb-2" id="firstName" placeholder="Jan">
-            </div>
-            <div class="p-2 bd-highlight">
-                <label class="sr-only" for="lastName">Nazwisko</label>
-                <input type="text" class="form-control mb-2" id="lastName" placeholder="Nowak">
-            </div>
-            <div class="p-2 bd-highlight">
-                <label class="sr-only" for="login">Login</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">@</div>
+<div class="registration" th:fragment="content">
+    <div class="row justify-content-center align-items-center p-5 p-md-5">
+        <div class="col-12 col-lg-9 col-xl-7">
+            <form>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="firstName" class="form-control" placeholder="Imię">
+                            <label class="form-label" for="firstName">Imię</label>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" id="login" placeholder="login">
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="lastName" class="form-control" placeholder="Nazwisko">
+                            <label for="lastName">Nazwisko</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="login" class="form-control" placeholder="Login">
+                            <label for="login">Login</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="email" id="email" class="form-control" placeholder="example@email.com">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="password" id="password" class="form-control" placeholder="Password">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="password" id="repeatPassword" class="form-control" placeholder="Password">
+                            <label for="repeatPassword">Repeat password</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-1 pt-2">
+                    <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+                </div>
+
+            </form>
         </div>
-    </form>
+    </div>
 </div>

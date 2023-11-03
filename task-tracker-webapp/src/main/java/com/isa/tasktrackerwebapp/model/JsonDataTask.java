@@ -11,7 +11,7 @@ import java.util.List;
 public class JsonDataTask {
     private static List<Task> tasks = new ArrayList<>();
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final File taskFile = new File("task-tracker-webapp/src/main/resources/database/tasks.json");
+    private static final File taskFile = new File("src/main/resources/database/tasks.json");
 
     private JsonDataTask() {
     }

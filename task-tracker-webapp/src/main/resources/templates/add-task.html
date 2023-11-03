@@ -1,3 +1,37 @@
-<div th:fragment="content">
-  adding tasks pending
+<div th:fragment="content" role="main" class="container text-center">
+
+  <h3 class="cover-heading">
+    Dodaj zadanie
+  </h3>
+
+
+  <form th:action="@{/add-task}" th:object="${task}" method="post">
+    <div class="form-row">
+    <div>
+      <label for="taskName">Nazwa zadania: </label>
+      <input type="text" id="taskName" th:field="*{taskName}">
+    </div>
+
+    <div>
+      <label for="taskStart">Data rozpoczęcia zadania: </label>
+      <input type="date" id="taskStart" th:field="*{taskStart}">
+    </div>
+
+    <div>
+      <label for="taskEnd">Data zakończenia zadania: </label>
+      <input type="date" id="taskEnd" th:field="*{taskEnd}">
+    </div>
+
+    <div>
+      <label for="taskDescription">Opis: </label>
+      <textarea id="taskDescription" th:field="*{taskDescription}" rows="1" cols="40"></textarea>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" type="submit">Prześlij</button>
+    </div>
+    </div>
+
+  </form>
+
 </div>

@@ -1,52 +1,46 @@
 package com.isa.tasktrackerwebapp.service;
 
+import com.isa.tasktrackerwebapp.model.JsonDataTask;
 import com.isa.tasktrackerwebapp.model.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
-    public static List<Task> filterTasksByName(List<Task> taskList, String searchTaskName) {
-        if (searchTaskName != null && !searchTaskName.isEmpty()) {
-            return taskList.stream()
-                    .filter(task -> task.getTaskName().toLowerCase().contains(searchTaskName.toLowerCase()))
-                    .collect(Collectors.toList());
 
-        }
-        return taskList;
-    }
 
-    public static List<Task> filterTasksByActive(List<Task> taskList, String filterActive) {
-        if (filterActive != null && !filterActive.isEmpty()) {
-            boolean activeValue = Boolean.parseBoolean(filterActive);
-            return taskList.stream()
-                    .filter(task -> task.getActive() == activeValue)
-                    .collect(Collectors.toList());
-        }
-        return taskList;
+    public static List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
+        return taskList.stream()
+                .filter(task -> {
+                    boolean nameMatch = searchTaskName == null || searchTaskName.isEmpty() || task.getTaskName().toLowerCase().contains(searchTaskName.toLowerCase());
+                    boolean activeMatch = filterActive == null || filterActive.isEmpty() || task.getActive() == Boolean.parseBoolean(filterActive);
+                    return nameMatch && activeMatch;
+                })
+                .collect(Collectors.toList());
     }
 
     public List<Task> sortAndFilterTasks(String sortBy, String searchTaskName, String filterActive, List<Task> taskList) {
         if ("oldestByStartDate".equals(sortBy)) {
-            taskList = sortTaskByStartDateAsc(taskList);
-        }
-        if ("newestByStartDate".equals(sortBy)) {
-            taskList = sortTaskByStartDateDes(taskList);
-        }
-        if ("oldestByEndDate".equals(sortBy)) {
-            taskList = sortTaskByEndDateAsc(taskList);
-        }
-        if ("newestByEndDate".equals(sortBy)) {
-            taskList = sortTaskByEndDateDes(taskList);
+            taskList.sort(Comparator.comparing(Task::getTaskStart));
+        } else if ("newestByStartDate".equals(sortBy)) {
+            taskList.sort(Comparator.comparing(Task::getTaskStart).reversed());
+        } else if ("oldestByEndDate".equals(sortBy)) {
+            taskList.sort(Comparator.comparing(Task::getTaskEnd));
+        } else if ("newestByEndDate".equals(sortBy)) {
+            taskList.sort(Comparator.comparing(Task::getTaskEnd).reversed());
         }
 
-        taskList = filterTasksByName(taskList, searchTaskName);
-        taskList = filterTasksByActive(taskList, filterActive);
+        taskList = filterTasks(taskList, searchTaskName, filterActive);
 
         return taskList;
+    }
+
+    public List<Task> getTasks() {
+        return JsonDataTask.getTasks();
     }
 
     private List<Task> sortTaskByStartDateDes(List<Task> taskList) {

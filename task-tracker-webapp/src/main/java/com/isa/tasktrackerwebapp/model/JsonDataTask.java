@@ -40,7 +40,7 @@ public class JsonDataTask {
 
     private static void saveTaskData() {
         try {
-            objectMapper.writeValue(userFile, tasks);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(userFile, tasks);
         } catch (Exception e) {
             e.printStackTrace();
         }

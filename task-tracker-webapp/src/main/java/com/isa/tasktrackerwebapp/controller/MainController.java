@@ -2,8 +2,7 @@ package com.isa.tasktrackerwebapp.controller;
 
 import com.isa.tasktrackerwebapp.model.PageType;
 import com.isa.tasktrackerwebapp.model.Task;
-import com.isa.tasktrackerwebapp.service.AddTaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.isa.tasktrackerwebapp.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
 
-    @Autowired
-    AddTaskService addTaskService;
-    public MainController(AddTaskService addTaskService) {
-        this.addTaskService = addTaskService;
+    private final TaskService taskService;
+
+    MainController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping("/")
@@ -36,16 +35,15 @@ public class MainController {
 
     @GetMapping("/add-task")
     String newTask(Model model) {
-        Task task = new Task();
         model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
-                .addAttribute("task", task);
+                .addAttribute("task", new Task());
         return "main";
     }
 
     @PostMapping("/add-task")
     String saveTask(@ModelAttribute Task form) {
-        AddTaskService.saveTask(form);
+        taskService.saveTask(form);
         return "redirect:add-task";
     }
 

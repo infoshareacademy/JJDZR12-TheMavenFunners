@@ -11,7 +11,7 @@ import java.util.List;
 public class JsonDataTask {
     private static List<Task> tasks = new ArrayList<>();
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final File taskFile = new File("src/main/resources/database/tasks.json");
+    private static final File userFile = new File("src/main/resources/database/tasks.json");
 
     private JsonDataTask() {
     }
@@ -19,7 +19,7 @@ public class JsonDataTask {
     private static List<Task> readTasks() {
         objectMapper.registerModule(new JavaTimeModule());
         try {
-            tasks = objectMapper.readValue(taskFile, new TypeReference<>() {
+            tasks = objectMapper.readValue(userFile, new TypeReference<>() {
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class JsonDataTask {
 
     private static void saveTaskData() {
         try {
-            objectMapper.writeValue(taskFile, tasks);
+            objectMapper.writeValue(userFile, tasks);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -20,10 +20,10 @@ class TaskController {
     }
 
     @GetMapping("/view-tasks")
-    String taskList(Model model,
-                    @RequestParam(required = false) String sortBy,
-                    @RequestParam(required = false) String searchTaskName,
-                    @RequestParam(required = false) String filterActive) {
+    String getTaskList(Model model,
+                       @RequestParam(required = false) String sortBy,
+                       @RequestParam(required = false) String searchTaskName,
+                       @RequestParam(required = false) String filterActive) {
         List<Task> taskList = taskService.getSortedAndFilteredTasks(sortBy, searchTaskName, filterActive);
         model.addAttribute("taskList", taskList)
                 .addAttribute("content", PageType.VIEW_TASKS.getContentValue())

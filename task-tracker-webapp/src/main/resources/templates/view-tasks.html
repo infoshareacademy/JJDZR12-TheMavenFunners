@@ -1,3 +1,70 @@
-<div th:fragment="content">
-  viewing tasks pending
+<div class="view-tasks" th:fragment="content">
+  <div class="row justify-content-center align-items-center p-5 p-md-5">
+    <div class="col-12 col-lg-9 col-xl-10">
+      <form th:action="@{/view-tasks}" class="mb-4" method="get">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="mb-3">
+              <select class="form-select mt-2 pt-3" id="sortBy" name="sortBy">
+                <option value=""></option>
+                <option value="oldestByStartDate">Rosnąco po dacie rozpoczęcia</option>
+                <option value="newestByStartDate">Malejąco po dacie rozpoczęcia</option>
+                <option value="newestByEndDate">Malejąco po dacie zakończenia</option>
+                <option value="oldestByEndDate">Rosnąco po dacie zakończenia</option>
+              </select>
+              <label class="ms-2 position-absolute" for="sortBy">
+                <span class="small bg-white px-1 rounded">Sortuj</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mb-3">
+              <input class="form-control mt-2 pt-3" id="searchTaskName" name="searchTaskName" type="text">
+              <label class="ms-2 position-absolute" for="searchTaskName">
+                <span class="small bg-white px-1 rounded">Szukaj po nazwie</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mb-3">
+              <select class="form-select mt-2 pt-3" id="filterActive" name="filterActive">
+                <option></option>
+                <option value="true">Aktywne</option>
+                <option value="false">Nieaktywne</option>
+              </select>
+              <label class="ms-2 position-absolute" for="filterActive">
+                <span class="small bg-white px-1 rounded">Filtruj aktywne</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-primary" type="submit">Potwierdź</button>
+          </div>
+        </div>
+
+      </form>
+      <table class="table table-bordered table-striped small">
+        <thead class="thead-light">
+        <tr>
+          <th>Nazwa</th>
+          <th>Data rozpoczęcia</th>
+          <th>Data zakończenia</th>
+          <th>Opis</th>
+          <th>Użytkownik</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${taskList}">
+          <td th:text="${task.taskName}"></td>
+          <td th:text="${task.taskStart}"></td>
+          <td th:text="${task.taskEnd}"></td>
+          <td th:text="${task.taskDescription}"></td>
+          <td th:text="${task.user.login}"></td>
+          <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

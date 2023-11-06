@@ -29,11 +29,4 @@ public class MainController {
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue());
         return "main";
     }
-
-    @GetMapping("/view-tasks")
-    String viewTasks(Model model) {
-        model.addAttribute("content", PageType.VIEW_TASKS.getContentValue())
-                .addAttribute("pageTitle", PageType.VIEW_TASKS.getTitleValue());
-        return "main";
-    }
 }

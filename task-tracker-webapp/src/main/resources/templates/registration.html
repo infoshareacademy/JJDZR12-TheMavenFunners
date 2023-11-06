@@ -1,3 +1,61 @@
-<div th:fragment="content">
-  registration pending
+<div class="registration" th:fragment="content">
+    <div class="row justify-content-center align-items-center p-5 p-md-5">
+        <div class="col-12 col-lg-9 col-xl-7">
+            <form>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="firstName" class="form-control" placeholder="Imię">
+                            <label class="rounded" for="firstName">Imię</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="lastName" class="form-control" placeholder="Nazwisko">
+                            <label class="rounded" for="lastName">Nazwisko</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="text" id="login" class="form-control" placeholder="Login">
+                            <label class="rounded" for="login">Login</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="email" id="email" class="form-control" placeholder="example@email.com">
+                            <label class="rounded" for="email">Email</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="password" id="password" class="form-control" placeholder="Password">
+                            <label class="rounded" for="password">Password</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="password" id="repeatPassword" class="form-control" placeholder="Password">
+                            <label class="rounded" for="repeatPassword">Repeat password</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Zarejestruj się</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>

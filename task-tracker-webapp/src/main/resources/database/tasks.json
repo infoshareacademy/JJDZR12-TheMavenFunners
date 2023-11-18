@@ -1,8 +1,16 @@
 [
   {
     "taskName": "Nowy projekt",
-    "taskStart": [2023, 10, 1],
-    "taskEnd": [2023, 10, 5],
+    "taskStart": [
+      2023,
+      10,
+      1
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      5
+    ],
     "taskDescription": "Rozpoczęcie nowego projektu",
     "user": {
       "login": "agata.kowalska",
@@ -16,8 +24,16 @@
   },
   {
     "taskName": "Dokończenie raportu",
-    "taskStart": [2023, 10, 3],
-    "taskEnd": [2023, 10, 7],
+    "taskStart": [
+      2023,
+      10,
+      3
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      7
+    ],
     "taskDescription": "Zakończenie prac nad raportem",
     "user": {
       "login": "monika.nowak",
@@ -31,8 +47,16 @@
   },
   {
     "taskName": "Testy jednostkowe",
-    "taskStart": [2023, 10, 5],
-    "taskEnd": [2023, 10, 9],
+    "taskStart": [
+      2023,
+      10,
+      5
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      9
+    ],
     "taskDescription": "Napisanie testów jednostkowych",
     "user": {
       "login": "tomasz.bieraj",
@@ -46,8 +70,16 @@
   },
   {
     "taskName": "Szkolenie pracowników",
-    "taskStart": [2023, 10, 7],
-    "taskEnd": [2023, 10, 11],
+    "taskStart": [
+      2023,
+      10,
+      7
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      11
+    ],
     "taskDescription": "Przygotowanie i przeprowadzenie szkolenia",
     "user": {
       "login": "aleksandra.chmurska",
@@ -61,8 +93,16 @@
   },
   {
     "taskName": "Optymalizacja aplikacji",
-    "taskStart": [2023, 10, 9],
-    "taskEnd": [2023, 10, 13],
+    "taskStart": [
+      2023,
+      10,
+      9
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      13
+    ],
     "taskDescription": "Przeprowadzenie optymalizacji aplikacji",
     "user": {
       "login": "krzysztof.kwiatkowski",
@@ -76,8 +116,16 @@
   },
   {
     "taskName": "Przygotowanie dokumentów",
-    "taskStart": [2023, 10, 11],
-    "taskEnd": [2023, 10, 15],
+    "taskStart": [
+      2023,
+      10,
+      11
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      15
+    ],
     "taskDescription": "Przygotowanie dokumentów projektowych",
     "user": {
       "login": "tomasz.tomaszewski",
@@ -91,8 +139,16 @@
   },
   {
     "taskName": "Badanie rynku",
-    "taskStart": [2023, 10, 13],
-    "taskEnd": [2023, 10, 17],
+    "taskStart": [
+      2023,
+      10,
+      13
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      17
+    ],
     "taskDescription": "Przeprowadzenie badania rynku",
     "user": {
       "login": "joanna.joanska",
@@ -106,8 +162,16 @@
   },
   {
     "taskName": "Prezentacja projektu",
-    "taskStart": [2023, 10, 15],
-    "taskEnd": [2023, 10, 19],
+    "taskStart": [
+      2023,
+      10,
+      15
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      19
+    ],
     "taskDescription": "Przygotowanie prezentacji projektu",
     "user": {
       "login": "agata.kowalska",
@@ -121,8 +185,16 @@
   },
   {
     "taskName": "Wdrożenie nowej wersji",
-    "taskStart": [2023, 10, 17],
-    "taskEnd": [2023, 10, 21],
+    "taskStart": [
+      2023,
+      10,
+      17
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      21
+    ],
     "taskDescription": "Wdrożenie nowej wersji oprogramowania",
     "user": {
       "login": "monika.nowak",
@@ -136,8 +208,16 @@
   },
   {
     "taskName": "Opracowanie strategii",
-    "taskStart": [2023, 10, 19],
-    "taskEnd": [2023, 10, 23],
+    "taskStart": [
+      2023,
+      10,
+      19
+    ],
+    "taskEnd": [
+      2023,
+      10,
+      23
+    ],
     "taskDescription": "Opracowanie strategii marketingowej",
     "user": {
       "login": "tomasz.bieraj",

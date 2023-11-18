@@ -55,9 +55,9 @@
     line-height: inherit;
 }
 
-.view-tasks button {
-    margin-top: 0.75rem;
-}
+/*.view-tasks button {*/
+/*    margin-top: 0.75rem;*/
+/*}*/
 
 .view-tasks .form-control:focus,
 .view-tasks select:focus,
@@ -89,11 +89,11 @@
 .view-tasks textarea + label {
     position: absolute;
     top: 0;
-    margin-top: -0.75rem;
+    margin-top: 0.75rem;
 }
 
 textarea {
-    height: 14rem;
+    height: 15rem;
 }
 
 input[type=date]:invalid {

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonDataTask {
+    private static List<Task> tasks = new ArrayList<>();
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final File userFile = new File("src/main/resources/database/tasks.json");
-    private static List<Task> tasks = new ArrayList<>();
 
     private JsonDataTask() {
     }
@@ -40,7 +40,7 @@ public class JsonDataTask {
 
     private static void saveTaskData() {
         try {
-            objectMapper.writeValue(userFile, tasks);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(userFile, tasks);
         } catch (Exception e) {
             e.printStackTrace();
         }

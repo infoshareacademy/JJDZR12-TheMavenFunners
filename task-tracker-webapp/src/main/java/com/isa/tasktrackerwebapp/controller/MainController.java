@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 @Controller
 public class MainController {
 
@@ -20,13 +19,6 @@ public class MainController {
     String registration(Model model) {
         model.addAttribute("content", PageType.REGISTRATION.getContentValue())
                 .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue());
-        return "main";
-    }
-
-    @GetMapping("/add-task")
-    String newTask(Model model) {
-        model.addAttribute("content", PageType.ADD_TASK.getContentValue())
-                .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue());
         return "main";
     }
 }

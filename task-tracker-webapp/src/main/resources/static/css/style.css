@@ -10,3 +10,25 @@
     height: auto;
     margin: 3rem;
 }
+
+.view-tasks button {
+    margin-top: 0.75rem;
+}
+
+.view-tasks .form-control:focus,
+.view-tasks select:focus {
+    border-color: royalblue;
+    box-shadow: none;
+    transition: 0.35s ease-in-out;
+}
+
+.view-tasks input[type=text]:focus:not([readonly]) + label,
+.view-tasks select:focus + label {
+    color: royalblue;
+}
+
+.view-tasks label {
+    margin-top: -3.75rem;
+    color: rgba(33, 37, 41, 0.75);
+    transition: 0.35s ease-in-out;
+}

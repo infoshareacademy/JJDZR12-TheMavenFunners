@@ -11,6 +11,12 @@ import java.util.stream.Collectors;
 @Service
 class TaskServiceImpl implements TaskService {
 
+    private final LoginService loginService;
+
+    public TaskServiceImpl(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
     @Override
     public List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive) {
         List<Task> taskList = JsonDataTask.getTasks();
@@ -32,7 +38,7 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public void saveTask(Task form) {
-        JsonDataTask.saveNewTask(form);
+        JsonDataTask.saveNewTask(form, loginService.getLoggedInUser());
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {

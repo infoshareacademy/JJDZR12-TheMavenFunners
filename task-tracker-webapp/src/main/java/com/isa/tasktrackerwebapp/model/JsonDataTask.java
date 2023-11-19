@@ -32,7 +32,9 @@ public class JsonDataTask {
         return tasks;
     }
 
-    public static void saveNewTask(Task task) {
+    public static void saveNewTask(Task task, User loggedInUser) {
+        task.setUser(loggedInUser);
+        task.setActive(true);
         getTasks();
         tasks.add(task);
         saveTaskData();

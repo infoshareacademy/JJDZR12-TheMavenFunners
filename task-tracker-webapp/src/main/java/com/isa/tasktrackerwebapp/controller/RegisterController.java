@@ -26,6 +26,7 @@ public class RegisterController {
     String logUser(@ModelAttribute User user, Model model) {
         if (loginService.canUserLogIn(user.getLogin(), user.getPassword())) {
             loginService.addLoggedUser(user);
+            System.out.println(user);
             return "redirect:/";
         }
         return "redirect:/loginMenu?error=true";

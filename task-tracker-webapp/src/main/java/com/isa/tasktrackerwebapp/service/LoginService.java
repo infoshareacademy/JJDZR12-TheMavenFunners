@@ -1,17 +1,26 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.*;
+import com.isa.tasktrackerwebapp.model.JsonData;
+import com.isa.tasktrackerwebapp.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class LoginService {
-    private static User loggedInUser;
     private static final List<User> users = JsonData.getUsers();
+    private static User loggedInUser;
 
     public void addLoggedUser(User user) {
         loggedInUser = user;
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public boolean isUserLogged() {
+        return loggedInUser != null;
     }
 
     public boolean canUserLogIn(String login, String password) {
@@ -32,9 +41,4 @@ public class LoginService {
         }
         return false;
     }
-
-
 }
-
-
-

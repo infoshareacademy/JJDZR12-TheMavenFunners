@@ -18,9 +18,11 @@ public class MainController {
     @GetMapping("/")
     String index(Model model) {
         model.addAttribute("content", PageType.INDEX.getContentValue())
-                .addAttribute("pageTitle", PageType.INDEX.getTitleValue())
-                .addAttribute("isUserLoggedIn", loginService.isUserLogged());
-//                .addAttribute("successMessage", "Zalogowano poprawnie. Witaj " + loginService.getLoggedInUser().getLogin());
+                .addAttribute("pageTitle", PageType.INDEX.getTitleValue());
+        if (loginService.isUserLogged()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLogged())
+                    .addAttribute("user","Zalogowano poprawnie witaj " + loginService.getLoggedInUser().getLogin());
+        }
         return "main";
     }
 

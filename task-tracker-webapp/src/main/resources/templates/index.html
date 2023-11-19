@@ -1,6 +1,6 @@
 <main th:fragment="content" role="main" class="inner cover text-center">
     <div class="alert alert-success mt-3" th:if="${isUserLoggedIn}">
-        <p th:text="${successMessage}"></p>
+        <p th:text="${user}"></p>
     </div>
     <img th:src="@{/img/notes.png}" class="main-img">
     <h2 class="cover-heading">

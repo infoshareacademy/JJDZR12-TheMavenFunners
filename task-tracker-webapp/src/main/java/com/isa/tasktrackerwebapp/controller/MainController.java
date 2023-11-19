@@ -21,5 +21,4 @@ public class MainController {
                 .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue());
         return "main";
     }
-
 }

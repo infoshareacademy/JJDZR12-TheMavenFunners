@@ -35,7 +35,6 @@ class TaskServiceImpl implements TaskService {
         JsonDataTask.saveNewTask(form);
     }
 
-
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
         return taskList.stream()
                 .filter(task -> isNameAndActiveMatch(searchTaskName, filterActive, task))

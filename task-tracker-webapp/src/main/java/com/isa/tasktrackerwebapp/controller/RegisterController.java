@@ -1,5 +1,6 @@
 package com.isa.tasktrackerwebapp.controller;
 
+import com.isa.tasktrackerwebapp.model.PageType;
 import com.isa.tasktrackerwebapp.model.User;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,12 @@ public class RegisterController {
         this.loginService = loginService;
     }
 
-    @GetMapping("/loginMenu")
+    @GetMapping("/login")
     String loginMenu(Model model) {
-        model.addAttribute("user", new User());
-        return "loginMenu";
+        model.addAttribute("content", PageType.LOGIN.getContentValue())
+                .addAttribute("pageTitle", PageType.LOGIN.getTitleValue())
+                .addAttribute("user", new User());
+        return "main";
     }
 
     @PostMapping("/logUser")
@@ -29,7 +32,7 @@ public class RegisterController {
             System.out.println(user);
             return "redirect:/";
         }
-        return "redirect:/loginMenu?error=true";
+        return "redirect:/login?error=true";
 
     }
 }

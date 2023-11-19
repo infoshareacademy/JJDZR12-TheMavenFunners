@@ -19,8 +19,8 @@ public class MainController {
     String index(Model model) {
         model.addAttribute("content", PageType.INDEX.getContentValue())
                 .addAttribute("pageTitle", PageType.INDEX.getTitleValue())
-                .addAttribute("isUserLoggedIn", loginService.isUserLogged())
-                .addAttribute("successMessage", "Zalogowano poprawnie. Witaj " + loginService.getLoggedInUser().getLogin());
+                .addAttribute("isUserLoggedIn", loginService.isUserLogged());
+//                .addAttribute("successMessage", "Zalogowano poprawnie. Witaj " + loginService.getLoggedInUser().getLogin());
         return "main";
     }
 

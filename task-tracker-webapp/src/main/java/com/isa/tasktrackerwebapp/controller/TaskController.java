@@ -4,7 +4,6 @@ import com.isa.tasktrackerwebapp.model.PageType;
 import com.isa.tasktrackerwebapp.model.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

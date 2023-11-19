@@ -27,8 +27,8 @@ public class LoginController {
 
     @PostMapping("/logUser")
     String logUser(@ModelAttribute User user, Model model) {
-        if (loginService.canUserLogIn(user.getLogin(), user.getPassword())) {
-            loginService.addLoggedUser(user);
+        if (loginService.isLoggingValid(user.getLogin(), user.getPassword())) {
+            loginService.setLoggedUser(user);
             System.out.println(user);
             return "redirect:/";
         }

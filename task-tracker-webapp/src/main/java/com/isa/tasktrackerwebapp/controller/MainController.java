@@ -19,8 +19,8 @@ public class MainController {
     String index(Model model) {
         model.addAttribute("content", PageType.INDEX.getContentValue())
                 .addAttribute("pageTitle", PageType.INDEX.getTitleValue());
-        if (loginService.isUserLogged()){
-            model.addAttribute("isUserLoggedIn", loginService.isUserLogged())
+        if (loginService.isUserLoggedIn()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn())
                     .addAttribute("user","Zalogowano poprawnie witaj " + loginService.getLoggedInUser().getLogin());
         }
         return "main";

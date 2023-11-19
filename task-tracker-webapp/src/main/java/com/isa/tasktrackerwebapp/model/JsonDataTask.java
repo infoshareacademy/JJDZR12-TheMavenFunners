@@ -33,6 +33,8 @@ public class JsonDataTask {
     }
 
     public static void saveNewTask(Task task) {
+        task.setUser(new User("uzTymczasowy","","",true));
+        task.setActive(true);
         getTasks();
         tasks.add(task);
         saveTaskData();

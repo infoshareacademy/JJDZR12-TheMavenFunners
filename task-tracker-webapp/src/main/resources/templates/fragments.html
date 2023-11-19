@@ -17,22 +17,22 @@
                 <i class="fi fi-rr-house-blank fi-positioning"></i> Strona główna
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:if="${isUserLoggedIn == null or not isUserLoggedIn}">
             <a class="nav-link" th:classappend="${content =='registration'} ? 'active'" th:href="@{/registration}">
                 <i class="fi fi-rr-user-add fi-positioning"></i> Rejestracja
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:if="${isUserLoggedIn == null or not isUserLoggedIn}">
             <a class="nav-link" th:classappend="${content =='login'} ? 'active'" th:href="@{/login}">
                 <i class="fi fi-rr-enter fi-positioning"></i> Login
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:if="${isUserLoggedIn}">
             <a class="nav-link" th:classappend="${content =='add-task'} ? 'active'" th:href="@{/add-task}">
                 <i class="fi fi-rr-add-document fi-positioning"></i> Dodaj task
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:if="${isUserLoggedIn}">
             <a class="nav-link" th:classappend="${content =='view-tasks'} ? 'active'" th:href="@{/view-tasks}">
                 <i class="fi fi-rr-rectangle-list fi-positioning"></i> Wyświetl taski
             </a>

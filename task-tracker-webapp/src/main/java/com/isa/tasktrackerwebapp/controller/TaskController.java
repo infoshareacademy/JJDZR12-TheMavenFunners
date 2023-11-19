@@ -2,7 +2,9 @@ package com.isa.tasktrackerwebapp.controller;
 
 import com.isa.tasktrackerwebapp.model.PageType;
 import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.TaskService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,11 @@ import java.util.List;
 class TaskController {
 
     private final TaskService taskService;
+    private final LoginService loginService;
 
-    TaskController(TaskService taskService) {
+    TaskController(TaskService taskService, LoginService loginService) {
         this.taskService = taskService;
+        this.loginService = loginService;
     }
 
     @GetMapping("/view-tasks")
@@ -30,6 +34,9 @@ class TaskController {
         model.addAttribute("taskList", taskList)
                 .addAttribute("content", PageType.VIEW_TASKS.getContentValue())
                 .addAttribute("pageTitle", PageType.VIEW_TASKS.getTitleValue());
+        if (loginService.isUserLoggedIn()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
+        }
         return "main";
     }
 
@@ -38,6 +45,9 @@ class TaskController {
         model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
                 .addAttribute("task", new Task());
+        if (loginService.isUserLoggedIn()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
+        }
         return "main";
     }
 

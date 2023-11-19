@@ -20,7 +20,7 @@ public class MainController {
                 .addAttribute("pageTitle", PageType.INDEX.getTitleValue());
         if (loginService.isUserLoggedIn()){
             model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn())
-                    .addAttribute("user","Zalogowano poprawnie witaj " + loginService.getLoggedInUser().getLogin());
+                    .addAttribute("user","Zalogowano poprawnie. Witaj, " + loginService.getLoggedInUser().getLogin());
         }
         return "main";
     }
@@ -29,6 +29,9 @@ public class MainController {
     String registration(Model model) {
         model.addAttribute("content", PageType.REGISTRATION.getContentValue())
                 .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue());
+        if (loginService.isUserLoggedIn()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
+        }
         return "main";
     }
 }

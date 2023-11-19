@@ -22,17 +22,19 @@ public class LoginController {
         model.addAttribute("content", PageType.LOGIN.getContentValue())
                 .addAttribute("pageTitle", PageType.LOGIN.getTitleValue())
                 .addAttribute("user", new User());
+        if (loginService.isUserLoggedIn()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
+        }
         return "main";
     }
 
     @PostMapping("/logUser")
-    String logUser(@ModelAttribute User user, Model model) {
-        if (loginService.isLoggingValid(user.getLogin(), user.getPassword())) {
-            loginService.setLoggedUser(user);
+    String logUser(@ModelAttribute User user) {
+        if (loginService.isLoginInputValid(user.getLogin(), user.getPassword())) {
+            loginService.setLoggedInUser(user);
             System.out.println(user);
             return "redirect:/";
         }
         return "redirect:/login?error=true";
-
     }
 }

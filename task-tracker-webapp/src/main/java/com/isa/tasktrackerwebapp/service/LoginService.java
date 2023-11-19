@@ -12,7 +12,7 @@ public class LoginService {
     private static final List<User> users = JsonData.getUsers();
     private static User loggedInUser;
 
-    public void setLoggedUser(User user) {
+    public void setLoggedInUser(User user) {
         loggedInUser = user;
     }
 
@@ -24,7 +24,7 @@ public class LoginService {
         return loggedInUser != null;
     }
 
-    public boolean isLoggingValid(String login, String password) {
+    public boolean isLoginInputValid(String login, String password) {
         if (LoginValidator.doesLoginExist(users, login)) {
             return isPasswordCorrect(login, password);
         }

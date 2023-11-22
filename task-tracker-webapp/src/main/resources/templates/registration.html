@@ -1,14 +1,14 @@
 <div class="registration" th:fragment="content">
     <div class="row justify-content-center align-items-center p-5 p-md-5">
         <div class="col-12 col-lg-9 col-xl-7">
-            <form method="post" novalidate th:action="@{/registerUser}" th:object="${user}">
+            <form th:action="@{/registerUser}" th:object="${user}" method="post">
 
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="text" id="firstName" class="form-control" placeholder="Imię" th:field="*{firstName}">
+                            <input type="text" id="firstName" class="form-control" name="firstName" placeholder="Imię" th:field="*{firstName}">
                             <label class="rounded" for="firstName">Imię</label>
-                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Imię jest obowiązkowe.</small>
+                            <small class="text-danger position-absolute" th:if="${param.error}">aaa</small>
                         </div>
                     </div>
 
@@ -16,7 +16,7 @@
                         <div class="form-floating mb-3">
                             <input type="text" id="lastName" class="form-control" placeholder="Nazwisko" th:field="*{lastName}">
                             <label class="rounded" for="lastName">Nazwisko</label>
-                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Nazwisko jest obowiązkowe.</small>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
                         </div>
                     </div>
                 </div>
@@ -24,8 +24,9 @@
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="text" id="login" class="form-control" placeholder="Login" required th:field="*{login}">
+                            <input type="text" id="login" class="form-control" placeholder="Login" th:field="*{login}">
                             <label class="rounded" for="login">Login</label>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></small>
                             <small class="text-danger position-absolute" th:if="${param.loginExistsError}">Podany login już istnieje.</small>
                         </div>
                     </div>
@@ -34,6 +35,7 @@
                         <div class="form-floating mb-3">
                             <input type="email" id="email" class="form-control" placeholder="example@email.com" th:field="*{email}">
                             <label class="rounded" for="email">Email</label>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                         </div>
                     </div>
                 </div>
@@ -46,7 +48,7 @@
                             <small class="form-text text-muted">
                                 Min. 8 znaków, 1 mała i 1 wielka litera, 1 znak specjalny.
                             </small>
-                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Hasło jest obowiązkowe.</small>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
                         </div>
                     </div>
 

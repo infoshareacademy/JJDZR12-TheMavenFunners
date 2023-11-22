@@ -4,6 +4,7 @@ import com.isa.tasktrackerwebapp.model.PageType;
 import com.isa.tasktrackerwebapp.model.User;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.LoginValidator;
+import com.isa.tasktrackerwebapp.service.RegistrationService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,17 +17,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class RegistrationController {
+class RegistrationController {
     private final LoginService loginService;
+    private final RegistrationService registrationService;
 
-    public RegistrationController(LoginService loginService) {
+    RegistrationController(LoginService loginService, RegistrationService registrationService) {
         this.loginService = loginService;
+        this.registrationService = registrationService;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     @GetMapping("/registration")
-    String loginMenu(Model model) {
+    String registration(Model model) {
         model.addAttribute("content", PageType.REGISTRATION.getContentValue())
                 .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue())
                 .addAttribute("user", new User());
@@ -45,7 +48,7 @@ public class RegistrationController {
             return "redirect:/registration?error=true";
         }
         if (LoginValidator.doesLoginExist(user.getLogin())) {
-            logger.warn("Registration attempt failed; chosen existing login.");
+            logger.warn("Registration attempt failed; login already exists.");
             return "redirect:/registration?loginExistsError=true";
         }
         if (!repeatPassword.equals(user.getPassword())) {
@@ -53,7 +56,8 @@ public class RegistrationController {
             return "redirect:/registration?passwordsDontMatchError=true";
         }
 
+        registrationService.registerNewUser(user);
         logger.info("Registered new user: {}", user);
-        return "redirect:/login";
+        return "redirect:/login?registrationSuccessful";
     }
 }

@@ -24,14 +24,4 @@ public class MainController {
         }
         return "main";
     }
-
-//    @GetMapping("/registration")
-//    String registration(Model model) {
-//        model.addAttribute("content", PageType.REGISTRATION.getContentValue())
-//                .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue());
-//        if (loginService.isUserLoggedIn()){
-//            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
-//        }
-//        return "main";
-//    }
 }

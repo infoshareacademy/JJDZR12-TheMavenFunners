@@ -33,6 +33,10 @@
     transition: 0.35s ease-in-out;
 }
 
+.login {
+    max-width: 50rem;
+}
+
 
 .registration .form-control:focus {
     border-color: royalblue;

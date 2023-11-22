@@ -1,13 +1,24 @@
 package com.isa.tasktrackerwebapp.model;
 
+import jakarta.validation.constraints.*;
+
 import java.util.Objects;
 
 public class User {
+    @NotBlank(message = "Login jest obowiązkowy.")
     private String login;
+    @NotBlank(message = "Hasło jest obowiązkowe.")
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+            message = "Hasło musi mieć min. 8 znaków, 1 małą i 1 wielką literę, 1 znak specjalny."
+    )
     private String password;
+    @NotBlank(message = "Email jest obowiązkowy.")
     private String email;
     private boolean isActive;
+    @NotBlank(message = "Imię jest obowiązkowe.")
     private String firstName;
+    @NotBlank(message = "Nazwisko jest obowiązkowe.")
     private String lastName;
 
     public User(String login, String password, String email, boolean isActive) {

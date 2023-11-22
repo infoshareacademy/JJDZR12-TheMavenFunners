@@ -9,12 +9,12 @@ import java.util.List;
 public class LoginValidator {
     private static final List<User> users = JsonUserDataManager.getUsers();
 
-    public static boolean doesLoginExist(List<User> users, String login) {
+    public static boolean doesLoginExist(String login) {
         return users.stream().anyMatch(user -> user.getLogin().equals(login));
     }
 
     public boolean isLoginInputValid(String login, String password) {
-        return doesLoginExist(users, login) && isPasswordCorrect(login, password);
+        return doesLoginExist(login) && isPasswordCorrect(login, password);
     }
 
     private boolean isPasswordCorrect(String login, String password) {

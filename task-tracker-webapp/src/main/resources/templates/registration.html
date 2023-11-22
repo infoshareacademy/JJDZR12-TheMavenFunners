@@ -1,20 +1,22 @@
 <div class="registration" th:fragment="content">
     <div class="row justify-content-center align-items-center p-5 p-md-5">
         <div class="col-12 col-lg-9 col-xl-7">
-            <form>
+            <form method="post" novalidate th:action="@{/registerUser}" th:object="${user}">
 
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="text" id="firstName" class="form-control" placeholder="Imię">
+                            <input type="text" id="firstName" class="form-control" placeholder="Imię" th:field="*{firstName}">
                             <label class="rounded" for="firstName">Imię</label>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Imię jest obowiązkowe.</small>
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="text" id="lastName" class="form-control" placeholder="Nazwisko">
+                            <input type="text" id="lastName" class="form-control" placeholder="Nazwisko" th:field="*{lastName}">
                             <label class="rounded" for="lastName">Nazwisko</label>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Nazwisko jest obowiązkowe.</small>
                         </div>
                     </div>
                 </div>
@@ -22,14 +24,15 @@
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="text" id="login" class="form-control" placeholder="Login">
+                            <input type="text" id="login" class="form-control" placeholder="Login" required th:field="*{login}">
                             <label class="rounded" for="login">Login</label>
+                            <small class="text-danger position-absolute" th:if="${param.loginExistsError}">Podany login już istnieje.</small>
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="email" id="email" class="form-control" placeholder="example@email.com">
+                            <input type="email" id="email" class="form-control" placeholder="example@email.com" th:field="*{email}">
                             <label class="rounded" for="email">Email</label>
                         </div>
                     </div>
@@ -38,15 +41,20 @@
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="password" id="password" class="form-control" placeholder="Password">
-                            <label class="rounded" for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Hasło" th:field="*{password}">
+                            <label class="rounded" for="password">Hasło</label>
+                            <small class="form-text text-muted">
+                                Min. 8 znaków, 1 mała i 1 wielka litera, 1 znak specjalny.
+                            </small>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Hasło jest obowiązkowe.</small>
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-4">
                         <div class="form-floating mb-3">
-                            <input type="password" id="repeatPassword" class="form-control" placeholder="Password">
-                            <label class="rounded" for="repeatPassword">Repeat password</label>
+                            <input type="password" id="repeatPassword" class="form-control" placeholder="Powtórz hasło" name="repeatPassword">
+                            <label class="rounded" for="repeatPassword">Powtórz hasło</label>
+                            <small class="text-danger position-absolute" th:if="${param.passwordsDontMatchError}">Hasła muszą być takie same.</small>
                         </div>
                     </div>
                 </div>

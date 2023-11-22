@@ -37,7 +37,7 @@ public class JsonTaskDataManager {
             tasks = objectMapper.readValue(FileUtil.getTasksFile(), new TypeReference<>() {
             });
         } catch (Exception e) {
-            logger.error("Błąd podczas odczytu tasków z pliku", e);
+            logger.error("Error reading tasks from file", e);
         }
     }
 
@@ -46,7 +46,7 @@ public class JsonTaskDataManager {
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(FileUtil.getTasksFile(), tasks);
         } catch (Exception e) {
-            logger.error("Błąd podczas zapisu tasków do pliku", e);
+            logger.error("Error saving tasks to file", e);
         }
     }
 }

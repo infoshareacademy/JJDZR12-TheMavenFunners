@@ -35,7 +35,7 @@ public class JsonUserDataManager {
             users = objectMapper.readValue(FileUtil.getUsersFile(), new TypeReference<>() {
             });
         } catch (Exception e) {
-            logger.error("Błąd podczas odczytu użytkowników z pliku", e);
+            logger.error("Error reading users from file", e);
         }
     }
 
@@ -44,7 +44,7 @@ public class JsonUserDataManager {
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(FileUtil.getUsersFile(), users);
         } catch (Exception e) {
-            logger.error("Błąd podczas zapisu użytkownika do pliku", e);
+            logger.error("Error saving users to file", e);
         }
     }
 }

@@ -13,10 +13,7 @@ public class LoginValidator {
     }
 
     public boolean isLoginInputValid(String login, String password) {
-        if (doesLoginExist(users, login)) {
-            return isPasswordCorrect(login, password);
-        }
-        return false;
+        return doesLoginExist(users, login) && isPasswordCorrect(login, password);
     }
 
     private boolean isPasswordCorrect(String login, String password) {

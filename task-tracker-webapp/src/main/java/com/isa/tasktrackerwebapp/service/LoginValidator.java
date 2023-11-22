@@ -8,6 +8,7 @@ import java.util.List;
 @Service
 public class LoginValidator {
     private static final List<User> users = JsonUserDataManager.getUsers();
+
     public static boolean doesLoginExist(List<User> users, String login) {
         return users.stream().anyMatch(user -> user.getLogin().equals(login));
     }

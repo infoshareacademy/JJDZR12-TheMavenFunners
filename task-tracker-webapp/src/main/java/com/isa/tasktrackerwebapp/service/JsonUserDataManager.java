@@ -20,20 +20,16 @@ public class JsonUserDataManager {
     private JsonUserDataManager() {
     }
 
-    public static void loadData() {
-        readUsers();
-    }
-
     public static List<User> getUsers() {
-        loadData();
+        loadUsersData();
         return users;
     }
 
     public static void saveNewUser(User user) {
-        saveUserData(user);
+        saveUsersData(user);
     }
 
-    private static List<User> readUsers() {
+    private static void loadUsersData() {
         objectMapper.registerModule(new JavaTimeModule());
         try {
             users = objectMapper.readValue(FileUtil.getUsersFile(), new TypeReference<>() {
@@ -41,10 +37,9 @@ public class JsonUserDataManager {
         } catch (Exception e) {
             logger.error("Błąd podczas odczytu użytkowników z pliku", e);
         }
-        return users;
     }
 
-    private static void saveUserData(User user) {
+    private static void saveUsersData(User user) {
         users.add(user);
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(FileUtil.getUsersFile(), users);

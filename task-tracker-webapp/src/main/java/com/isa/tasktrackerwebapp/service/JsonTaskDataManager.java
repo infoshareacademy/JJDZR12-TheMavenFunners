@@ -20,22 +20,18 @@ public class JsonTaskDataManager {
     private JsonTaskDataManager() {
     }
 
-    public static void loadData() {
-        readTasks();
-    }
-
     public static List<Task> getTasks() {
-        loadData();
+        loadTasksData();
         return tasks;
     }
 
     public static void saveNewTask(Task task, User loggedInUser) {
         task.setUser(loggedInUser);
         task.setActive(true);
-        saveTaskData(task);
+        saveTasksData(task);
     }
 
-    private static List<Task> readTasks() {
+    private static void loadTasksData() {
         objectMapper.registerModule(new JavaTimeModule());
         try {
             tasks = objectMapper.readValue(FileUtil.getTasksFile(), new TypeReference<>() {
@@ -43,10 +39,9 @@ public class JsonTaskDataManager {
         } catch (Exception e) {
             logger.error("Błąd podczas odczytu tasków z pliku", e);
         }
-        return tasks;
     }
 
-    private static void saveTaskData(Task task) {
+    private static void saveTasksData(Task task) {
         tasks.add(task);
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(FileUtil.getTasksFile(), tasks);

@@ -8,7 +8,7 @@
                         <div class="form-floating mb-3">
                             <input type="text" id="firstName" class="form-control" name="firstName" placeholder="Imię" th:field="*{firstName}">
                             <label class="rounded" for="firstName">Imię</label>
-                            <small class="text-danger position-absolute" th:if="${param.error}">aaa</small>
+                            <small class="text-danger position-absolute" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
                         </div>
                     </div>
 
@@ -36,6 +36,7 @@
                             <input type="email" id="email" class="form-control" placeholder="example@email.com" th:field="*{email}">
                             <label class="rounded" for="email">Email</label>
                             <small class="text-danger position-absolute" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                            <small class="text-danger position-absolute" th:if="${param.emailExistsError}">Podany email jest już w użyciu.</small>
                         </div>
                     </div>
                 </div>

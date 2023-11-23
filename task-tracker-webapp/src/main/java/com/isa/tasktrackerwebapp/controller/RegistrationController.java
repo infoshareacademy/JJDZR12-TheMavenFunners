@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 class RegistrationController {
@@ -46,26 +45,41 @@ class RegistrationController {
     @PostMapping("/registerUser")
     String registerUser(@ModelAttribute @Valid User user, BindingResult bindingResult,
                         @RequestParam("repeatPassword") String repeatPassword,
-                        RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            logger.warn("Registration attempt failed; user fields validations not passed.");
-            redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/registration";
+                        Model model) {
+        boolean hasErrors = bindingResult.hasErrors();
+        boolean loginExists = loginValidator.doesLoginExist(user.getLogin());
+        boolean emailExists = registrationService.doesEmailExist(user.getEmail());
+        boolean passwordsDontMatch = !repeatPassword.equals(user.getPassword());
+
+        StringBuilder failureReasonsBuilder = new StringBuilder("Registration attempt failed: ");
+
+        if (hasErrors) {
+            failureReasonsBuilder.append(" user fields validations not passed;");
         }
-        if (loginValidator.doesLoginExist(user.getLogin())) {
-            logger.warn("Registration attempt failed; login already exists.");
-            redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/registration?loginExistsError=true";
+
+        if (loginExists) {
+            failureReasonsBuilder.append(" login already exists;");
         }
-        if (registrationService.doesEmailExist(user.getEmail())) {
-            logger.warn("Registration attempt failed; email already exists.");
-            redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/registration?emailExistsError=true";
+
+        if (emailExists) {
+            failureReasonsBuilder.append(" email already exists;");
         }
-        if (!repeatPassword.equals(user.getPassword())) {
-            logger.warn("Registration attempt failed; passwords don't match.");
-            redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/registration?passwordsDontMatchError=true";
+
+        if (passwordsDontMatch) {
+            failureReasonsBuilder.append(" passwords don't match;");
+        }
+
+        if (hasErrors || loginExists || emailExists || passwordsDontMatch) {
+            logger.warn(failureReasonsBuilder.toString());
+
+            model.addAttribute("content", PageType.REGISTRATION.getContentValue())
+                    .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue())
+                    .addAttribute("user", user)
+                    .addAttribute("loginExists", loginExists)
+                    .addAttribute("emailExists", emailExists)
+                    .addAttribute("passwordsDontMatch", passwordsDontMatch);
+
+            return "main";
         }
 
         registrationService.registerNewUser(user);

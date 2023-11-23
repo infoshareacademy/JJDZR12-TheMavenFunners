@@ -11,24 +11,48 @@
     margin: 3rem;
 }
 
-.view-tasks button {
+.tasks button {
     margin-top: 0.75rem;
 }
 
-.view-tasks .form-control:focus,
-.view-tasks select:focus {
+.tasks .form-control:focus,
+.tasks select:focus,
+.tasks textarea:focus,
+.tasks input:focus {
     border-color: royalblue;
     box-shadow: none;
     transition: 0.35s ease-in-out;
 }
 
-.view-tasks input[type=text]:focus:not([readonly]) + label,
-.view-tasks select:focus + label {
+.tasks select:focus ~ label,
+.tasks textarea:focus ~ label,
+.tasks input:focus ~ label {
     color: royalblue;
 }
 
-.view-tasks label {
+.tasks input[type=text]:focus:not([readonly]) + label,
+.tasks input[type=data]:focus:not([readonly]) + label,
+.tasks select:focus + label,
+.tasks textarea:focus + label {
+    color: royalblue;
+}
+
+.tasks label {
     margin-top: -3.75rem;
     color: rgba(33, 37, 41, 0.75);
     transition: 0.35s ease-in-out;
+}
+
+.tasks textarea + label {
+    position: absolute;
+    top: 0;
+    margin-top: 0.75rem;
+}
+
+textarea {
+    height: 15rem;
+}
+
+input[type=date]:invalid {
+    color: rgba(33, 37, 41, 0.75);
 }

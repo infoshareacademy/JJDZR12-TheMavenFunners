@@ -33,6 +33,7 @@ public class JsonDataTask {
     }
 
     public static void saveNewTask(Task task) {
+        task.setActive(true);
         getTasks();
         tasks.add(task);
         saveTaskData();

@@ -50,7 +50,7 @@ class RegistrationController {
         if (bindingResult.hasErrors()) {
             logger.warn("Registration attempt failed; user fields validations not passed.");
             redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/registration?error=true";
+            return "redirect:/registration";
         }
         if (loginValidator.doesLoginExist(user.getLogin())) {
             logger.warn("Registration attempt failed; login already exists.");

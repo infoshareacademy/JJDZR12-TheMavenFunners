@@ -45,4 +45,13 @@ public class LoginController {
         logger.warn("Login attempt failed for user: {}", user.getLogin());
         return "redirect:/login?error=true";
     }
+
+    @GetMapping("/logout")
+    String logout(Model model) {
+        loginService.setLoggedInUser(null);
+        model.addAttribute("content", PageType.INDEX.getContentValue())
+                .addAttribute("pageTitle", PageType.INDEX.getTitleValue())
+                .addAttribute("logout", true);
+        return "main";
+    }
 }

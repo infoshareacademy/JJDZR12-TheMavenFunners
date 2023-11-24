@@ -51,4 +51,9 @@ class TaskServiceImpl implements TaskService {
         boolean activeMatch = filterActive == null || filterActive.isEmpty() || task.getActive() == Boolean.parseBoolean(filterActive);
         return nameMatch && activeMatch;
     }
+
+    @Override
+    public boolean taskEndValid(Task form) {
+        return form.getTaskEnd().isBefore(form.getTaskStart());
+    }
 }

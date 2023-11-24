@@ -8,4 +8,5 @@ public interface TaskService {
 
     List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive);
     void saveTask(Task form);
+    boolean taskEndValid(Task form);
 }

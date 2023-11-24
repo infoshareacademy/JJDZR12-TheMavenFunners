@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 class MainController {
     private final LoginService loginService;
 
-    private MainController(LoginService loginService) {
+    MainController(LoginService loginService) {
         this.loginService = loginService;
     }
 

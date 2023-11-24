@@ -1,21 +1,22 @@
-<div th:fragment="content" class="d-flex justify-content-center">
-    <div class="login container mt-5 px-5">
+<div th:fragment="content" class="reg-log login container mt-5 px-5">
         <div class="row justify-content-center container px-5">
-            <div class="alert alert-success mt-3 pb-0" th:if="${param.registrationSuccessful}">
+            <div class="col-sm-9">
+            <div class="alert alert-success mt-3 pb-0 text-center" th:if="${param.registrationSuccessful}">
                 <p>Rejestracja przebiegła pomyślnie! Możesz się zalogować.</p>
             </div>
+            <div class="alert alert-danger mt-3 mb-5 pb-0 text-center">
+                <!--                        th:if="${param.error}"-->
+                <p>Nieprawidłowy login lub hasło. Spróbuj ponownie.</p>
+            </div>
             <form class="needs-validation" method="post" novalidate th:action="@{/logUser}" th:object="${user}">
-                <div class="alert alert-danger pb-0 text-center">
-                    <!--                        th:if="${param.error}"-->
-                    <p>Nieprawidłowy login lub hasło. Spróbuj ponownie.</p>
-                </div>
-                <div class="form-group mb-3">
+
+                <div class="form-group pb-3">
                     <div class="form-floating mb-4">
                         <input type="text" id="login" class="form-control" placeholder="Login" th:field="*{login}">
                         <label class="rounded" for="login">Login</label>
                     </div>
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group pb-3">
                     <div class="form-floating mb-4">
                         <input type="password" id="password" class="form-control" placeholder="Hasło"
                                th:field="*{password}">
@@ -27,5 +28,5 @@
                 </div>
             </form>
         </div>
+        </div>
     </div>
-</div>

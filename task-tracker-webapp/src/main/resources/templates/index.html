@@ -1,7 +1,6 @@
 <main class="inner cover text-center" role="main" th:fragment="content">
     <div class="alert alert-success mt-3 pb-0" th:if="${isUserLoggedIn}">
-        <p>Zalogowano poprawnie. Witaj
-        <p th:text="${user}"></p> </p>
+        <p th:text="|Zalogowano poprawnie. Witaj, ${user}|"></p>
     </div>
     <img class="main-img" th:src="@{/img/notes.png}">
     <h2 class="cover-heading">

@@ -1,9 +1,9 @@
 <main th:fragment="content" role="main" class="inner cover text-center">
     <div class="container-sm user-alert mt-5">
-        <div class="d-flex justify-content-center alert alert-info mx-3 pb-0" th:if="${param.loginSuccess}">
+        <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${param.loginSuccess}">
             <p>Zalogowano poprawnie.</p>
         </div>
-        <div class="d-flex justify-content-center alert alert-info mx-3 pb-0" th:if="${logout}">
+        <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${logout}">
             <p>Wylogowano poprawnie.</p>
         </div>
         <div class="d-flex justify-content-center mt-4 pb-0" th:if="${isUserLoggedIn}">

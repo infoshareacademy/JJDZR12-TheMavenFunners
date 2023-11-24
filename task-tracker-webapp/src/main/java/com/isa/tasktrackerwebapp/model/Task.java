@@ -1,11 +1,18 @@
 package com.isa.tasktrackerwebapp.model;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 
 public class Task {
+    @NotBlank(message = "Nazwa zadania nie może być pusta.")
     private String taskName;
+    @NotBlank(message = "Data rozpoczęcia zadania nie może być pusta.") @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
     private LocalDate taskStart;
+    @NotBlank(message = "Data rozpoczęcia zadania nie może być pusta.") @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
     private LocalDate taskEnd;
+    @NotBlank(message = "Opis zadania nie moży być pusty.")
     private String taskDescription;
     private User user;
     private boolean active;

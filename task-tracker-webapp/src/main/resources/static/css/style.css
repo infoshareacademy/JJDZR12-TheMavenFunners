@@ -61,3 +61,47 @@ input[type=date]:invalid {
 .login {
     max-width: 50rem;
 }
+
+.reg-log .form-control:focus {
+    border-color: royalblue;
+    box-shadow: none;
+}
+
+.reg-log input[type=text]:focus:not([readonly]) + label,
+.reg-log input[type=email]:focus:not([readonly]) + label,
+.reg-log input[type=password]:focus:not([readonly]) + label,
+.reg-log .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: royalblue;
+    background-color: white;
+    line-height: 1.5em;
+    margin: -0.25rem 0 0 0.2rem;
+    height: 1.5em;
+    padding: 0 0.3rem
+}
+
+.reg-log .form-floating > .form-control ~ label {
+    color: rgba(33, 37, 41, 0.75);
+    padding: 0.7rem 0.75rem;
+}
+
+.reg-log .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: rgba(33, 37, 41, 0.75);
+}
+
+.form-floating > .form-control-plaintext:focus,
+.form-floating > .form-control-plaintext:not(:placeholder-shown),
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown),
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext {
+    padding-top: 1rem;
+    padding-bottom: 0.3rem;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext,
+.form-floating > .form-select {
+    height: inherit;
+    min-height: inherit;
+    line-height: inherit;
+}

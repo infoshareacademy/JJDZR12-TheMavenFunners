@@ -52,7 +52,8 @@ class TaskServiceImpl implements TaskService {
         return nameMatch && activeMatch;
     }
 
-    public boolean taskEndValid(Task task) {
-        return task.getTaskEnd().isBefore(task.getTaskStart());
+    @Override
+    public boolean taskEndValid(Task form) {
+        return form.getTaskEnd().isBefore(form.getTaskStart());
     }
 }

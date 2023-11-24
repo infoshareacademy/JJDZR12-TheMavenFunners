@@ -1,7 +1,7 @@
 <main th:fragment="content" role="main" class="inner cover text-center">
     <div class="container-sm user-alert">
         <div class="d-flex justify-content-center alert alert-info mt-3 pb-0" th:if="${isUserLoggedIn}">
-            <p th:text="${user}"></p>
+            <p th:text="|Zalogowano poprawnie. Witaj, ${user}|"></p>
         </div>
         <div class="d-flex justify-content-center alert alert-info mt-3 pb-0" th:if="${logout}">
             <p>Wylogowano poprawnie.</p>

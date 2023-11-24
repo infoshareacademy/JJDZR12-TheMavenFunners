@@ -12,7 +12,7 @@ class TaskServiceImpl implements TaskService {
 
     private final LoginService loginService;
 
-    public TaskServiceImpl(LoginService loginService) {
+    TaskServiceImpl(LoginService loginService) {
         this.loginService = loginService;
     }
 

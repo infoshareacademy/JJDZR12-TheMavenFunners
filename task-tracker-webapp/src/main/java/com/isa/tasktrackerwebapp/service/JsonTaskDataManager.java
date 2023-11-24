@@ -42,6 +42,7 @@ public class JsonTaskDataManager {
     }
 
     private static void saveTasksData(Task task) {
+        loadTasksData();
         tasks.add(task);
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(FileUtil.getTasksFile(), tasks);

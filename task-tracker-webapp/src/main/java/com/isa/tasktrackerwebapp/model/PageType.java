@@ -4,7 +4,8 @@ public enum PageType {
     INDEX("Strona główna", "index"),
     REGISTRATION("Rejestracja", "registration"),
     ADD_TASK("Dodaj task", "add-task"),
-    VIEW_TASKS("Wyświetl taski", "view-tasks");
+    VIEW_TASKS("Wyświetl taski", "view-tasks"),
+    LOGIN("Login", "login");
 
     private final String titleValue;
     private final String contentValue;

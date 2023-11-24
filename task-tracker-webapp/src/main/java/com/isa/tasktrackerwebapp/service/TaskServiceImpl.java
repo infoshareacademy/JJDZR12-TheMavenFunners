@@ -1,6 +1,5 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.JsonDataTask;
 import com.isa.tasktrackerwebapp.model.Task;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +10,15 @@ import java.util.stream.Collectors;
 @Service
 class TaskServiceImpl implements TaskService {
 
+    private final LoginService loginService;
+
+    TaskServiceImpl(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
     @Override
     public List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive) {
-        List<Task> taskList = JsonDataTask.getTasks();
+        List<Task> taskList = JsonTaskDataManager.getTasks();
 
         if ("oldestByStartDate".equals(sortBy)) {
             taskList.sort(Comparator.comparing(Task::getTaskStart));
@@ -32,7 +37,7 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public void saveTask(Task form) {
-        JsonDataTask.saveNewTask(form);
+        JsonTaskDataManager.saveNewTask(form, loginService.getLoggedInUser());
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {

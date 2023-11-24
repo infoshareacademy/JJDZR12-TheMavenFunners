@@ -56,3 +56,8 @@ textarea {
 input[type=date]:invalid {
     color: rgba(33, 37, 41, 0.75);
 }
+
+
+.login {
+    max-width: 50rem;
+}

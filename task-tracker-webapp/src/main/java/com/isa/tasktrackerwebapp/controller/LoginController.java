@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class LoginController {
+class LoginController {
     private final LoginService loginService;
     private final LoginValidator loginValidator;
 

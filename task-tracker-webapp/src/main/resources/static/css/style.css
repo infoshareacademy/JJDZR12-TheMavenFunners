@@ -43,10 +43,6 @@
     transition: 0.35s ease-in-out;
 }
 
-.login {
-    max-width: 50rem;
-}
-
 .tasks textarea + label {
     position: absolute;
     top: 0;
@@ -61,6 +57,10 @@ input[type=date]:invalid {
     color: rgba(33, 37, 41, 0.75);
 }
 
+
+.login {
+    max-width: 50rem;
+}
 
 .registration .form-control:focus {
     border-color: royalblue;

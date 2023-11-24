@@ -1,6 +1,9 @@
-<div th:fragment="content" class="reg-log">
+<div th:fragment="content" class="d-flex justify-content-center">
     <div class="login container mt-5 px-5">
         <div class="row justify-content-center container px-5">
+            <div class="alert alert-success mt-3 pb-0" th:if="${param.registrationSuccessful}">
+                <p>Rejestracja przebiegła pomyślnie! Możesz się zalogować.</p>
+            </div>
             <form class="needs-validation" method="post" novalidate th:action="@{/logUser}" th:object="${user}">
                 <div class="alert alert-danger pb-0 text-center">
                     <!--                        th:if="${param.error}"-->

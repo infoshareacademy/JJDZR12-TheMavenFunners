@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+class MainController {
     private final LoginService loginService;
 
     private MainController(LoginService loginService) {

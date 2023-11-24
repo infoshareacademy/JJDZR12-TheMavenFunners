@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginValidator {
 
-    public static boolean doesLoginExist(String login) {
+    public boolean doesLoginExist(String login) {
         return JsonUserDataManager.getUsers().stream().anyMatch(user -> user.getLogin().equals(login));
     }
 

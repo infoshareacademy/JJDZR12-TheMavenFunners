@@ -47,6 +47,20 @@
     max-width: 50rem;
 }
 
+.tasks textarea + label {
+    position: absolute;
+    top: 0;
+    margin-top: 0.75rem;
+}
+
+textarea {
+    height: 15rem;
+}
+
+input[type=date]:invalid {
+    color: rgba(33, 37, 41, 0.75);
+}
+
 
 .registration .form-control:focus {
     border-color: royalblue;

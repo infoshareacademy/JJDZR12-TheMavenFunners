@@ -40,7 +40,7 @@ class LoginController {
         if (loginValidator.isLoginInputValid(user.getLogin(), user.getPassword())) {
             loginService.setLoggedInUser(user);
             logger.info("User logged in: {}", user);
-            return "redirect:/";
+            return "redirect:/?loginSuccess";
         }
         logger.warn("Login attempt failed for user: {}", user.getLogin());
         return "redirect:/login?error=true";

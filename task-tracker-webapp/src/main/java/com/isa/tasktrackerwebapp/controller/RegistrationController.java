@@ -84,6 +84,6 @@ class RegistrationController {
 
         registrationService.registerNewUser(user);
         logger.info("Registered new user: {}", user);
-        return "redirect:/login?registrationSuccessful";
+        return "redirect:/login?registrationSuccessful=true";
     }
 }

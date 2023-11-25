@@ -62,6 +62,10 @@ input[type=date]:invalid {
     max-width: 50rem;
 }
 
+.user-alert {
+    max-width: 50rem;
+}
+
 .registration .form-control:focus {
     border-color: royalblue;
     box-shadow: none;

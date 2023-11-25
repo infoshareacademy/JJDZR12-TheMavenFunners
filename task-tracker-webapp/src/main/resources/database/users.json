@@ -50,7 +50,7 @@
   {
     "login": "tomasz.tomaszewski",
     "password": "Zaq123!@6",
-    "email": "",
+    "email": "tomasz.tomaszewski@omail.com",
     "firstName": "Tomasz",
     "lastName": "Tomaszewski",
     "active": true
@@ -58,7 +58,7 @@
   {
     "login": "joanna.joanska",
     "password": "Zaq123!@0",
-    "email": "",
+    "email": "joanna.joanska@omail.com",
     "firstName": "Joanna",
     "lastName": "Joańska",
     "active": true

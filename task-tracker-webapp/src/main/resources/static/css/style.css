@@ -66,15 +66,15 @@ input[type=date]:invalid {
     max-width: 50rem;
 }
 
-.registration .form-control:focus {
+.reg-log .form-control:focus {
     border-color: royalblue;
     box-shadow: none;
 }
 
-.registration input[type=text]:focus:not([readonly]) + label,
-.registration input[type=email]:focus:not([readonly]) + label,
-.registration input[type=password]:focus:not([readonly]) + label,
-.registration .form-floating > .form-control:not(:placeholder-shown) ~ label {
+.reg-log input[type=text]:focus:not([readonly]) + label,
+.reg-log input[type=email]:focus:not([readonly]) + label,
+.reg-log input[type=password]:focus:not([readonly]) + label,
+.reg-log .form-floating > .form-control:not(:placeholder-shown) ~ label {
     color: royalblue;
     background-color: white;
     line-height: 1.5em;
@@ -83,12 +83,12 @@ input[type=date]:invalid {
     padding: 0 0.3rem
 }
 
-.registration .form-floating > .form-control ~ label {
+.reg-log .form-floating > .form-control ~ label {
     color: rgba(33, 37, 41, 0.75);
     padding: 0.7rem 0.75rem;
 }
 
-.registration .form-floating > .form-control:not(:placeholder-shown) ~ label {
+.reg-log .form-floating > .form-control:not(:placeholder-shown) ~ label {
     color: rgba(33, 37, 41, 0.75);
 }
 

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     private final LoginService loginService;
     private final LoginValidator loginValidator;
 
@@ -23,7 +24,6 @@ class LoginController {
         this.loginValidator = loginValidator;
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @GetMapping("/login")
     String loginMenu(Model model) {

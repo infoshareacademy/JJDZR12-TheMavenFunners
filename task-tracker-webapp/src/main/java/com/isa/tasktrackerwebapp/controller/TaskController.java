@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 class TaskController {
-
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskService taskService;
     private final LoginService loginService;
 
@@ -28,7 +28,6 @@ class TaskController {
         this.loginService = loginService;
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
     @GetMapping("/view-tasks")
     String getTaskList(Model model,

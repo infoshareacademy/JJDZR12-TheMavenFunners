@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 class RegistrationController {
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
     private final LoginService loginService;
     private final RegistrationService registrationService;
     private final LoginValidator loginValidator;
@@ -28,7 +29,6 @@ class RegistrationController {
         this.loginValidator = loginValidator;
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     @GetMapping("/registration")
     String registration(Model model, User user) {

@@ -4,8 +4,12 @@ import com.isa.tasktrackerwebapp.model.PageType;
 import com.isa.tasktrackerwebapp.model.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.TaskService;
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +19,7 @@ import java.util.List;
 
 @Controller
 class TaskController {
-
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskService taskService;
     private final LoginService loginService;
 
@@ -23,6 +27,7 @@ class TaskController {
         this.taskService = taskService;
         this.loginService = loginService;
     }
+
 
     @GetMapping("/view-tasks")
     String getTaskList(Model model,
@@ -51,8 +56,35 @@ class TaskController {
     }
 
     @PostMapping("/add-task")
-    String saveTask(@ModelAttribute Task form) {
+    String saveTask(@Valid @ModelAttribute Task form, BindingResult bindingResult, Model model) {
+        boolean hasErrors = bindingResult.hasErrors();
+        boolean taskEndError = false;
+        if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
+            taskEndError = taskService.taskEndValid(form);
+        }
+
+        StringBuilder failureReasonsBuilder = new StringBuilder("Add task attempt failed: ");
+
+        if (hasErrors) {
+            failureReasonsBuilder.append(" task fields validation not passed;");
+        }
+
+        if (taskEndError) {
+            failureReasonsBuilder.append(" task end is before task start;");
+        }
+
+        if (hasErrors || taskEndError) {
+            logger.warn(failureReasonsBuilder.toString());
+
+            model.addAttribute("content", PageType.ADD_TASK.getContentValue())
+                    .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
+                    .addAttribute("task", form)
+                    .addAttribute("taskEndError", taskEndError);
+            return "main";
+        }
+
         taskService.saveTask(form);
-        return "redirect:add-task";
+        logger.info("Added new task: {}", form);
+        return "redirect:/add-task?addTaskSuccessful";
     }
 }

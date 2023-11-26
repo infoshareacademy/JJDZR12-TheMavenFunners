@@ -1,0 +1,17 @@
+<main th:fragment="content" role="main" class="inner cover text-center">
+    <div class="container-sm user-alert mt-5">
+        <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${login}">
+            <p>Zalogowano poprawnie.</p>
+        </div>
+        <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${logout}">
+            <p>Wylogowano poprawnie.</p>
+        </div>
+        <div class="d-flex justify-content-center mt-4 pb-0" th:if="${isUserLoggedIn}">
+            <h4 th:text="|Witaj, ${user}|"></h4>
+        </div>
+    </div>
+    <img class="main-img" th:src="@{/img/notes.png}">
+    <h2 class="cover-heading">
+        Task Tracker by The Maven Funners
+    </h2>
+</main>

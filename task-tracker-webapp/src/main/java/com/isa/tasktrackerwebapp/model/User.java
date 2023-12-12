@@ -1,10 +1,22 @@
 package com.isa.tasktrackerwebapp.model;
 
+
 import jakarta.validation.constraints.*;
-
 import java.util.Objects;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="user")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
     @NotBlank(message = "Login jest obowiązkowy.")
     private String login;
     @Pattern(

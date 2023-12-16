@@ -60,7 +60,7 @@ class TaskController {
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
         if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
-            taskEndError = taskService.taskEndValid(form);
+            taskEndError = taskService.taskEndInvalid(form);
         }
 
         StringBuilder failureReasonsBuilder = new StringBuilder("Add task attempt failed: ");

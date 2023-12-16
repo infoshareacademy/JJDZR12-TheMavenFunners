@@ -2,12 +2,15 @@ package com.isa.tasktrackerwebapp.service;
 
 import com.isa.tasktrackerwebapp.model.Task;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 class TaskServiceImpl implements TaskService {
+    private static final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 
     private final TaskRepository taskRepository;
     private final LoginService loginService;
@@ -20,14 +23,15 @@ class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive) {
         List<Task> taskList;
+        logger.debug("Sorting and filtering tasks. sortBy: {}, searchTaskName: {}, filterActive: {}", sortBy, searchTaskName, filterActive);
 
-        if ("oldestByStartDate".equals(sortBy)) {
+        if ("ascByStartDate".equals(sortBy)) {
             taskList = taskRepository.findAllByOrderByTaskStartAsc();
-        } else if ("newestByStartDate".equals(sortBy)) {
+        } else if ("descByStartDate".equals(sortBy)) {
             taskList = taskRepository.findAllByOrderByTaskStartDesc();
-        } else if ("oldestByEndDate".equals(sortBy)) {
+        } else if ("ascByEndDate".equals(sortBy)) {
             taskList = taskRepository.findAllByOrderByTaskEndAsc();
-        } else if ("newestByEndDate".equals(sortBy)) {
+        } else if ("descByEndDate".equals(sortBy)) {
             taskList = taskRepository.findAllByOrderByTaskEndDesc();
         } else {
             taskList = taskRepository.findAll();
@@ -35,19 +39,30 @@ class TaskServiceImpl implements TaskService {
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
 
+        logger.info("Retrieved {} tasks from the database.", taskList.size());
+
         return taskList;
     }
 
     @Override
     public void saveTask(Task form) {
+
         form.setUser(loginService.getLoggedInUser());
         taskRepository.save(form);
+
+        logger.info("Task saved successfully: {}", form);
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
-        return taskList.stream()
+        logger.debug("Filtering tasks. searchTaskName: {}, filterActive: {}", searchTaskName, filterActive);
+
+        List<Task> filteredTasks = taskList.stream()
                 .filter(task -> isNameAndActiveMatch(searchTaskName, filterActive, task))
                 .toList();
+
+        logger.debug("Filtered tasks: {}", filteredTasks);
+
+        return filteredTasks;
     }
 
     private boolean isNameAndActiveMatch(String searchTaskName, String filterActive, Task task) {
@@ -57,7 +72,9 @@ class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean taskEndValid(Task form) {
+    public boolean taskEndInvalid(Task form) {
+        logger.info("task end: " + form.getTaskEnd().toString() + ", task start: " + form.getTaskStart().toString());
+        logger.info(String.valueOf(form.getTaskEnd().isBefore(form.getTaskStart())));
         return form.getTaskEnd().isBefore(form.getTaskStart());
     }
 }

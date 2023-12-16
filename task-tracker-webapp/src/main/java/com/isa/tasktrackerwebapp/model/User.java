@@ -44,6 +44,10 @@ public class User {
         return id;
     }
 
+    public void setId(long l) {
+        this.id = id;
+    }
+
     public String getLogin() {
         return login;
     }

@@ -1,12 +1,19 @@
 package com.isa.tasktrackerwebapp.service;
 
+import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginValidator {
 
+    UserRepository userRepository;
+
+    public LoginValidator(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public boolean doesLoginExist(String login) {
-        return JsonUserDataManager.getUsers().stream().anyMatch(user -> user.getLogin().equals(login));
+        return userRepository.existsByLogin(login);
     }
 
     public boolean isLoginInputValid(String login, String password) {
@@ -14,8 +21,7 @@ public class LoginValidator {
     }
 
     private boolean isPasswordCorrect(String login, String password) {
-        return JsonUserDataManager.getUsers().stream()
-                .anyMatch(user -> user.getLogin().equals(login)
-                        && user.getPassword().equals(password));
+        return userRepository.findByLogin(login)
+                .map(user -> user.getPassword().equals(password)).orElse(false);
     }
 }

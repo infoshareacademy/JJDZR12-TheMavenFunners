@@ -1,33 +1,36 @@
 package com.isa.tasktrackerwebapp.service;
 
 import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 class TaskServiceImpl implements TaskService {
 
+    private final TaskRepository taskRepository;
     private final LoginService loginService;
 
-    TaskServiceImpl(LoginService loginService) {
+    TaskServiceImpl(LoginService loginService, TaskRepository taskRepository) {
         this.loginService = loginService;
+        this.taskRepository = taskRepository;
     }
 
     @Override
     public List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive) {
-        List<Task> taskList = JsonTaskDataManager.getTasks();
+        List<Task> taskList;
 
         if ("oldestByStartDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskStart));
+            taskList = taskRepository.findAllByOrderByTaskStartAsc();
         } else if ("newestByStartDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskStart).reversed());
+            taskList = taskRepository.findAllByOrderByTaskStartDesc();
         } else if ("oldestByEndDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskEnd));
+            taskList = taskRepository.findAllByOrderByTaskEndAsc();
         } else if ("newestByEndDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskEnd).reversed());
+            taskList = taskRepository.findAllByOrderByTaskEndDesc();
+        } else {
+            taskList = taskRepository.findAll();
         }
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
@@ -37,13 +40,14 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public void saveTask(Task form) {
-        JsonTaskDataManager.saveNewTask(form, loginService.getLoggedInUser());
+        form.setUser(loginService.getLoggedInUser());
+        taskRepository.save(form);
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
         return taskList.stream()
                 .filter(task -> isNameAndActiveMatch(searchTaskName, filterActive, task))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private boolean isNameAndActiveMatch(String searchTaskName, String filterActive, Task task) {

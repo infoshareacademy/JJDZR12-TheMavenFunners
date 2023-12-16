@@ -14,11 +14,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
     @NotBlank(message = "Nazwa zadania nie może być pusta.")
     private String taskName;
     @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
@@ -29,7 +24,6 @@ public class Task {
     private LocalDate taskEnd;
     @NotBlank(message = "Opis zadania nie moży być pusty.")
     private String taskDescription;
-
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
@@ -45,6 +39,10 @@ public class Task {
     }
 
     public Task() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTaskName() {

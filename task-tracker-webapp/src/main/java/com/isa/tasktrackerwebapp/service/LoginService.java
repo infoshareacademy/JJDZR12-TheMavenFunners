@@ -26,5 +26,4 @@ public class LoginService {
     public boolean isUserLoggedIn() {
         return loggedInUser != null;
     }
-
 }

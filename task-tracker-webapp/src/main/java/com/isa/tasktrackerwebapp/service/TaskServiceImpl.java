@@ -39,18 +39,15 @@ class TaskServiceImpl implements TaskService {
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
 
-        logger.info("Retrieved {} tasks from the database.", taskList.size());
+        logger.debug("Retrieved {} tasks from the database.", taskList.size());
 
         return taskList;
     }
 
     @Override
     public void saveTask(Task form) {
-
         form.setUser(loginService.getLoggedInUser());
         taskRepository.save(form);
-
-        logger.info("Task saved successfully: {}", form);
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
@@ -73,8 +70,6 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public boolean taskEndInvalid(Task form) {
-        logger.info("task end: " + form.getTaskEnd().toString() + ", task start: " + form.getTaskStart().toString());
-        logger.info(String.valueOf(form.getTaskEnd().isBefore(form.getTaskStart())));
         return form.getTaskEnd().isBefore(form.getTaskStart());
     }
 }

@@ -54,18 +54,4 @@
   "firstName" : "Joanna",
   "lastName" : "Joańska",
   "active" : true
-}, {
-  "login" : "magda.magdanska",
-  "password" : "Zaq123!@1",
-  "email" : "magda.magdanska@omail.com",
-  "firstName" : "Magda",
-  "lastName" : "Magdańska",
-  "active" : false
-}, {
-  "login" : "marek.markowski",
-  "password" : "Zaq123!@1",
-  "email" : "marek.markowski@omail.com",
-  "firstName" : "Marek",
-  "lastName" : "Markowski",
-  "active" : false
 } ]

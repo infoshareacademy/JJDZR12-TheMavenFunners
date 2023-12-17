@@ -1,7 +1,7 @@
 package com.isa.tasktrackerwebapp.controller;
 
-import com.isa.tasktrackerwebapp.model.PageType;
-import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.model.entity.PageType;
+import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.TaskService;
 import jakarta.validation.Valid;

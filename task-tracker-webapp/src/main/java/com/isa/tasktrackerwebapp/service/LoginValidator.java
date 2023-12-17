@@ -1,14 +1,17 @@
 package com.isa.tasktrackerwebapp.service;
 
 import com.isa.tasktrackerwebapp.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginValidator {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public LoginValidator(UserRepository userRepository) {
+    public LoginValidator(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public boolean doesLoginExist(String login) {
@@ -21,6 +24,7 @@ public class LoginValidator {
 
     private boolean isPasswordCorrect(String login, String password) {
         return userRepository.findByLogin(login)
-                .map(user -> user.getPassword().equals(password)).orElse(false);
+                .map(user -> passwordEncoder.matches(password, user.getPassword()))
+                .orElse(false);
     }
 }

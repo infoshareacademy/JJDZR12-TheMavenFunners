@@ -1,4 +1,4 @@
-package com.isa.tasktrackerwebapp.model;
+package com.isa.tasktrackerwebapp.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name="task")
 public class Task {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,6 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.model.entity.Task;
 
 import java.util.List;
 

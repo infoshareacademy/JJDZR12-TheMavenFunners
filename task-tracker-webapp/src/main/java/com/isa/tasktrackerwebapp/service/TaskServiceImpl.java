@@ -1,6 +1,6 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

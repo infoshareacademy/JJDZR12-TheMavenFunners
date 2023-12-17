@@ -1,6 +1,6 @@
 package com.isa.tasktrackerwebapp.repository;
 
-import com.isa.tasktrackerwebapp.model.User;
+import com.isa.tasktrackerwebapp.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

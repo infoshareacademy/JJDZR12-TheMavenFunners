@@ -1,8 +1,8 @@
 package com.isa.tasktrackerwebapp.controller;
 
 import com.isa.tasktrackerwebapp.service.LoginValidator;
-import com.isa.tasktrackerwebapp.model.PageType;
-import com.isa.tasktrackerwebapp.model.User;
+import com.isa.tasktrackerwebapp.model.entity.PageType;
+import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ class LoginController {
 
     @GetMapping("/logout")
     String logout(Model model) {
-        loginService.setLoggedInUser(null);
+        loginService.logOutUser();
         model.addAttribute("content", PageType.INDEX.getContentValue())
                 .addAttribute("pageTitle", PageType.INDEX.getTitleValue())
                 .addAttribute("logout", true);

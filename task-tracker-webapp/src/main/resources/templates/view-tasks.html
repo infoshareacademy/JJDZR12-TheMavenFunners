@@ -55,10 +55,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="task : ${taskList}">
+                <tr th:each="task : ${taskList}" >
                     <td th:text="${task.taskName}"></td>
                     <td th:text="${task.taskStart}"></td>
-                    <td th:text="${task.taskEnd}"></td>
+                    <td th:text="${task.taskEnd}" th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
                     <td th:text="${task.taskDescription}"></td>
                     <td th:text="${task.user.login}"></td>
                     <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>

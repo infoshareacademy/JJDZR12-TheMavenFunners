@@ -1,49 +1,65 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.model.entity.Task;
+import com.isa.tasktrackerwebapp.repository.TaskRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 class TaskServiceImpl implements TaskService {
+    private static final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 
+    private final TaskRepository taskRepository;
     private final LoginService loginService;
 
-    TaskServiceImpl(LoginService loginService) {
+    TaskServiceImpl(LoginService loginService, TaskRepository taskRepository) {
         this.loginService = loginService;
+        this.taskRepository = taskRepository;
     }
 
     @Override
     public List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive) {
-        List<Task> taskList = JsonTaskDataManager.getTasks();
+        List<Task> taskList;
+        logger.debug("Sorting and filtering tasks. sortBy: {}, searchTaskName: {}, filterActive: {}", sortBy, searchTaskName, filterActive);
 
-        if ("oldestByStartDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskStart));
-        } else if ("newestByStartDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskStart).reversed());
-        } else if ("oldestByEndDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskEnd));
-        } else if ("newestByEndDate".equals(sortBy)) {
-            taskList.sort(Comparator.comparing(Task::getTaskEnd).reversed());
+        if ("ascByStartDate".equals(sortBy)) {
+            taskList = taskRepository.findAllByOrderByTaskStartAsc();
+        } else if ("descByStartDate".equals(sortBy)) {
+            taskList = taskRepository.findAllByOrderByTaskStartDesc();
+        } else if ("ascByEndDate".equals(sortBy)) {
+            taskList = taskRepository.findAllByOrderByTaskEndAsc();
+        } else if ("descByEndDate".equals(sortBy)) {
+            taskList = taskRepository.findAllByOrderByTaskEndDesc();
+        } else {
+            taskList = taskRepository.findAll();
         }
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
+
+        logger.debug("Retrieved {} tasks from the database.", taskList.size());
 
         return taskList;
     }
 
     @Override
     public void saveTask(Task form) {
-        JsonTaskDataManager.saveNewTask(form, loginService.getLoggedInUser());
+        form.setUser(loginService.getLoggedInUser());
+        taskRepository.save(form);
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
-        return taskList.stream()
+        logger.debug("Filtering tasks. searchTaskName: {}, filterActive: {}", searchTaskName, filterActive);
+
+        List<Task> filteredTasks = taskList.stream()
                 .filter(task -> isNameAndActiveMatch(searchTaskName, filterActive, task))
-                .collect(Collectors.toList());
+                .toList();
+
+        logger.debug("Filtered tasks: {}", filteredTasks);
+
+        return filteredTasks;
     }
 
     private boolean isNameAndActiveMatch(String searchTaskName, String filterActive, Task task) {
@@ -53,7 +69,7 @@ class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean taskEndValid(Task form) {
+    public boolean taskEndInvalid(Task form) {
         return form.getTaskEnd().isBefore(form.getTaskStart());
     }
 }

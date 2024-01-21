@@ -1,10 +1,9 @@
-package com.isa.tasktrackerwebapp.service;
+package com.isa.tasktrackerwebapp.unused;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.isa.tasktrackerwebapp.util.FileUtil;
-import com.isa.tasktrackerwebapp.model.User;
+import com.isa.tasktrackerwebapp.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

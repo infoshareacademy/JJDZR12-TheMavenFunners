@@ -1,4 +1,4 @@
-package com.isa.tasktrackerwebapp.model;
+package com.isa.tasktrackerwebapp.model.entity;
 
 public enum PageType {
     INDEX("Strona główna", "index"),

@@ -1,7 +1,7 @@
 package com.isa.tasktrackerwebapp.controller;
 
-import com.isa.tasktrackerwebapp.model.PageType;
-import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.model.entity.PageType;
+import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.TaskService;
 import jakarta.validation.Valid;
@@ -62,7 +62,7 @@ class TaskController {
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
         if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
-            taskEndError = taskService.taskEndValid(form);
+            taskEndError = taskService.taskEndInvalid(form);
         }
 
         StringBuilder failureReasonsBuilder = new StringBuilder("Add task attempt failed: ");

@@ -13,18 +13,19 @@ public class User extends AbstractEntity {
     @Column(nullable = false, unique = true)
     private String login;
 
-    @NotBlank
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private boolean isActive;
 
-    @NotBlank
+    @Column(nullable = false)
     private String firstName;
 
-    @NotBlank
+    @Column(nullable = false)
     private String lastName;
 
     public User(String login, String password, String email, boolean isActive) {

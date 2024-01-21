@@ -18,11 +18,13 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/registration", "login").permitAll()
+                        .requestMatchers("/", "/registration", "/login").permitAll()
+                        .requestMatchers("/css/**", "/img/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .successForwardUrl("/"))
+                        .successForwardUrl("/")
+                        .failureUrl("/login?error=true"))
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/"));

@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/registration", "/login").permitAll()
                         .requestMatchers("/css/**", "/img/**").permitAll()
+                        .requestMatchers("/templates/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")

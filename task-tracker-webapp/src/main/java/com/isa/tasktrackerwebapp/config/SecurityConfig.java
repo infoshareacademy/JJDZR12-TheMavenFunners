@@ -8,27 +8,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SecurityConfig {
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+class SecurityConfig {
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/registration", "/login").permitAll()
-                        .requestMatchers("/css/**", "/img/**").permitAll()
-                        .requestMatchers("/templates/**").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .successForwardUrl("/")
-                        .failureUrl("/login?error=true"))
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/"));
-            return httpSecurity.build();
-    }
+  @Bean
+  SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    httpSecurity
+        .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers("/", "/registration", "/login", "/logUser", "/registerUser", "/logout").permitAll()
+            .requestMatchers("/css/**", "/img/**").permitAll()
+            .anyRequest().authenticated())
+        .formLogin(form -> form
+            .loginPage("/login")
+            .successForwardUrl("/")
+            .failureUrl("/login?error=true"))
+        .logout(logout -> logout
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/"));
+    return httpSecurity.build();
+  }
 }

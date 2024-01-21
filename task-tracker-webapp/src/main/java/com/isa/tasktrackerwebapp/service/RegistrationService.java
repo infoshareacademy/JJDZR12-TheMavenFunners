@@ -1,6 +1,6 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.dto.UserDTO;
+import com.isa.tasktrackerwebapp.model.dto.UserDto;
 import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class RegistrationService {
         this.userService = userService;
     }
 
-    public void registerNewUser(UserDTO userDTO) {
+    public void registerNewUser(UserDto userDTO) {
         User user = userService.mapDTOToEntity(userDTO);
         user.setActive(true);
         userRepository.save(user);

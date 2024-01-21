@@ -8,19 +8,22 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotBlank
+public class User extends AbstractEntity {
+
+    @Column(nullable = false, unique = true)
     private String login;
+
     @NotBlank
     private String password;
-    @NotBlank
+
+    @Column(nullable = false, unique = true)
     private String email;
+
     private boolean isActive;
+
     @NotBlank
     private String firstName;
+
     @NotBlank
     private String lastName;
 
@@ -32,10 +35,6 @@ public class User {
     }
 
     public User() {
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getLogin() {

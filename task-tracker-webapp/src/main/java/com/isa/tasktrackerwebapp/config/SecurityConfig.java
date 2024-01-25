@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 class SecurityConfig {
-  
+
   @Bean
   PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -25,7 +25,7 @@ class SecurityConfig {
         .formLogin(form -> form
             .loginPage("/login")
             .usernameParameter("login")
-            .successForwardUrl("/")
+            .successForwardUrl("/logUser")
             .failureUrl("/login?error=true"))
         .logout(logout -> logout
             .logoutUrl("/logout")

@@ -1,152 +1,225 @@
-[
-  {
-    "taskName": "Nowy projekt",
-    "taskStart": [2023, 10, 1],
-    "taskEnd": [2023, 10, 5],
-    "taskDescription": "Rozpoczęcie nowego projektu",
-    "user": {
-      "login": "agata.kowalska",
-      "password": "Zaq123!@1",
-      "email": "agata.kowalska@omail.com",
-      "firstName": "Agata",
-      "lastName": "Kowalska",
-      "active": true
-    },
-    "active": true
+[ {
+  "taskName" : "Nowy projekt",
+  "taskStart" : [ 2023, 10, 1 ],
+  "taskEnd" : [ 2023, 10, 5 ],
+  "taskDescription" : "Rozpoczęcie nowego projektu",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : "agata.kowalska@omail.com",
+    "firstName" : "Agata",
+    "lastName" : "Kowalska",
+    "active" : true
   },
-  {
-    "taskName": "Dokończenie raportu",
-    "taskStart": [2023, 10, 3],
-    "taskEnd": [2023, 10, 7],
-    "taskDescription": "Zakończenie prac nad raportem",
-    "user": {
-      "login": "monika.nowak",
-      "password": "Zaq123!@2",
-      "email": "monika.nowak@omail.com",
-      "firstName": null,
-      "lastName": null,
-      "active": true
-    },
-    "active": true
+  "active" : true
+}, {
+  "taskName" : "Dokończenie raportu",
+  "taskStart" : [ 2023, 10, 3 ],
+  "taskEnd" : [ 2023, 10, 7 ],
+  "taskDescription" : "Zakończenie prac nad raportem",
+  "user" : {
+    "login" : "monika.nowak",
+    "password" : "Zaq123!@2",
+    "email" : "monika.nowak@omail.com",
+    "firstName" : null,
+    "lastName" : null,
+    "active" : true
   },
-  {
-    "taskName": "Testy jednostkowe",
-    "taskStart": [2023, 10, 5],
-    "taskEnd": [2023, 10, 9],
-    "taskDescription": "Napisanie testów jednostkowych",
-    "user": {
-      "login": "tomasz.bieraj",
-      "password": "Zaq123!@3",
-      "email": "tomasz.bieraj@omail.com",
-      "firstName": null,
-      "lastName": null,
-      "active": true
-    },
-    "active": false
+  "active" : true
+}, {
+  "taskName" : "Testy jednostkowe",
+  "taskStart" : [ 2023, 10, 5 ],
+  "taskEnd" : [ 2023, 10, 9 ],
+  "taskDescription" : "Napisanie testów jednostkowych",
+  "user" : {
+    "login" : "tomasz.bieraj",
+    "password" : "Zaq123!@3",
+    "email" : "tomasz.bieraj@omail.com",
+    "firstName" : null,
+    "lastName" : null,
+    "active" : true
   },
-  {
-    "taskName": "Szkolenie pracowników",
-    "taskStart": [2023, 10, 7],
-    "taskEnd": [2023, 10, 11],
-    "taskDescription": "Przygotowanie i przeprowadzenie szkolenia",
-    "user": {
-      "login": "aleksandra.chmurska",
-      "password": "Zaq123!@4",
-      "email": "aleksandra.chmurska@omail.com",
-      "firstName": null,
-      "lastName": null,
-      "active": false
-    },
-    "active": true
+  "active" : false
+}, {
+  "taskName" : "Szkolenie pracowników",
+  "taskStart" : [ 2023, 10, 7 ],
+  "taskEnd" : [ 2023, 10, 11 ],
+  "taskDescription" : "Przygotowanie i przeprowadzenie szkolenia",
+  "user" : {
+    "login" : "aleksandra.chmurska",
+    "password" : "Zaq123!@4",
+    "email" : "aleksandra.chmurska@omail.com",
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
   },
-  {
-    "taskName": "Optymalizacja aplikacji",
-    "taskStart": [2023, 10, 9],
-    "taskEnd": [2023, 10, 13],
-    "taskDescription": "Przeprowadzenie optymalizacji aplikacji",
-    "user": {
-      "login": "krzysztof.kwiatkowski",
-      "password": "Zaq123!@5",
-      "email": "krzysztof.kwiatkowski@omail.com",
-      "firstName": null,
-      "lastName": null,
-      "active": true
-    },
-    "active": false
+  "active" : true
+}, {
+  "taskName" : "Optymalizacja aplikacji",
+  "taskStart" : [ 2023, 10, 9 ],
+  "taskEnd" : [ 2023, 10, 13 ],
+  "taskDescription" : "Przeprowadzenie optymalizacji aplikacji",
+  "user" : {
+    "login" : "krzysztof.kwiatkowski",
+    "password" : "Zaq123!@5",
+    "email" : "krzysztof.kwiatkowski@omail.com",
+    "firstName" : null,
+    "lastName" : null,
+    "active" : true
   },
-  {
-    "taskName": "Przygotowanie dokumentów",
-    "taskStart": [2023, 10, 11],
-    "taskEnd": [2023, 10, 15],
-    "taskDescription": "Przygotowanie dokumentów projektowych",
-    "user": {
-      "login": "tomasz.tomaszewski",
-      "password": "Zaq123!@6",
-      "email": "",
-      "firstName": "Tomasz",
-      "lastName": "Tomaszewski",
-      "active": true
-    },
-    "active": false
+  "active" : false
+}, {
+  "taskName" : "Przygotowanie dokumentów",
+  "taskStart" : [ 2023, 10, 11 ],
+  "taskEnd" : [ 2023, 10, 15 ],
+  "taskDescription" : "Przygotowanie dokumentów projektowych",
+  "user" : {
+    "login" : "tomasz.tomaszewski",
+    "password" : "Zaq123!@6",
+    "email" : "",
+    "firstName" : "Tomasz",
+    "lastName" : "Tomaszewski",
+    "active" : true
   },
-  {
-    "taskName": "Badanie rynku",
-    "taskStart": [2023, 10, 13],
-    "taskEnd": [2023, 10, 17],
-    "taskDescription": "Przeprowadzenie badania rynku",
-    "user": {
-      "login": "joanna.joanska",
-      "password": "Zaq123!@0",
-      "email": "",
-      "firstName": "Joanna",
-      "lastName": "Joańska",
-      "active": true
-    },
-    "active": true
+  "active" : false
+}, {
+  "taskName" : "Badanie rynku",
+  "taskStart" : [ 2023, 10, 13 ],
+  "taskEnd" : [ 2023, 10, 17 ],
+  "taskDescription" : "Przeprowadzenie badania rynku",
+  "user" : {
+    "login" : "joanna.joanska",
+    "password" : "Zaq123!@0",
+    "email" : "",
+    "firstName" : "Joanna",
+    "lastName" : "Joańska",
+    "active" : true
   },
-  {
-    "taskName": "Prezentacja projektu",
-    "taskStart": [2023, 10, 15],
-    "taskEnd": [2023, 10, 19],
-    "taskDescription": "Przygotowanie prezentacji projektu",
-    "user": {
-      "login": "agata.kowalska",
-      "password": "Zaq123!@1",
-      "email": "agata.kowalska@omail.com",
-      "firstName": "Agata",
-      "lastName": "Kowalska",
-      "active": true
-    },
-    "active": true
+  "active" : true
+}, {
+  "taskName" : "Prezentacja projektu",
+  "taskStart" : [ 2023, 10, 15 ],
+  "taskEnd" : [ 2023, 10, 19 ],
+  "taskDescription" : "Przygotowanie prezentacji projektu",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : "agata.kowalska@omail.com",
+    "firstName" : "Agata",
+    "lastName" : "Kowalska",
+    "active" : true
   },
-  {
-    "taskName": "Wdrożenie nowej wersji",
-    "taskStart": [2023, 10, 17],
-    "taskEnd": [2023, 10, 21],
-    "taskDescription": "Wdrożenie nowej wersji oprogramowania",
-    "user": {
-      "login": "monika.nowak",
-      "password": "Zaq123!@2",
-      "email": "monika.nowak@omail.com",
-      "firstName": null,
-      "lastName": null,
-      "active": true
-    },
-    "active": true
+  "active" : true
+}, {
+  "taskName" : "Wdrożenie nowej wersji",
+  "taskStart" : [ 2023, 10, 17 ],
+  "taskEnd" : [ 2023, 10, 21 ],
+  "taskDescription" : "Wdrożenie nowej wersji oprogramowania",
+  "user" : {
+    "login" : "monika.nowak",
+    "password" : "Zaq123!@2",
+    "email" : "monika.nowak@omail.com",
+    "firstName" : null,
+    "lastName" : null,
+    "active" : true
   },
-  {
-    "taskName": "Opracowanie strategii",
-    "taskStart": [2023, 10, 19],
-    "taskEnd": [2023, 10, 23],
-    "taskDescription": "Opracowanie strategii marketingowej",
-    "user": {
-      "login": "tomasz.bieraj",
-      "password": "Zaq123!@3",
-      "email": "tomasz.bieraj@omail.com",
-      "firstName": null,
-      "lastName": null,
-      "active": true
-    },
-    "active": true
-  }
-]
+  "active" : true
+}, {
+  "taskName" : "Opracowanie strategii",
+  "taskStart" : [ 2023, 10, 19 ],
+  "taskEnd" : [ 2023, 10, 23 ],
+  "taskDescription" : "Opracowanie strategii marketingowej",
+  "user" : {
+    "login" : "tomasz.bieraj",
+    "password" : "Zaq123!@3",
+    "email" : "tomasz.bieraj@omail.com",
+    "firstName" : null,
+    "lastName" : null,
+    "active" : true
+  },
+  "active" : true
+}, {
+  "taskName" : "aaaaaa",
+  "taskStart" : [ 2024, 1, 5 ],
+  "taskEnd" : [ 2024, 1, 26 ],
+  "taskDescription" : "aaaaaa",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
+  },
+  "active" : true
+}, {
+  "taskName" : "dwadwa",
+  "taskStart" : [ 2024, 1, 4 ],
+  "taskEnd" : [ 2024, 1, 6 ],
+  "taskDescription" : "dwa",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
+  },
+  "active" : true
+}, {
+  "taskName" : "dwa",
+  "taskStart" : [ 2024, 1, 4 ],
+  "taskEnd" : [ 2024, 1, 7 ],
+  "taskDescription" : "dwadwad",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
+  },
+  "active" : true
+}, {
+  "taskName" : "dwadwa",
+  "taskStart" : [ 2024, 1, 4 ],
+  "taskEnd" : [ 2024, 1, 8 ],
+  "taskDescription" : "trzy",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
+  },
+  "active" : true
+}, {
+  "taskName" : "dwadwa",
+  "taskStart" : [ 2024, 1, 9 ],
+  "taskEnd" : [ 2024, 1, 11 ],
+  "taskDescription" : "wdadwa",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
+  },
+  "active" : true
+}, {
+  "taskName" : "dwadwa",
+  "taskStart" : [ 2024, 1, 9 ],
+  "taskEnd" : [ 2024, 1, 13 ],
+  "taskDescription" : "aaaaaaaaaaa",
+  "user" : {
+    "login" : "agata.kowalska",
+    "password" : "Zaq123!@1",
+    "email" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "active" : false
+  },
+  "active" : true
+} ]

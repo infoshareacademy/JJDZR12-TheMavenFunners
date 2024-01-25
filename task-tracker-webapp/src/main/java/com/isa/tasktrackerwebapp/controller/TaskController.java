@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,8 @@ class TaskController {
         List<Task> taskList = taskService.getSortedAndFilteredTasks(sortBy, searchTaskName, filterActive);
         model.addAttribute("taskList", taskList)
                 .addAttribute("content", PageType.VIEW_TASKS.getContentValue())
-                .addAttribute("pageTitle", PageType.VIEW_TASKS.getTitleValue());
+                .addAttribute("pageTitle", PageType.VIEW_TASKS.getTitleValue())
+                .addAttribute("localDate", LocalDate.now());
         if (loginService.isUserLoggedIn()){
             model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
         }

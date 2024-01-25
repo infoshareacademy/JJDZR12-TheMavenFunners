@@ -1,6 +1,6 @@
 package com.isa.tasktrackerwebapp.service;
 
-import com.isa.tasktrackerwebapp.model.dto.UserDTO;
+import com.isa.tasktrackerwebapp.model.dto.UserDto;
 import com.isa.tasktrackerwebapp.model.entity.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User mapDTOToEntity(UserDTO userDTO) {
+    public User mapDTOToEntity(UserDto userDTO) {
         User user = new User();
 
         user.setLogin(userDTO.getLogin());

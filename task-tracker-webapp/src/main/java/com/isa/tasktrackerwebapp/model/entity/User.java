@@ -11,20 +11,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "user")
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotBlank
+public class User extends AbstractEntity implements UserDetails {
+
+    @Column(nullable = false, unique = true)
     private String login;
-    @NotBlank
+
+    @Column(nullable = false)
     private String password;
-    @NotBlank
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private boolean isActive;
-    @NotBlank
+
+    @Column(nullable = false)
     private String firstName;
-    @NotBlank
+
+    @Column(nullable = false)
     private String lastName;
 
     public User(String login, String password, String email, boolean isActive) {
@@ -35,10 +39,6 @@ public class User implements UserDetails {
     }
 
     public User() {
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getLogin() {

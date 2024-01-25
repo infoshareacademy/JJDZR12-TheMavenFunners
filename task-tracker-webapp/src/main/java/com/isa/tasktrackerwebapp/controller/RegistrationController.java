@@ -1,6 +1,6 @@
 package com.isa.tasktrackerwebapp.controller;
 
-import com.isa.tasktrackerwebapp.model.dto.UserDTO;
+import com.isa.tasktrackerwebapp.model.dto.UserDto;
 import com.isa.tasktrackerwebapp.model.entity.PageType;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.LoginValidator;
@@ -31,7 +31,7 @@ class RegistrationController {
 
 
     @GetMapping("/registration")
-    String registration(Model model, UserDTO user) {
+    String registration(Model model, UserDto user) {
         model.addAttribute("content", PageType.REGISTRATION.getContentValue())
                 .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue())
                 .addAttribute("user", user);
@@ -43,7 +43,7 @@ class RegistrationController {
     }
 
     @PostMapping("/registerUser")
-    String registerUser(@ModelAttribute("user") @Valid UserDTO user, BindingResult bindingResult,
+    String registerUser(@ModelAttribute @Valid UserDto user, BindingResult bindingResult,
                         @RequestParam("repeatPassword") String repeatPassword,
                         Model model) {
         boolean hasErrors = bindingResult.hasErrors();

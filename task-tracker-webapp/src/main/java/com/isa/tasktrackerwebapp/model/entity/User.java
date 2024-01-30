@@ -2,13 +2,16 @@ package com.isa.tasktrackerwebapp.model.entity;
 
 import jakarta.validation.constraints.*;
 
+import java.util.Collection;
 import java.util.Objects;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "user")
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String login;
@@ -102,5 +105,35 @@ public class User extends AbstractEntity {
     @Override
     public String toString() {
         return login;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

@@ -18,4 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.findByLogin(login)
                 .orElseThrow(() -> new UsernameNotFoundException("User with login: " + login + " not found."));
     }
+
+
 }

@@ -4,6 +4,8 @@ import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoginService {
     private final UserRepository userRepository;
@@ -28,5 +30,10 @@ public class LoginService {
 
     public boolean isUserLoggedIn() {
         return loggedInUser != null;
+    }
+
+    public List<User> getActiveUsers() {
+        return userRepository.findAll().stream()
+                .filter(x -> x.isActive()).toList();
     }
 }

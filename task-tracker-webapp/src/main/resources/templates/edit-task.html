@@ -1,0 +1,23 @@
+    <form th:action="@{'/edit-task/'+${task.id}}" method="post" th:object="${task}">
+        <input type="text" th:field="*{taskName}" id="taskName">
+        <span>Nazwa zadania</span>
+        <label for="taskName"></label>
+        <input type="date" th:field="*{taskStart}" id="taskStart">
+        <label for="taskStart">
+            <span >Data rozpoczęcia zadania</span>
+        </label>
+
+        <input type="date" th:field="*{taskEnd}" id="taskEnd">
+        <label for="taskEnd">
+            <span >Data zakończenia zadania</span>
+        </label>
+
+        <textarea  id="taskDescription" th:field="*{taskDescription}"
+                  cols="40"></textarea>
+        <label for="taskDescription">
+            <span >Opis</span>
+        </label>
+        <button type="submit">Prześlij</button>
+    </form>
+
+

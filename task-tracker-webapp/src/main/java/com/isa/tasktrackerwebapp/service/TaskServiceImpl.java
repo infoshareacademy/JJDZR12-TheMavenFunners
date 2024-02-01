@@ -1,7 +1,9 @@
 package com.isa.tasktrackerwebapp.service;
 
 import com.isa.tasktrackerwebapp.model.entity.Task;
+import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -71,5 +73,21 @@ class TaskServiceImpl implements TaskService {
     @Override
     public boolean taskEndInvalid(Task form) {
         return form.getTaskEnd().isBefore(form.getTaskStart());
+    }
+
+    @Override
+    @Transactional
+    public void editTask(Task editedTask, Task task) {
+        task.setUser(loginService.getLoggedInUser());
+        task.setTaskDescription(editedTask.getTaskDescription());
+        task.setTaskEnd(editedTask.getTaskEnd());
+        task.setTaskName(editedTask.getTaskName());
+        task.setTaskStart(editedTask.getTaskStart());
+        taskRepository.save(task);
+        logger.info("Task with Id" + task.getId() + " edited");
+    }
+    @Override
+    public Task findTaskById(Long id){
+        return taskRepository.findTaskById(id);
     }
 }

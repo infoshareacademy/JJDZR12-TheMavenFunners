@@ -50,8 +50,9 @@
                     <th>Data rozpoczęcia</th>
                     <th>Data zakończenia</th>
                     <th>Opis</th>
-                    <th>Użytkownik</th>
+<!--                    <th>Użytkownik</th>-->
                     <th>Status</th>
+                    <th>Edytuj</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,8 +61,9 @@
                     <td th:text="${task.taskStart}"></td>
                     <td th:text="${task.taskEnd}" th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
                     <td th:text="${task.taskDescription}"></td>
-                    <td th:text="${task.user.login}"></td>
+<!--                    <td th:text="${task.user.login}"></td>-->
                     <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>
+                    <td><a th:href="@{/edit-task/{taskId}(taskId=${task.Id})}" class="btn btn-secondary">Edytuj</a>
                 </tr>
                 </tbody>
             </table>

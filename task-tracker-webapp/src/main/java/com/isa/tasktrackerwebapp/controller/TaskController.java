@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -88,5 +85,19 @@ class TaskController {
         taskService.saveTask(form);
         logger.info("Added new task: {}", form);
         return "redirect:/add-task?addTaskSuccessful";
+    }
+
+    @GetMapping("/edit-task/{taskId}")
+    String editTask(Model model, @PathVariable Long taskId) {
+        Task task = taskService.findTaskById(taskId);
+        model.addAttribute("task", task);
+
+        return "edit-task";
+    }
+    @PostMapping("/edit-task/{taskId}")
+    String editTask(@Valid @ModelAttribute Task form,@PathVariable String taskId) {
+        Task task = taskService.findTaskById(Long.valueOf(taskId));
+        taskService.editTask(form,task);
+        return "redirect:/view-tasks";
     }
 }

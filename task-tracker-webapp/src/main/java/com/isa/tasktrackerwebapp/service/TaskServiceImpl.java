@@ -46,7 +46,7 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public void saveTask(Task form) {
-        form.setUser(loginService.getLoggedInUser());
+//        form.setUser(loginService.getLoggedInUser());
         taskRepository.save(form);
     }
 

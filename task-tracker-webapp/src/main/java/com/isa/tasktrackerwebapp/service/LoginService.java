@@ -1,5 +1,6 @@
 package com.isa.tasktrackerwebapp.service;
 
+import com.isa.tasktrackerwebapp.model.dto.UserDto;
 import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,11 @@ import java.util.List;
 @Service
 public class LoginService {
     private final UserRepository userRepository;
+    private final UserService userService;
 
-    public LoginService(UserRepository userRepository) {
+    public LoginService(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     private static User loggedInUser;
@@ -32,8 +35,10 @@ public class LoginService {
         return loggedInUser != null;
     }
 
-    public List<User> getActiveUsers() {
-        return userRepository.findAll().stream()
+
+
+    public List<UserDto> getActiveUsers() {
+        return userService.mapEntityToDtoList().stream()
                 .filter(x -> x.isActive()).toList();
     }
 }

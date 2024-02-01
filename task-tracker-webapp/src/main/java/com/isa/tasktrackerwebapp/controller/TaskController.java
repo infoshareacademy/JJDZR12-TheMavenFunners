@@ -50,7 +50,7 @@ class TaskController {
     String newTask(Model model) {
         model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
-                .addAttribute("activeUserList", loginService.getActiveUsers())
+//                .addAttribute("activeUserList", loginService.getActiveUsers())
                 .addAttribute("task", new Task());
         if (loginService.isUserLoggedIn()){
             model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
@@ -81,6 +81,7 @@ class TaskController {
 
             model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                     .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
+//                    .addAttribute("activeUserList", loginService.getActiveUsers())
                     .addAttribute("task", form)
                     .addAttribute("taskEndError", taskEndError);
             return "main";

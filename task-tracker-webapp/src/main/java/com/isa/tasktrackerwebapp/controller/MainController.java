@@ -32,7 +32,6 @@ class MainController {
 
             List<Task> taskList = taskService.findLoggedInUsersActiveTasks();
             model.addAttribute("taskList", taskList);
-//            List<Task> taskList = taskService.getSortedAndFilteredTasks("","","");
 
         }
         return "main";

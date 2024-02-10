@@ -86,8 +86,7 @@ class TaskController {
     }
 
     @GetMapping("/edit-task/{taskId}")
-    String editTask(Model model, @PathVariable Long taskId,
-                    @RequestParam(required = false) String src) {
+    String editTask(Model model, @PathVariable Long taskId) {
         loginService.setUserAsLoggedIn(model);
 
         Task task = taskService.findTaskById(taskId);

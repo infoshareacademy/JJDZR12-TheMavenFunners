@@ -93,9 +93,11 @@ class TaskController {
     @GetMapping("/edit-task/{taskId}")
     String editTask(Model model, @PathVariable Long taskId) {
         Task task = taskService.findTaskById(taskId);
-        model.addAttribute("task", task);
+        model.addAttribute("task", task)
+                .addAttribute("content", PageType.EDIT_TASK.getContentValue())
+                .addAttribute("pageTitle", PageType.EDIT_TASK.getTitleValue());
 
-        return "edit-task";
+        return "main";
     }
     @PostMapping("/edit-task/{taskId}")
     String editTask(@Valid @ModelAttribute Task form,@PathVariable String taskId) {

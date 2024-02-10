@@ -1,7 +1,9 @@
 package com.isa.tasktrackerwebapp.service;
 
+import com.isa.tasktrackerwebapp.model.dto.TaskDto;
 import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
+import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,12 @@ class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
     private final LoginService loginService;
+    private final UserRepository userRepository;
 
-    TaskServiceImpl(LoginService loginService, TaskRepository taskRepository) {
+    TaskServiceImpl(LoginService loginService, TaskRepository taskRepository, UserRepository userRepository) {
         this.loginService = loginService;
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -44,10 +48,23 @@ class TaskServiceImpl implements TaskService {
         return taskList;
     }
 
+    public Task mapTaskDtoToEntityTask(TaskDto taskDto) {
+        Task task = new Task();
+
+        task.setTaskName(taskDto.getTaskName());
+        task.setTaskStart(taskDto.getTaskStart());
+        task.setTaskEnd(taskDto.getTaskEnd());
+        task.setTaskDescription(taskDto.getTaskDescription());
+        task.setUser(userRepository.findByLogin(taskDto.getUser()).get());
+        task.setActive(taskDto.getActive());
+
+        return task;
+    }
+
     @Override
-    public void saveTask(Task form) {
-//        form.setUser(loginService.getLoggedInUser());
-        taskRepository.save(form);
+    public void saveTask(TaskDto form) {
+        form.setActive(true);
+        taskRepository.save(mapTaskDtoToEntityTask(form));
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
@@ -69,7 +86,7 @@ class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean taskEndInvalid(Task form) {
+    public boolean taskEndInvalid(TaskDto form) {
         return form.getTaskEnd().isBefore(form.getTaskStart());
     }
 }

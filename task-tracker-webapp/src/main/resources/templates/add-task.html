@@ -41,7 +41,7 @@
 
                         <div class="mb-4 pt-3">
                             <select class="form-control mt-2 pt-3" id="user" th:field="*{user}">
-                                <option th:each="element: ${activeUserList}" th:value="${element}" th:text="${element.getLogin()}"></option>
+                                <option th:each="element: ${activeUserList}" th:value="${element.getLogin()}" th:text="${element.getLogin()}"></option>
                             </select>
                             <label class="ms-2 position-absolute" for="user">
                                 <span class="small bg-white px-1 rounded">Użytkownik</span>

@@ -1,5 +1,6 @@
 package com.isa.tasktrackerwebapp.controller;
 
+import com.isa.tasktrackerwebapp.model.dto.TaskDto;
 import com.isa.tasktrackerwebapp.model.entity.PageType;
 import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
@@ -50,8 +51,8 @@ class TaskController {
     String newTask(Model model) {
         model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
-//                .addAttribute("activeUserList", loginService.getActiveUsers())
-                .addAttribute("task", new Task());
+                .addAttribute("activeUserList", loginService.getActiveUsers())
+                .addAttribute("task", new TaskDto());
         if (loginService.isUserLoggedIn()){
             model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
         }
@@ -59,7 +60,7 @@ class TaskController {
     }
 
     @PostMapping("/add-task")
-    String saveTask(@Valid @ModelAttribute Task form, BindingResult bindingResult, Model model) {
+    String saveTask(@Valid @ModelAttribute TaskDto form, BindingResult bindingResult, Model model) {
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
         if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
@@ -69,11 +70,11 @@ class TaskController {
         StringBuilder failureReasonsBuilder = new StringBuilder("Add task attempt failed: ");
 
         if (hasErrors) {
-            failureReasonsBuilder.append(" task fields validation not passed;");
+            failureReasonsBuilder.append("task fields validation not passed;");
         }
 
         if (taskEndError) {
-            failureReasonsBuilder.append(" task end is before task start;");
+            failureReasonsBuilder.append("task end is before task start;");
         }
 
         if (hasErrors || taskEndError) {
@@ -81,7 +82,7 @@ class TaskController {
 
             model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                     .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
-//                    .addAttribute("activeUserList", loginService.getActiveUsers())
+                    .addAttribute("activeUserList", loginService.getActiveUsers())
                     .addAttribute("task", form)
                     .addAttribute("taskEndError", taskEndError);
             return "main";

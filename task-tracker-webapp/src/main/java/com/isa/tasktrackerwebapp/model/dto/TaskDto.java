@@ -1,33 +1,36 @@
-package com.isa.tasktrackerwebapp.model.entity;
+package com.isa.tasktrackerwebapp.model.dto;
 
-import jakarta.persistence.*;
+import com.isa.tasktrackerwebapp.model.entity.AbstractEntity;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Check;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name="task")
-public class Task extends AbstractEntity {
+public class TaskDto extends AbstractEntity {
 
-    @Column(nullable = false)
+    @NotBlank(message = "Nazwa zadania nie może być pusta.")
     private String taskName;
 
-    @Column(nullable = false)
+    @Check(constraints = "task_end >= task_start")
+    @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
+    @NotNull(message = "Data rozpoczęcia nie może być pusta.")
     private LocalDate taskStart;
 
-    @Column(nullable = false)
+    @Check(constraints = "task_end >= task_start")
+    @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
+    @NotNull(message = "Data zakończenia nie może być pusta.")
     private LocalDate taskEnd;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Opis zadania nie moży być pusty.")
     private String taskDescription;
 
-    @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
-    private User user;
+    private String user;
 
-    @Column(nullable = false)
     private boolean active;
 
-    public Task(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, User user, boolean active) {
+    public TaskDto(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, String user, boolean active) {
         this.taskName = taskName;
         this.taskStart = taskStart;
         this.taskEnd = taskEnd;
@@ -36,7 +39,7 @@ public class Task extends AbstractEntity {
         this.active = active;
     }
 
-    public Task() {
+    public TaskDto() {
     }
 
     public String getTaskName() {
@@ -71,11 +74,11 @@ public class Task extends AbstractEntity {
         this.taskDescription = taskDescription;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 

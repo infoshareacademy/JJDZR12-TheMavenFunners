@@ -1,7 +1,6 @@
 package com.isa.tasktrackerwebapp.service;
 
 import com.isa.tasktrackerwebapp.model.entity.Task;
-import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -78,7 +77,6 @@ class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public void editTask(Task editedTask, Task task) {
-        task.setUser(loginService.getLoggedInUser());
         task.setTaskDescription(editedTask.getTaskDescription());
         task.setTaskEnd(editedTask.getTaskEnd());
         task.setTaskName(editedTask.getTaskName());
@@ -86,6 +84,19 @@ class TaskServiceImpl implements TaskService {
         taskRepository.save(task);
         logger.info("Task with Id" + task.getId() + " edited");
     }
+    @Override
+    public void toggleTaskStatus(Long taskId) {
+        Task task = taskRepository.findTaskById(taskId);
+
+        if (task != null) {
+            task.setActive(!task.getActive());
+            taskRepository.save(task);
+            logger.info("Task with Id " + taskId + (task.getActive() ? " activated" : " deactivated"));
+        } else {
+            logger.warn("Task with Id " + taskId + " not found");
+        }
+    }
+
     @Override
     public Task findTaskById(Long id){
         return taskRepository.findTaskById(id);

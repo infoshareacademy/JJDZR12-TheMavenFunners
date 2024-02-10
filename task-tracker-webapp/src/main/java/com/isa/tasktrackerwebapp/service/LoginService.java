@@ -3,6 +3,7 @@ package com.isa.tasktrackerwebapp.service;
 import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class LoginService {
@@ -28,5 +29,11 @@ public class LoginService {
 
     public boolean isUserLoggedIn() {
         return loggedInUser != null;
+    }
+
+    public void setUserAsLoggedIn(Model model) {
+        if (isUserLoggedIn()) {
+            model.addAttribute("isUserLoggedIn", isUserLoggedIn());
+        }
     }
 }

@@ -9,6 +9,7 @@ public interface TaskService {
     void saveTask(Task form);
     boolean taskEndInvalid(Task form);
     void editTask(Task editedTask, Task task);
+    void toggleTaskStatus(Long taskId);
 
     Task findTaskById(Long id);
 }

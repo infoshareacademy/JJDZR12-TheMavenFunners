@@ -20,38 +20,39 @@
     <h2 class="cover-heading" th:if="!${isUserLoggedIn}">
         Task Tracker by The Maven Funners
     </h2>
-    <div class="row justify-content-center align-items-center p-5 p-md-5" th:if="${isUserLoggedIn} and ${taskList.size}>0">
-    <div class="col-12 col-lg-9 col-xl-10">
-    <table class="table table-bordered table-striped small" id="tasks-table">
-        <thead class="thead-light">
-        <tr>
-            <th>Nazwa</th>
-            <th>Data rozpoczęcia</th>
-            <th>Data zakończenia</th>
-            <th>Opis</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="task : ${taskList}">
-            <td th:text="${task.taskName}"></td>
-            <td th:text="${task.taskStart}"></td>
-            <td th:text="${task.taskEnd}"
-                th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
-            <td th:text="${task.taskDescription}"></td>
-            <td class="a-icon">
-                <ul>
-                    <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id}, src='index')}" title="edytuj"><i
-                            class="fi fi-rr-edit"></i></a></li>
-                    <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id}, src='index')}"
-                           th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
-                            th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    </div>
+    <div class="row justify-content-center align-items-center p-5 p-md-5"
+         th:if="${isUserLoggedIn} and ${taskList.size}>0">
+        <div class="col-12 col-lg-9 col-xl-10">
+            <table class="table table-bordered table-striped small" id="tasks-table">
+                <thead class="thead-light">
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Data rozpoczęcia</th>
+                    <th>Data zakończenia</th>
+                    <th>Opis</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task : ${taskList}">
+                    <td th:text="${task.taskName}"></td>
+                    <td th:text="${task.taskStart}"></td>
+                    <td th:text="${task.taskEnd}"
+                        th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
+                    <td th:text="${task.taskDescription}"></td>
+                    <td class="a-icon">
+                        <ul>
+                            <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id}, src='index')}" title="edytuj"><i
+                                    class="fi fi-rr-edit"></i></a></li>
+                            <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id}, src='index')}"
+                                   th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
+                                    th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>

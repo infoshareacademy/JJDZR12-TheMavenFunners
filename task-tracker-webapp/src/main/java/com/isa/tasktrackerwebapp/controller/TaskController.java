@@ -60,7 +60,7 @@ class TaskController {
     }
 
     @PostMapping("/add-task")
-    String saveTask(@Valid @ModelAttribute TaskDto form, BindingResult bindingResult, Model model) {
+    String saveTask(@Valid @ModelAttribute("task") TaskDto form, BindingResult bindingResult, Model model) {
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
         if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {

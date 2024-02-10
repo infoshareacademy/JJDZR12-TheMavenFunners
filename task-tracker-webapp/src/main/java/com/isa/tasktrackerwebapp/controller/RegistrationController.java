@@ -43,7 +43,7 @@ class RegistrationController {
     }
 
     @PostMapping("/registerUser")
-    String registerUser(@ModelAttribute @Valid UserDto user, BindingResult bindingResult,
+    String registerUser(@ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult,
                         @RequestParam("repeatPassword") String repeatPassword,
                         Model model) {
         boolean hasErrors = bindingResult.hasErrors();

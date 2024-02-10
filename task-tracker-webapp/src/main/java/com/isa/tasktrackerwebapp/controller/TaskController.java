@@ -56,6 +56,9 @@ class TaskController {
 
     @PostMapping("/add-task")
     String saveTask(@Valid @ModelAttribute Task form, BindingResult bindingResult, Model model) {
+        if (loginService.isUserLoggedIn()){
+            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
+        }
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
         if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {

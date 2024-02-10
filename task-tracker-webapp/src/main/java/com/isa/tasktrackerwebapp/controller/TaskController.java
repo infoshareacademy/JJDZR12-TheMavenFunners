@@ -89,7 +89,7 @@ class TaskController {
     String editTask(Model model, @PathVariable Long taskId,
                     @RequestParam(required = false) String src) {
         loginService.setUserAsLoggedIn(model);
-        logger.warn(src);
+
         Task task = taskService.findTaskById(taskId);
         model.addAttribute("task", task)
                 .addAttribute("content", PageType.EDIT_TASK.getContentValue())
@@ -105,8 +105,6 @@ class TaskController {
                     @PathVariable Long taskId,
                     Model model) {
         loginService.setUserAsLoggedIn(model);
-        logger.warn(src);
-        logger.info("aaaaaaaaaa");
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
         if (!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {

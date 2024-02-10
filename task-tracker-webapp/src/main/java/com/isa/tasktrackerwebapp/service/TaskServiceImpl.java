@@ -98,7 +98,7 @@ class TaskServiceImpl implements TaskService {
         task.setTaskName(editedTask.getTaskName());
         task.setTaskStart(editedTask.getTaskStart());
         taskRepository.save(task);
-        logger.info("Task with Id" + task.getId() + " edited");
+        logger.info("Task with Id " + task.getId() + " edited");
     }
     @Override
     public void toggleTaskStatus(Long taskId) {

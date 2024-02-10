@@ -6,6 +6,9 @@
         <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${logout}">
             <p>Wylogowano poprawnie.</p>
         </div>
+        <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${param.editSuccessful}">
+            <p>Zadanie edytowano pomyślnie.</p>
+        </div>
         <div class="justify-content-center mt-4 pb-0" th:if="${isUserLoggedIn}">
             <h4 th:text="|Witaj, ${user}|"></h4>
             <div th:if="${taskList.size}>0">Oto twoje aktywne zadania:</div>
@@ -13,6 +16,7 @@
         </div>
     </div>
     <img class="main-img" th:src="@{/img/notes.png}" th:if="!${isUserLoggedIn}">
+    <img class="main-img" th:src="@{/img/relax.png}" th:if="${isUserLoggedIn} and ${taskList.size}==0">
     <h2 class="cover-heading" th:if="!${isUserLoggedIn}">
         Task Tracker by The Maven Funners
     </h2>
@@ -25,7 +29,6 @@
             <th>Data rozpoczęcia</th>
             <th>Data zakończenia</th>
             <th>Opis</th>
-            <th>Status</th>
             <th>Akcje</th>
         </tr>
         </thead>
@@ -36,12 +39,11 @@
             <td th:text="${task.taskEnd}"
                 th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
             <td th:text="${task.taskDescription}"></td>
-            <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>
             <td class="a-icon">
                 <ul>
-                    <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id})('?main')}" title="edytuj"><i
+                    <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id}, src='index')}" title="edytuj"><i
                             class="fi fi-rr-edit"></i></a></li>
-                    <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id})}"
+                    <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id}, src='index')}"
                            th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
                             th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
                     </li>

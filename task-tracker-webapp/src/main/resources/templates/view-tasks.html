@@ -1,6 +1,9 @@
 <div class="tasks" th:fragment="content">
     <div class="row justify-content-center align-items-center p-5 p-md-5">
         <div class="col-12 col-lg-9 col-xl-10">
+            <div class="alert alert-success mt-4 mb-4 pb-0 text-center" th:if="${param.editSuccessful}">
+                <p>Zadanie edytowano pomyślnie.</p>
+            </div>
             <form th:action="@{/view-tasks}" class="mb-4" method="get">
                 <div class="row">
                     <div class="col-md-3">
@@ -43,7 +46,7 @@
                 </div>
 
             </form>
-            <table class="table table-bordered table-striped small">
+            <table class="table table-bordered table-striped small" id="tasks-table">
                 <thead class="thead-light">
                 <tr>
                     <th>Nazwa</th>
@@ -52,16 +55,28 @@
                     <th>Opis</th>
                     <th>Użytkownik</th>
                     <th>Status</th>
+                    <th>Akcje</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="task : ${taskList}" >
+                <tr th:each="task : ${taskList}">
                     <td th:text="${task.taskName}"></td>
                     <td th:text="${task.taskStart}"></td>
-                    <td th:text="${task.taskEnd}" th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
+                    <td th:text="${task.taskEnd}"
+                        th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
                     <td th:text="${task.taskDescription}"></td>
                     <td th:text="${task.user.login}"></td>
                     <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>
+                    <td class="a-icon">
+                        <ul>
+                            <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id})}" title="edytuj"><i
+                                    class="fi fi-rr-edit"></i></a></li>
+                            <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id})}"
+                                   th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
+                                    th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
+                            </li>
+                        </ul>
+                    </td>
                 </tr>
                 </tbody>
             </table>

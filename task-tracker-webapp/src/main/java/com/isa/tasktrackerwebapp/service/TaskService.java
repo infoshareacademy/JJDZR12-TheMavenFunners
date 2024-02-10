@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface TaskService {
     List<Task> getSortedAndFilteredTasks(String sortBy, String searchTaskName, String filterActive);
+    List<Task> findLoggedInUsersActiveTasks();
     void saveTask(Task form);
     boolean taskEndInvalid(Task form);
     void editTask(Task editedTask, Task task);

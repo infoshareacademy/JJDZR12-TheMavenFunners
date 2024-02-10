@@ -88,6 +88,7 @@ class TaskController {
     @GetMapping("/edit-task/{taskId}")
     String editTask(Model model, @PathVariable Long taskId) {
         loginService.setUserAsLoggedIn(model);
+
         Task task = taskService.findTaskById(taskId);
         model.addAttribute("task", task)
                 .addAttribute("content", PageType.EDIT_TASK.getContentValue())
@@ -97,7 +98,11 @@ class TaskController {
     }
 
     @PostMapping("/edit-task/{taskId}")
-    String editTask(@Valid @ModelAttribute("task") Task form, BindingResult bindingResult, @PathVariable String taskId, Model model) {
+    String editTask(@Valid @ModelAttribute("task") Task form,
+                    BindingResult bindingResult,
+                    @RequestParam(required = false) String src,
+                    @PathVariable Long taskId,
+                    Model model) {
         loginService.setUserAsLoggedIn(model);
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
@@ -124,16 +129,25 @@ class TaskController {
                     .addAttribute("taskEndError", taskEndError);
             return "main";
         }
-        Task task = taskService.findTaskById(Long.valueOf(taskId));
+        Task task = taskService.findTaskById(taskId);
         taskService.editTask(form, task);
 
-        return "redirect:/view-tasks?editSuccessful=true";
+        if ("index".equals(src)) {
+            return "redirect:/?editSuccessful=true";
+        } else {
+            return "redirect:/view-tasks?editSuccessful=true";
+        }
+
     }
 
     @GetMapping("/toggle-task/{taskId}")
-    public String toggleTaskStatus(@PathVariable Long taskId) {
+    public String toggleTaskStatus(@PathVariable Long taskId, @RequestParam(required = false) String src) {
         taskService.toggleTaskStatus(taskId);
-        return "redirect:/view-tasks";
+        if ("index".equals(src)) {
+            return "redirect:/";
+        } else {
+            return "redirect:/view-tasks";
+        }
     }
 
 }

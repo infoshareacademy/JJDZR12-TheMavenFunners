@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,6 +40,20 @@ class TaskServiceImpl implements TaskService {
         }
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
+
+        logger.debug("Retrieved {} tasks from the database.", taskList.size());
+
+        return taskList;
+    }
+
+    @Override
+    public List<Task> findLoggedInUsersActiveTasks() {
+        List<Task> taskList = new ArrayList<>();
+        logger.debug("Sorting and filtering tasks");
+
+        if(loginService.isUserLoggedIn()) {
+            taskList = taskRepository.findAllByUserAndActiveOrderByTaskEndAsc(loginService.getLoggedInUser(), true);
+        }
 
         logger.debug("Retrieved {} tasks from the database.", taskList.size());
 
@@ -82,7 +97,7 @@ class TaskServiceImpl implements TaskService {
         task.setTaskName(editedTask.getTaskName());
         task.setTaskStart(editedTask.getTaskStart());
         taskRepository.save(task);
-        logger.info("Task with Id" + task.getId() + " edited");
+        logger.info("Task with Id " + task.getId() + " edited");
     }
     @Override
     public void toggleTaskStatus(Long taskId) {

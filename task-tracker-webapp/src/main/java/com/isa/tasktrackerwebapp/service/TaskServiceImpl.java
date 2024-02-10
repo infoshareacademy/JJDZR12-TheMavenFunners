@@ -1,12 +1,14 @@
 package com.isa.tasktrackerwebapp.service;
 
 import com.isa.tasktrackerwebapp.model.entity.Task;
+import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,6 +41,20 @@ class TaskServiceImpl implements TaskService {
         }
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
+
+        logger.debug("Retrieved {} tasks from the database.", taskList.size());
+
+        return taskList;
+    }
+
+    @Override
+    public List<Task> findLoggedInUsersActiveTasks() {
+        List<Task> taskList = new ArrayList<>();
+        logger.debug("Sorting and filtering tasks");
+
+        if(loginService.isUserLoggedIn()) {
+            taskList = taskRepository.findAllByUserAndActiveOrderByTaskEndAsc(loginService.getLoggedInUser(), true);
+        }
 
         logger.debug("Retrieved {} tasks from the database.", taskList.size());
 

@@ -6,12 +6,50 @@
         <div class="d-flex justify-content-center alert alert-success mx-3 pb-0" th:if="${logout}">
             <p>Wylogowano poprawnie.</p>
         </div>
-        <div class="d-flex justify-content-center mt-4 pb-0" th:if="${isUserLoggedIn}">
+        <div class="justify-content-center mt-4 pb-0" th:if="${isUserLoggedIn}">
             <h4 th:text="|Witaj, ${user}|"></h4>
+            <div th:if="${taskList.size}>0">Oto twoje aktywne zadania:</div>
+            <div th:if="${taskList.size}==0">W tej chwili nie są przypisane do Ciebie żadne aktywne zadania.</div>
         </div>
     </div>
-    <img class="main-img" th:src="@{/img/notes.png}">
-    <h2 class="cover-heading">
+    <img class="main-img" th:src="@{/img/notes.png}" th:if="!${isUserLoggedIn}">
+    <h2 class="cover-heading" th:if="!${isUserLoggedIn}">
         Task Tracker by The Maven Funners
     </h2>
+    <div class="row justify-content-center align-items-center p-5 p-md-5" th:if="${isUserLoggedIn} and ${taskList.size}>0">
+    <div class="col-12 col-lg-9 col-xl-10">
+    <table class="table table-bordered table-striped small" id="tasks-table">
+        <thead class="thead-light">
+        <tr>
+            <th>Nazwa</th>
+            <th>Data rozpoczęcia</th>
+            <th>Data zakończenia</th>
+            <th>Opis</th>
+            <th>Status</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${taskList}">
+            <td th:text="${task.taskName}"></td>
+            <td th:text="${task.taskStart}"></td>
+            <td th:text="${task.taskEnd}"
+                th:style="${task.taskEnd < localDate && task.active ? 'color: red;' : (T(java.time.temporal.ChronoUnit).DAYS.between(localDate, task.taskEnd) <= 3 && task.active ? 'color: darkorange;' : '')}"></td>
+            <td th:text="${task.taskDescription}"></td>
+            <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>
+            <td class="a-icon">
+                <ul>
+                    <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id})('?main')}" title="edytuj"><i
+                            class="fi fi-rr-edit"></i></a></li>
+                    <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id})}"
+                           th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
+                            th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
 </main>

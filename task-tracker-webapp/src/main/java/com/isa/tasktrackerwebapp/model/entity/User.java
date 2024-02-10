@@ -1,7 +1,5 @@
 package com.isa.tasktrackerwebapp.model.entity;
 
-import jakarta.validation.constraints.*;
-
 import java.util.Collection;
 import java.util.Objects;
 
@@ -11,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "user")
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String login;

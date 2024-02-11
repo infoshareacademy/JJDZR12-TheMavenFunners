@@ -4,10 +4,12 @@ import com.isa.tasktrackerwebapp.model.dto.TaskDto;
 import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
 import com.isa.tasktrackerwebapp.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,6 +44,20 @@ class TaskServiceImpl implements TaskService {
         }
 
         taskList = filterTasks(taskList, searchTaskName, filterActive);
+
+        logger.debug("Retrieved {} tasks from the database.", taskList.size());
+
+        return taskList;
+    }
+
+    @Override
+    public List<Task> findLoggedInUsersActiveTasks() {
+        List<Task> taskList = new ArrayList<>();
+        logger.debug("Sorting and filtering tasks");
+
+        if(loginService.isUserLoggedIn()) {
+            taskList = taskRepository.findAllByUserAndActiveOrderByTaskEndAsc(loginService.getLoggedInUser(), true);
+        }
 
         logger.debug("Retrieved {} tasks from the database.", taskList.size());
 
@@ -88,5 +104,33 @@ class TaskServiceImpl implements TaskService {
     @Override
     public boolean taskEndInvalid(TaskDto form) {
         return form.getTaskEnd().isBefore(form.getTaskStart());
+    }
+
+    @Override
+    @Transactional
+    public void editTask(Task editedTask, Task task) {
+        task.setTaskDescription(editedTask.getTaskDescription());
+        task.setTaskEnd(editedTask.getTaskEnd());
+        task.setTaskName(editedTask.getTaskName());
+        task.setTaskStart(editedTask.getTaskStart());
+        taskRepository.save(task);
+        logger.info("Task with Id " + task.getId() + " edited");
+    }
+    @Override
+    public void toggleTaskStatus(Long taskId) {
+        Task task = taskRepository.findTaskById(taskId);
+
+        if (task != null) {
+            task.setActive(!task.getActive());
+            taskRepository.save(task);
+            logger.info("Task with Id " + taskId + (task.getActive() ? " activated" : " deactivated"));
+        } else {
+            logger.warn("Task with Id " + taskId + " not found");
+        }
+    }
+
+    @Override
+    public Task findTaskById(Long id){
+        return taskRepository.findTaskById(id);
     }
 }

@@ -1,7 +1,5 @@
 package com.isa.tasktrackerwebapp.model.entity;
 
-import jakarta.validation.constraints.*;
-
 import java.util.Collection;
 import java.util.Objects;
 

@@ -1,6 +1,10 @@
 package com.isa.tasktrackerwebapp.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Check;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -8,15 +12,23 @@ import java.time.LocalDate;
 @Table(name="task")
 public class Task extends AbstractEntity {
 
+    @NotBlank(message = "Nazwa zadania nie może być pusta.")
     @Column(nullable = false)
     private String taskName;
 
+    @Check(constraints = "task_end >= task_start")
+    @NotNull(message = "Data rozpoczęcia nie może być pusta.")
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskStart;
 
+    @Check(constraints = "task_end >= task_start")
+    @NotNull(message = "Data zakończenia nie może być pusta.")
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskEnd;
 
+    @NotBlank(message = "Opis zadania nie moży być pusty.")
     @Column(nullable = false)
     private String taskDescription;
 

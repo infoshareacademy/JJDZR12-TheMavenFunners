@@ -103,7 +103,7 @@ class TaskController {
     }
 
     @PostMapping("/edit-task/{taskId}")
-    String editTask(@Valid @ModelAttribute("task") Task form,
+    String editTask(@Valid @ModelAttribute("task") TaskDto form,
                     BindingResult bindingResult,
                     @RequestParam(required = false) String src,
                     @PathVariable Long taskId,

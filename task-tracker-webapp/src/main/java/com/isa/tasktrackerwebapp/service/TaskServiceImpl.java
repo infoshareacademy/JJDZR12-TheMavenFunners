@@ -108,11 +108,11 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional
-    public void editTask(Task editedTask, Task task) {
-        task.setTaskDescription(editedTask.getTaskDescription());
-        task.setTaskEnd(editedTask.getTaskEnd());
-        task.setTaskName(editedTask.getTaskName());
-        task.setTaskStart(editedTask.getTaskStart());
+    public void editTask(TaskDto editedTask, Task task) {
+        task.setTaskDescription(mapTaskDtoToEntityTask(editedTask).getTaskDescription());
+        task.setTaskEnd(mapTaskDtoToEntityTask(editedTask).getTaskEnd());
+        task.setTaskName(mapTaskDtoToEntityTask(editedTask).getTaskName());
+        task.setTaskStart(mapTaskDtoToEntityTask(editedTask).getTaskStart());
         taskRepository.save(task);
         logger.info("Task with Id " + task.getId() + " edited");
     }

@@ -10,10 +10,7 @@ public interface TaskService {
     void saveTask(TaskDto form);
     boolean taskEndInvalid(TaskDto form);
     List<Task> findLoggedInUsersActiveTasks();
-    void saveTask(Task form);
-    boolean taskEndInvalid(Task form);
-    void editTask(Task editedTask, Task task);
+    void editTask(TaskDto editedTask, Task task);
     void toggleTaskStatus(Long taskId);
-
     Task findTaskById(Long id);
 }

@@ -112,31 +112,36 @@ input[type=date]:invalid {
 
 .a-icon a {
     text-decoration: none;
-    /*margin-top:0;*/
-    /*position: absolute;*/
-    font-size:1.2em;
+    font-size: 1.2em;
 }
+
+td .a-icon {
+    min-width: 20px;
+    white-space: nowrap;
+}
+
 .a-icon ul {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
+
 .a-icon ul li {
-    display: inline;
+    display: inline-block;
 }
 
 .a-icon li {
-    margin:0 5px 0 5px;
+    margin: 0 5px 0 5px;
 }
 
-#s-m-t-tooltip{
-    max-width:300px;
-    margin:15px;
-    padding:3px 8px;
-    border:1px solid #222;
-    background-color:rgba(255,255,255,1);
-    color:#447;
-    z-index:999999;
-    font-size:0.8rem;
-    letter-spacing:1px;
-    box-shadow: rgba(0,0,0,0.07)3px 3px;
+#s-m-t-tooltip {
+    max-width: 300px;
+    margin: 15px;
+    padding: 3px 8px;
+    border: 1px solid #222;
+    background-color: rgba(255, 255, 255, 1);
+    color: #447;
+    z-index: 999999;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    box-shadow: rgba(0, 0, 0, 0.07) 3px 3px;
 }

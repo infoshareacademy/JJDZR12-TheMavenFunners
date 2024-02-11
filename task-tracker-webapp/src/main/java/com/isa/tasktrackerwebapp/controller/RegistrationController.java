@@ -71,7 +71,6 @@ class RegistrationController {
 
         if (hasErrors || loginExists || emailExists || passwordsDontMatch) {
             logger.warn(failureReasonsBuilder.toString());
-            logger.warn(bindingResult.toString());
 
             model.addAttribute("content", PageType.REGISTRATION.getContentValue())
                     .addAttribute("pageTitle", PageType.REGISTRATION.getTitleValue())

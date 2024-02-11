@@ -1,7 +1,9 @@
 package com.isa.tasktrackerwebapp.service;
 
+import com.isa.tasktrackerwebapp.model.dto.TaskDto;
 import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.repository.TaskRepository;
+import com.isa.tasktrackerwebapp.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +18,12 @@ class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
     private final LoginService loginService;
+    private final UserRepository userRepository;
 
-    TaskServiceImpl(LoginService loginService, TaskRepository taskRepository) {
+    TaskServiceImpl(LoginService loginService, TaskRepository taskRepository, UserRepository userRepository) {
         this.loginService = loginService;
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -61,9 +65,27 @@ class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void saveTask(Task form) {
-        form.setUser(loginService.getLoggedInUser());
-        taskRepository.save(form);
+    public boolean taskEndInvalid(Task form) {
+        return false;
+    }
+
+    public Task mapTaskDtoToEntityTask(TaskDto taskDto) {
+        Task task = new Task();
+
+        task.setTaskName(taskDto.getTaskName());
+        task.setTaskStart(taskDto.getTaskStart());
+        task.setTaskEnd(taskDto.getTaskEnd());
+        task.setTaskDescription(taskDto.getTaskDescription());
+        task.setUser(userRepository.findByLogin(taskDto.getUser()).get());
+        task.setActive(taskDto.getActive());
+
+        return task;
+    }
+
+    @Override
+    public void saveTask(TaskDto form) {
+        form.setActive(true);
+        taskRepository.save(mapTaskDtoToEntityTask(form));
     }
 
     private List<Task> filterTasks(List<Task> taskList, String searchTaskName, String filterActive) {
@@ -85,17 +107,18 @@ class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean taskEndInvalid(Task form) {
+    public boolean taskEndInvalid(TaskDto form) {
         return form.getTaskEnd().isBefore(form.getTaskStart());
     }
 
     @Override
     @Transactional
-    public void editTask(Task editedTask, Task task) {
+    public void editTask(TaskDto editedTask, Task task) {
         task.setTaskDescription(editedTask.getTaskDescription());
         task.setTaskEnd(editedTask.getTaskEnd());
         task.setTaskName(editedTask.getTaskName());
         task.setTaskStart(editedTask.getTaskStart());
+
         taskRepository.save(task);
         logger.info("Task with Id " + task.getId() + " edited");
     }

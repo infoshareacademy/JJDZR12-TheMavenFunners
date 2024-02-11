@@ -1,5 +1,6 @@
 package com.isa.tasktrackerwebapp.controller;
 
+import com.isa.tasktrackerwebapp.model.dto.TaskDto;
 import com.isa.tasktrackerwebapp.model.entity.PageType;
 import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
@@ -47,12 +48,15 @@ class TaskController {
         loginService.setUserAsLoggedIn(model);
         model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
-                .addAttribute("task", new Task());
+                .addAttribute("task", new Task())
+                .addAttribute("activeUserList", loginService.getActiveUsers())
+                .addAttribute("task", new TaskDto());
+
         return "main";
     }
 
     @PostMapping("/add-task")
-    String saveTask(@Valid @ModelAttribute Task form, BindingResult bindingResult, Model model) {
+    String saveTask(@Valid @ModelAttribute("task") TaskDto form, BindingResult bindingResult, Model model) {
         loginService.setUserAsLoggedIn(model);
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
@@ -75,6 +79,7 @@ class TaskController {
 
             model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                     .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
+                    .addAttribute("activeUserList", loginService.getActiveUsers())
                     .addAttribute("task", form)
                     .addAttribute("taskEndError", taskEndError);
             return "main";
@@ -98,7 +103,7 @@ class TaskController {
     }
 
     @PostMapping("/edit-task/{taskId}")
-    String editTask(@Valid @ModelAttribute("task") Task form,
+    String editTask(@Valid @ModelAttribute("task") TaskDto form,
                     BindingResult bindingResult,
                     @RequestParam(required = false) String src,
                     @PathVariable Long taskId,

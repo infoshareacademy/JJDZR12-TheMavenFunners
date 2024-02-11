@@ -1,11 +1,15 @@
 package com.isa.tasktrackerwebapp.controller;
 
-import com.isa.tasktrackerwebapp.service.LoginValidator;
-import com.isa.tasktrackerwebapp.model.PageType;
-import com.isa.tasktrackerwebapp.model.User;
+import com.isa.tasktrackerwebapp.model.entity.PageType;
+import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.service.LoginService;
+import com.isa.tasktrackerwebapp.service.LoginValidator;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 class LoginController {
+
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     private final LoginService loginService;
     private final LoginValidator loginValidator;
 
@@ -23,7 +29,6 @@ class LoginController {
         this.loginService = loginService;
         this.loginValidator = loginValidator;
     }
-
 
     @GetMapping("/login")
     String loginMenu(Model model) {
@@ -49,11 +54,12 @@ class LoginController {
     }
 
     @GetMapping("/logout")
-    String logout(Model model) {
-        loginService.setLoggedInUser(null);
+    String logout(Model model, Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
+        loginService.logOutUser();
         model.addAttribute("content", PageType.INDEX.getContentValue())
                 .addAttribute("pageTitle", PageType.INDEX.getTitleValue())
                 .addAttribute("logout", true);
-        return "main";
+      new SecurityContextLogoutHandler().logout(request, response, authentication);
+      return "main";
     }
 }

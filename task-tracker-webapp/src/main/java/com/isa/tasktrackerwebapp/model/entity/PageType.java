@@ -1,11 +1,12 @@
-package com.isa.tasktrackerwebapp.model;
+package com.isa.tasktrackerwebapp.model.entity;
 
 public enum PageType {
     INDEX("Strona główna", "index"),
     REGISTRATION("Rejestracja", "registration"),
     ADD_TASK("Dodaj task", "add-task"),
     VIEW_TASKS("Wyświetl taski", "view-tasks"),
-    LOGIN("Login", "login");
+    LOGIN("Login", "login"),
+    EDIT_TASK("Edytuj task", "edit-task");
 
     private final String titleValue;
     private final String contentValue;

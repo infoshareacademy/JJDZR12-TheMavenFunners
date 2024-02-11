@@ -1,7 +1,8 @@
 package com.isa.tasktrackerwebapp.controller;
 
-import com.isa.tasktrackerwebapp.model.PageType;
-import com.isa.tasktrackerwebapp.model.Task;
+import com.isa.tasktrackerwebapp.model.dto.TaskDto;
+import com.isa.tasktrackerwebapp.model.entity.PageType;
+import com.isa.tasktrackerwebapp.model.entity.Task;
 import com.isa.tasktrackerwebapp.service.LoginService;
 import com.isa.tasktrackerwebapp.service.TaskService;
 import jakarta.validation.Valid;
@@ -10,11 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -34,33 +33,35 @@ class TaskController {
                        @RequestParam(required = false) String sortBy,
                        @RequestParam(required = false) String searchTaskName,
                        @RequestParam(required = false) String filterActive) {
+        loginService.setUserAsLoggedIn(model);
         List<Task> taskList = taskService.getSortedAndFilteredTasks(sortBy, searchTaskName, filterActive);
         model.addAttribute("taskList", taskList)
                 .addAttribute("content", PageType.VIEW_TASKS.getContentValue())
-                .addAttribute("pageTitle", PageType.VIEW_TASKS.getTitleValue());
-        if (loginService.isUserLoggedIn()){
-            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
-        }
+                .addAttribute("pageTitle", PageType.VIEW_TASKS.getTitleValue())
+                .addAttribute("localDate", LocalDate.now());
+
         return "main";
     }
 
     @GetMapping("/add-task")
     String newTask(Model model) {
+        loginService.setUserAsLoggedIn(model);
         model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                 .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
-                .addAttribute("task", new Task());
-        if (loginService.isUserLoggedIn()){
-            model.addAttribute("isUserLoggedIn", loginService.isUserLoggedIn());
-        }
+                .addAttribute("task", new Task())
+                .addAttribute("activeUserList", loginService.getActiveUsers())
+                .addAttribute("task", new TaskDto());
+
         return "main";
     }
 
     @PostMapping("/add-task")
-    String saveTask(@Valid @ModelAttribute Task form, BindingResult bindingResult, Model model) {
+    String saveTask(@Valid @ModelAttribute("task") TaskDto form, BindingResult bindingResult, Model model) {
+        loginService.setUserAsLoggedIn(model);
         boolean hasErrors = bindingResult.hasErrors();
         boolean taskEndError = false;
-        if(!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
-            taskEndError = taskService.taskEndValid(form);
+        if (!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
+            taskEndError = taskService.taskEndInvalid(form);
         }
 
         StringBuilder failureReasonsBuilder = new StringBuilder("Add task attempt failed: ");
@@ -78,6 +79,7 @@ class TaskController {
 
             model.addAttribute("content", PageType.ADD_TASK.getContentValue())
                     .addAttribute("pageTitle", PageType.ADD_TASK.getTitleValue())
+                    .addAttribute("activeUserList", loginService.getActiveUsers())
                     .addAttribute("task", form)
                     .addAttribute("taskEndError", taskEndError);
             return "main";
@@ -87,4 +89,70 @@ class TaskController {
         logger.info("Added new task: {}", form);
         return "redirect:/add-task?addTaskSuccessful";
     }
+
+    @GetMapping("/edit-task/{taskId}")
+    String editTask(Model model, @PathVariable Long taskId) {
+        loginService.setUserAsLoggedIn(model);
+
+        Task task = taskService.findTaskById(taskId);
+        model.addAttribute("task", task)
+                .addAttribute("content", PageType.EDIT_TASK.getContentValue())
+                .addAttribute("pageTitle", PageType.EDIT_TASK.getTitleValue());
+
+        return "main";
+    }
+
+    @PostMapping("/edit-task/{taskId}")
+    String editTask(@Valid @ModelAttribute("task") TaskDto form,
+                    BindingResult bindingResult,
+                    @RequestParam(required = false) String src,
+                    @PathVariable Long taskId,
+                    Model model) {
+        loginService.setUserAsLoggedIn(model);
+        boolean hasErrors = bindingResult.hasErrors();
+        boolean taskEndError = false;
+        if (!bindingResult.hasFieldErrors("taskStart") && !bindingResult.hasFieldErrors("taskEnd")) {
+            taskEndError = taskService.taskEndInvalid(form);
+        }
+
+        StringBuilder failureReasonsBuilder = new StringBuilder("Edit task attempt failed: ");
+
+        if (hasErrors) {
+            failureReasonsBuilder.append(" task fields validation not passed;");
+        }
+
+        if (taskEndError) {
+            failureReasonsBuilder.append(" task end is before task start;");
+        }
+
+        if (hasErrors || taskEndError) {
+            logger.warn(failureReasonsBuilder.toString());
+
+            model.addAttribute("content", PageType.EDIT_TASK.getContentValue())
+                    .addAttribute("pageTitle", PageType.EDIT_TASK.getTitleValue())
+                    .addAttribute("task", form)
+                    .addAttribute("taskEndError", taskEndError);
+            return "main";
+        }
+        Task task = taskService.findTaskById(taskId);
+        taskService.editTask(form, task);
+
+        if ("index".equals(src)) {
+            return "redirect:/?editSuccessful=true";
+        } else {
+            return "redirect:/view-tasks?editSuccessful=true";
+        }
+
+    }
+
+    @GetMapping("/toggle-task/{taskId}")
+    public String toggleTaskStatus(@PathVariable Long taskId, @RequestParam(required = false) String src) {
+        taskService.toggleTaskStatus(taskId);
+        if ("index".equals(src)) {
+            return "redirect:/";
+        } else {
+            return "redirect:/view-tasks";
+        }
+    }
+
 }

@@ -1,26 +1,37 @@
-package com.isa.tasktrackerwebapp.model;
+package com.isa.tasktrackerwebapp.model.dto;
 
+import com.isa.tasktrackerwebapp.model.entity.AbstractEntity;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Check;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class Task {
+public class TaskDto extends AbstractEntity {
+
     @NotBlank(message = "Nazwa zadania nie może być pusta.")
     private String taskName;
-    @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
+
+    @Check(constraints = "task_end >= task_start")
     @NotNull(message = "Data rozpoczęcia nie może być pusta.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskStart;
-    @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
+
+    @Check(constraints = "task_end >= task_start")
     @NotNull(message = "Data zakończenia nie może być pusta.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskEnd;
+
     @NotBlank(message = "Opis zadania nie moży być pusty.")
     private String taskDescription;
-    private User user;
+
+    private String user;
+
     private boolean active;
 
-    public Task(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, User user, boolean active) {
+    public TaskDto(String taskName, LocalDate taskStart, LocalDate taskEnd, String taskDescription, String user, boolean active) {
         this.taskName = taskName;
         this.taskStart = taskStart;
         this.taskEnd = taskEnd;
@@ -29,7 +40,7 @@ public class Task {
         this.active = active;
     }
 
-    public Task() {
+    public TaskDto() {
     }
 
     public String getTaskName() {
@@ -64,11 +75,11 @@ public class Task {
         this.taskDescription = taskDescription;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 

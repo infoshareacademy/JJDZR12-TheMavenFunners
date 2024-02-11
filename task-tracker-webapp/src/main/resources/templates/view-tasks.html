@@ -68,15 +68,16 @@
                     <td th:text="${task.user.login}"></td>
                     <td th:text="${task.active ? 'aktywne' : 'nieaktywne'}"></td>
                     <td class="a-icon">
-                        <ul>
-                            <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id})}" title="edytuj"><i
-                                    class="fi fi-rr-edit"></i></a></li>
-                            <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id})}"
-                                   th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
-                                    th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
-                            </li>
-                        </ul>
-                    </td>
+                        <div class="a-icon">
+                            <ul>
+                                <li><a th:href="@{/edit-task/{taskId}(taskId=${task.Id})}" title="edytuj"><i
+                                        class="fi fi-rr-edit"></i></a></li>
+                                <li><a th:href="@{/toggle-task/{taskId}(taskId=${task.id})}"
+                                       th:title="${task.active ? 'dezaktywuj' : 'aktywuj'}"><i
+                                        th:classappend="${task.active ? 'fi fi-rr-bolt-slash' : 'fi fi-rr-bolt'}"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                 </tr>
                 </tbody>
             </table>

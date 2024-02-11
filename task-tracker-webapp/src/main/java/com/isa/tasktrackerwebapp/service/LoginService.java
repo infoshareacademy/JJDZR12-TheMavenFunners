@@ -36,16 +36,15 @@ public class LoginService {
         return loggedInUser != null;
     }
 
+    public void setUserAsLoggedIn(Model model) {
+        if (isUserLoggedIn()) {
+            model.addAttribute("isUserLoggedIn", isUserLoggedIn());
+        }
+    }
 
 
     public List<UserDto> getActiveUsers() {
         return userService.mapEntityToDtoList().stream()
                 .filter(x -> x.isActive()).toList();
-    }
-
-    public void setUserAsLoggedIn(Model model) {
-        if (isUserLoggedIn()) {
-            model.addAttribute("isUserLoggedIn", isUserLoggedIn());
-        }
     }
 }

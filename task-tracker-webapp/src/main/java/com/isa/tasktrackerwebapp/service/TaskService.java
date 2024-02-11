@@ -11,6 +11,8 @@ public interface TaskService {
     boolean taskEndInvalid(TaskDto form);
     List<Task> findLoggedInUsersActiveTasks();
     void editTask(TaskDto editedTask, Task task);
+    boolean taskEndInvalid(Task form);
+    void editTask(Task editedTask, Task task);
     void toggleTaskStatus(Long taskId);
     Task findTaskById(Long id);
 }

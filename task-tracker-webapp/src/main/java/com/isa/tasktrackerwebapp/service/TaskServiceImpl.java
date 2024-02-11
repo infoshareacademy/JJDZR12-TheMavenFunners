@@ -64,6 +64,11 @@ class TaskServiceImpl implements TaskService {
         return taskList;
     }
 
+    @Override
+    public boolean taskEndInvalid(Task form) {
+        return false;
+    }
+
     public Task mapTaskDtoToEntityTask(TaskDto taskDto) {
         Task task = new Task();
 
@@ -113,7 +118,7 @@ class TaskServiceImpl implements TaskService {
         task.setTaskEnd(editedTask.getTaskEnd());
         task.setTaskName(editedTask.getTaskName());
         task.setTaskStart(editedTask.getTaskStart());
-        logger.warn(task.getId().toString());
+
         taskRepository.save(task);
         logger.info("Task with Id " + task.getId() + " edited");
     }

@@ -1,6 +1,7 @@
 package com.isa.tasktrackerwebapp.model.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -12,9 +13,11 @@ public class Task extends AbstractEntity {
     private String taskName;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskStart;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskEnd;
 
     @Column(nullable = false)

@@ -4,6 +4,7 @@ import com.isa.tasktrackerwebapp.model.dto.UserDto;
 import com.isa.tasktrackerwebapp.model.entity.User;
 import com.isa.tasktrackerwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -40,5 +41,11 @@ public class LoginService {
     public List<UserDto> getActiveUsers() {
         return userService.mapEntityToDtoList().stream()
                 .filter(x -> x.isActive()).toList();
+    }
+
+    public void setUserAsLoggedIn(Model model) {
+        if (isUserLoggedIn()) {
+            model.addAttribute("isUserLoggedIn", isUserLoggedIn());
+        }
     }
 }

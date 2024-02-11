@@ -64,6 +64,11 @@ class TaskServiceImpl implements TaskService {
         return taskList;
     }
 
+    @Override
+    public boolean taskEndInvalid(Task form) {
+        return false;
+    }
+
     public Task mapTaskDtoToEntityTask(TaskDto taskDto) {
         Task task = new Task();
 

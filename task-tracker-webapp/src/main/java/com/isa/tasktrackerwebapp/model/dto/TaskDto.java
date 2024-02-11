@@ -5,6 +5,7 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.Check;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -16,11 +17,13 @@ public class TaskDto extends AbstractEntity {
     @Check(constraints = "task_end >= task_start")
     @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
     @NotNull(message = "Data rozpoczęcia nie może być pusta.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskStart;
 
     @Check(constraints = "task_end >= task_start")
     @FutureOrPresent(message = "Nie można wprowadzić daty z przeszłości.")
     @NotNull(message = "Data zakończenia nie może być pusta.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate taskEnd;
 
     @NotBlank(message = "Opis zadania nie moży być pusty.")
